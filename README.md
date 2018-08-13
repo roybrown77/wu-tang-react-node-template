@@ -1,5 +1,7 @@
 # Wu-Tang React Node Template
 
+![wu-tang](https://user-images.githubusercontent.com/1335262/44062950-81424b5e-9f2c-11e8-88a1-88341217f6a1.jpg)
+
 Tiger style.  Tiger style.  Yes, like the song this template is nothing to $%#@ wit.
 
 Backend:
