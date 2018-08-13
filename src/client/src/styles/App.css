@@ -1,0 +1,380 @@
+body {
+  background-color: #f4f7f6;
+}
+
+.app {
+  position: relative;
+  display: block;
+  border-bottom: 2.5rem solid;
+  text-decoration: none;
+}
+
+.app__wrapper {
+  padding-top: 62.5%;
+}
+
+.app__title {
+  position: absolute;
+  right: 0;
+  bottom: -2.5rem;
+  left: 0;
+  overflow: hidden;
+  margin: 0;
+  padding-top: .55rem;
+  height: 2rem;
+  background: rgba(0,0,0,.5);
+  color: #fff;
+  text-align: center;
+  font: 1.4rem/1 Permanent Marker,sans-serif;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.page-container {
+  margin: 0 35%;
+  margin-bottom: 60px;
+  height: 100%;
+  position: relative;
+}
+
+@media screen and (max-width: 1250px) {
+  .page-container {
+    margin: 0 25%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .page-container {
+    margin: 0 15%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .page-container {
+    margin: 0 12px;
+    margin-bottom: 60px;
+  }
+}
+
+/* --- loader start --- */
+
+.loader {
+  margin-left: 50%;
+  margin-top: 5em;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%); }
+  .loader #spinner {
+    box-sizing: border-box;
+    stroke: #673AB7;
+    stroke-width: 3px;
+    -webkit-transform-origin: 50%;
+            transform-origin: 50%;
+    -webkit-animation: line 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite, rotate 1.6s linear infinite;
+            animation: line 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite, rotate 1.6s linear infinite; }
+
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0);
+            transform: rotate(0); }
+  to {
+    -webkit-transform: rotate(450deg);
+            transform: rotate(450deg); } }
+
+@keyframes rotate {
+  from {
+    -webkit-transform: rotate(0);
+            transform: rotate(0); }
+  to {
+    -webkit-transform: rotate(450deg);
+            transform: rotate(450deg); } }
+
+@-webkit-keyframes line {
+  0% {
+    stroke-dasharray: 2, 85.964;
+    -webkit-transform: rotate(0);
+            transform: rotate(0); }
+  50% {
+    stroke-dasharray: 65.973, 21.9911;
+    stroke-dashoffset: 0; }
+  100% {
+    stroke-dasharray: 2, 85.964;
+    stroke-dashoffset: -65.973;
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg); } }
+
+@keyframes line {
+  0% {
+    stroke-dasharray: 2, 85.964;
+    -webkit-transform: rotate(0);
+            transform: rotate(0); }
+  50% {
+    stroke-dasharray: 65.973, 21.9911;
+    stroke-dashoffset: 0; }
+  100% {
+    stroke-dasharray: 2, 85.964;
+    stroke-dashoffset: -65.973;
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg); } }
+
+.pick-processing {
+  position: absolute;
+  left: 50%;
+  z-index: 1;
+}
+
+/* --- loader end --- */
+
+/* --- animation start --- */
+
+.fast-flash {
+  -webkit-animation-name: flash-keyframe; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: .5s; /* Safari 4.0 - 8.0 */
+  animation-name: flash-keyframe;
+  animation-duration: .5s;
+  animation-iteration-count:infinite;
+}
+
+.flash {
+  -webkit-animation-name: flash-keyframe; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
+  animation-name: flash-keyframe;
+  animation-duration: 1s;
+  animation-iteration-count:infinite;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes flash-keyframe {
+  0%   {opacity: 1;}
+  25%  {opacity: 1;}
+  50%  {opacity: 0.5;}
+  100% {opacity: 0;}
+}
+
+/* Standard syntax */
+@keyframes flash-keyframe {
+  0%   {opacity: 1;}
+  25%  {opacity: 1;}
+  50%  {opacity: 0.5;}
+  100% {opacity: 0;}
+}
+
+.fade-in {
+  opacity:0;  /* make things invisible upon start */
+  -webkit-animation:fadeIn ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+  -moz-animation:fadeIn ease-in 1;
+  animation:fadeIn ease-in 1;
+
+  -webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+
+  -webkit-animation-duration:2s;
+  -moz-animation-duration:2s;
+  animation-duration:2s;
+}
+
+/* make keyframes that tell the start state and the end state of our object */
+
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+/* --- animation end --- */
+
+/* --- splash screen start --- */
+
+#home {
+  top: 0;
+  position: fixed;
+  z-index: 9999;
+  background-color: #f4f7f6;
+  color: #000;
+  height: 100%;
+  padding: 0 12px;
+}
+
+#home-title {
+  font: 7rem/1 Permanent Marker,sans-serif;
+  margin-top: 5%;
+}
+
+#home-go {
+  font: 7rem/1 Permanent Marker, sans-serif;
+  cursor: pointer;
+}
+
+#home-description {
+  font-family: 'PressStart2PRegular';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 10px !important;
+  margin-top: 32px;
+}
+
+@media screen and (min-width: 1000px) {
+  #home {
+    width: 100%;
+  }
+}
+
+/* --- splash screen end --- */
+
+/* --- header & side bar start --- */
+
+#app-bar {
+  background-color: #f4f7f6 !important;
+  border-bottom: 1px solid #000;
+}
+
+#app-bar button div svg {
+  fill: #000 !important;
+}
+
+.menu-item {
+  font-weight: bold;
+}
+
+/* --- header & side bar end --- */
+
+/* --- leagues start --- */
+
+.list {
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.list-item {
+  margin: 12px 0 0 0;
+  width: 100%;
+  background-color: blue;
+  font: 1.4rem/1 Permanent Marker,sans-serif;
+  color: #f4f7f6;
+  font-size: 3.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+}
+
+/*.list-item:hover {
+  -webkit-transform:translate(0,-2px);
+  transform:translate(0,-2px);opacity:.85;
+}*/
+
+.list-item-text {
+  cursor: pointer;
+}
+
+/* --- leagues end --- */
+
+/* --- login start--- */
+
+#login-container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: white;
+}
+
+.fa {
+  padding: 20px;
+  font-size: 130px;
+  width: 150px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+}
+
+.fa:hover {
+    opacity: 0.7;,
+    cursor: pointer !important;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+
+.preview {
+  background-color: #3D9970;
+  color: white;
+  font-size: 40px;
+  font-weight: 900;
+  font-family: sans-serif;
+  padding: 65px 20px;
+}
+
+/* --- login end --- */
+
+/* --- game start --- */
+
+.game-check {
+  position: sticky;
+  left: 50%;
+  background-color: lightgray;
+  height: 100%;
+  opacity: .5;
+}
+
+@media screen and (min-width: 600px) {
+  .game-tile-large {
+    display: none;
+  }
+
+  .game-tile-small {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .game-tile-large {
+    display: block;
+  }
+
+  .game-tile-small {
+    display: none;
+  }
+}
+
+.grid-tile div div {
+}
+
+.game-pick-in-progress {
+  border: '8px solid #BA68C8' !important;
+}
+
+/* --- game end --- */
+
+/* --- leaders start --- */
+
+.leader-win-loss-tie-header {
+  font-weight: bold;
+  color: #fff;
+  font-size: 32px;
+  height: 1.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.leader-item {
+  font-weight: bold;
+  color: #000;
+  font-size: 24px;
+  font: 1.4rem/1 Permanent Marker,sans-serif;
+}
+
+/* --- leaders end --- */
