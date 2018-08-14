@@ -2,7 +2,7 @@
 
 ![wu-tang](https://user-images.githubusercontent.com/1335262/44062950-81424b5e-9f2c-11e8-88a1-88341217f6a1.jpg)
 
-Tiger style. Tiger style. Yes, like the song this will help you build a web app that the world can't $%#@ wit.
+Tiger style. Tiger style. Yes, like the song this will help you build a web app the world can't $%#@ wit.
 
 Backend:
 
