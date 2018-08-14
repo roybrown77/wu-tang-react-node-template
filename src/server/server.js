@@ -11,8 +11,8 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.resolve(__dirname, '../client/build')));
 }
 
-var GameController = require('./game/GameController');
-app.use('/api/gamemanagement', GameController);
+var HomeController = require('./home/HomeController');
+app.use('/api/homemanagement', HomeController);
 
 app.get('*', function(request, response) {
   response.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));

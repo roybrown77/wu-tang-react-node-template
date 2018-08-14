@@ -16,30 +16,12 @@ const callApi = ({endpoint, method, body, schema}) => {
 };
 
 const gameSchema = new schema.Entity('games', {}, {
-  idAttribute: game => game._id
-});
-
-const pickSchema = new schema.Entity('picks', {}, {
-  idAttribute: pick => pick._id
-});
-
-const leaderSchema = new schema.Entity('leaders', {}, {
-  idAttribute: leader => leader._id
-});
-
-const userSchema = new schema.Entity('users', {}, {
-  idAttribute: user => user._id
+  idAttribute: home => home._id
 });
 
 export const Schemas = {
-  GAME: gameSchema,
-  GAME_ARRAY: [gameSchema],
-  PICK: pickSchema,
-  PICK_ARRAY: [pickSchema],
-  LEADER: leaderSchema,
-  LEADER_ARRAY: [leaderSchema],
-  USER: userSchema,
-  USER_ARRAY: [userSchema]
+  HOME: gameSchema,
+  HOME_ARRAY: [gameSchema]
 };
 
 export const CALL_API = 'Call API';
