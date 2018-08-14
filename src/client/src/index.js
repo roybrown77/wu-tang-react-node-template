@@ -1,5 +1,5 @@
-import './styles/App.css';
-import './styles/permanent-marker.css';
+// import './styles/App.css';
+// import './styles/permanent-marker.css';
 
 import React from 'react';
 import { render } from 'react-dom';
