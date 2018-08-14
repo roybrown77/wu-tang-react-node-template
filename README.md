@@ -36,4 +36,4 @@ Hosting server:
 4. cd ../../
 5. npm start
 
-Please listen to Wu-Tang Clan's 'Nothing to $%#@ Wit' as it will enhance your coding experience. :D
+Please listen to Wu-Tang Clan as it will enhance your coding experience. :D
