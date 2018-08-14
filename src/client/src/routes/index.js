@@ -1,11 +1,16 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom';
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-
+import { MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import HomePage from '../containers/HomePage';
 
+const theme = createMuiTheme({
+  palette: {
+    type: 'dark', // Switching the dark mode on is a single property value change.
+  },
+});
+
 const routes = (
-		 <MuiThemeProvider>
+		 <MuiThemeProvider theme={theme}>
 		    <div className="App">
 		        <main>
 			            <Switch>
