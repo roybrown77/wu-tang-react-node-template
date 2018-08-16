@@ -37,3 +37,11 @@ Hosting server:
 5. npm start
 
 Please listen to Wu-Tang Clan as it will enhance your coding experience. :D
+
+![linus wu](https://user-images.githubusercontent.com/1335262/44238981-06b44580-a185-11e8-92e1-55d460c3b81e.png) 
+![lucy killer tape](https://user-images.githubusercontent.com/1335262/44238991-16cc2500-a185-11e8-9abe-145d2d9619ba.png)
+
+![patty wu joint](https://user-images.githubusercontent.com/1335262/44239019-34998a00-a185-11e8-8887-3e96ddbe1a10.png) 
+![charlie wu again](https://user-images.githubusercontent.com/1335262/44239031-44b16980-a185-11e8-8f2e-6df34589f1e5.png)
+
+![wu jeopardy](https://user-images.githubusercontent.com/1335262/44239056-6874af80-a185-11e8-9c5b-b85d8633925f.png)
