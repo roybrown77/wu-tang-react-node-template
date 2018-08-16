@@ -11,8 +11,8 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.resolve(__dirname, '../client/build')));
 }
 
-var HomeController = require('./home/HomeController');
-app.use('/api/homemanagement', HomeController);
+var AlbumController = require('./album/AlbumController');
+app.use('/api/albummanagement', AlbumController);
 
 app.get('*', function(request, response) {
   response.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));

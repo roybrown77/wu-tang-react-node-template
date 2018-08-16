@@ -7,7 +7,7 @@ const puppeteer = require('puppeteer');
 let router = express.Router();
 router.use(bodyParser.urlencoded({ extended: true }));
 
-const homeRepository = require('./HomeRepository');
+const albumRepository = require('./AlbumRepository');
 
 const omit = require('lodash/omit');
 const get = require('lodash/get');
@@ -58,7 +58,7 @@ const getImage = async (term) => {
   }
 };
 
-router.get('/homes', async function (req, res) {
+router.get('/albums', async function (req, res) {
   const albums = await Promise.all([
     getImage('wu-tang 36 chambers album'),
     getImage('method man tical album'),
