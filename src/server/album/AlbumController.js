@@ -49,12 +49,12 @@ const getImage = async (term) => {
 
     console.log('image: https:' + image.split(' ')[0]);
     
-    return 'https:' + image.split(' ')[0];
+    return {term, image: 'https:' + image.split(' ')[0]};
   } catch (err) {
-    console.log(err);
+    console.log(term + ' error: ' + err);
     await page.close();
     await browser.close();
-    return err;
+    return {term, image: ''};
   }
 };
 
@@ -65,6 +65,10 @@ router.get('/albums', async function (req, res) {
     getImage('gza liquid swords album'),
     getImage('raekwon only built for cuban links album'),  
     getImage('ghostface ironman album'), 
+    getImage('ghostface supreme clientele album'), 
+    getImage('rza bobby digital album'), 
+    getImage('old dirty bastard return to 36 chambers album'),
+    getImage('wu-tang iron flag album'),
   ]);
   res.status(200).send(albums);
 });

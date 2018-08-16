@@ -121,7 +121,7 @@ function HomePage(props) {
         <Toolbar>
           <CameraIcon className={classes.icon} />
           <Typography variant="title" color="inherit" noWrap>
-            {'Wu-Tang React Node Template'}
+            {'Wu-Tang x React Node Template'}
           </Typography>
         </Toolbar>
       </AppBar>
