@@ -32,41 +32,27 @@ const loadAlbums = async () => {
 
     await page.goto('https://en.wikipedia.org/wiki/Main_Page');
 
-    await page.waitForSelector('#searchInput');
-
-    await page.waitFor(1000);
-
     await page.type("#searchInput", "ghostface ironman album");
-
-    await page.waitFor(1000);
 
     await page.click('#searchButton');
 
     await page.waitForNavigation();
 
-    await page.waitForSelector('#mw-content-text > div > ul > li:nth-child(1) > div.mw-search-result-heading > a');
-
     await page.click('#mw-content-text > div > ul > li:nth-child(1) > div.mw-search-result-heading > a');
 
-    await page.waitForNavigation();
-
-    await page.waitForSelector('#mw-content-text > div > table.infobox.vevent.haudio > tbody > tr:nth-child(2) > td > a');
-
-    await page.click('#mw-content-text > div > table.infobox.vevent.haudio > tbody > tr:nth-child(2) > td > a');
-
-    await page.waitForSelector('body > div.mw-mmv-wrapper > div > div.mw-mmv-image-wrapper > div > div.mw-mmv-image > img');
-
     const album = await page.evaluate((sel) => {
-      return document.querySelector(sel).getAttribute('src');
-    }, 'body > div.mw-mmv-wrapper > div > div.mw-mmv-image-wrapper > div > div.mw-mmv-image > img');
+      return document.querySelector(sel).getAttribute('srcset');
+    }, '#mw-content-text > div > table.infobox.vevent.haudio > tbody > tr:nth-child(2) > td > a > img');
 
-    //await page.close();
+    await page.close();
     await browser.close();
-    console.log('album: ' + album);
-    return album;
+
+    console.log('album: https:' + album.split(' ')[0]);
+    
+    return 'https:' + album.split(' ')[0];
   } catch (err) {
     console.log(err);
-    //await page.close();
+    await page.close();
     await browser.close();
     return err;
   }
