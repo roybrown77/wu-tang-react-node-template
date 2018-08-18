@@ -59,17 +59,37 @@ const getImage = async (term) => {
 };
 
 router.get('/albums', async function (req, res) {
-  const albums = await Promise.all([
+  const albums1 = await Promise.all([
     getImage('wu-tang 36 chambers album'),
     getImage('method man tical album'),
     getImage('gza liquid swords album'),
-    getImage('raekwon only built for cuban links album'),  
+  ]);
+
+  const albums2 = await Promise.all([
+    getImage('raekwon only built 4 cuban linx album'),  
     getImage('ghostface ironman album'), 
     getImage('ghostface supreme clientele album'), 
+  ]);
+
+  const albums3 = await Promise.all([
     getImage('rza bobby digital album'), 
     getImage('old dirty bastard return to 36 chambers album'),
     getImage('wu-tang iron flag album'),
   ]);
+
+  const albums4 = await Promise.all([
+    getImage('rza afro samurai album'),
+    getImage('rza digi snacks album'),
+    getImage('gza beneath the surface album')
+  ]);
+
+  const albums = [
+    ...albums1,
+    ...albums2,
+    ...albums3,
+    ...albums4
+  ];
+
   res.status(200).send(albums);
 });
 
