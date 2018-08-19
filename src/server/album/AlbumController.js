@@ -83,7 +83,7 @@ router.get('/albumcovers', async function (req, res) {
 
   const albums4 = await Promise.all([
     getImage('rza afro samurai album'),
-    getImage('rza digi snacks album'),
+    getImage('ghostface fishscale album'),
     getImage('gza beneath the surface album')
   ]);
 

@@ -82,7 +82,7 @@ class HomePage extends Component {
       return (
         <React.Fragment>
           <CssBaseline />
-          <AppBar position="static" className={classes.appBar}>
+          <AppBar position="static" style={{backgroundColor:'#E2A42B'}}>
             <Toolbar>
               <CameraIcon className={classes.icon} />
               <Typography variant="title" color="inherit" noWrap>
@@ -103,12 +103,12 @@ class HomePage extends Component {
                 <div className={classes.heroButtons}>
                   <Grid container spacing={16} justify="center">
                     <Grid item>
-                      <Button variant="contained" color="primary" onClick={() => { this.handleDoor1() }}>
+                      <Button variant="contained" style={{backgroundColor:'#E2A42B'}} onClick={() => { this.handleDoor1() }}>
                         Door 1
                       </Button>
                     </Grid>
                     <Grid item>
-                      <Button variant="outlined" color="primary" onClick={() => { this.handleDoor2() }}>
+                      <Button variant="outlined" style={{color:'#E2A42B'}} onClick={() => { this.handleDoor2() }}>
                         Door 2
                       </Button>
                     </Grid>
