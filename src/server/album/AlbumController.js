@@ -18,14 +18,17 @@ const some = require('lodash/some');
 const sortBy = require('lodash/sortBy');
 
 const getImage = async (term) => {
-  const browser = await puppeteer.launch({
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    headless: false
-  });
-
-  const page = await browser.newPage();
+  let browser;
+  let page;
 
   try {
+    browser = await puppeteer.launch({
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      headless: false
+    });
+
+    page = await browser.newPage();
+
     await page.setViewport({width:1000,height:700});
 
     await page.goto('https://en.wikipedia.org/wiki/Main_Page');
@@ -51,7 +54,7 @@ const getImage = async (term) => {
     
     return {term, image: 'https:' + image.split(' ')[0]};
   } catch (err) {
-    console.log(term + ' error: ' + err);
+    console.log(term + ' error: ' + JSON.stringify(err));
     await page.close();
     await browser.close();
     return {term, image: ''};
