@@ -88,11 +88,23 @@ router.get('/albumcovers', async function (req, res) {
     getImage('gza beneath the surface album')
   ]);
 
+  const albums5 = await Promise.all([
+    getImage('wu-tang forever album'),
+    getImage('inspectah deck uncontrollable substance album'),
+    getImage('wu-tang the w album')
+  ]);
+
+  const albums6 = await Promise.all([
+    getImage('ghostface pretty toney album')
+  ]);
+
   const albumCovers = [
     ...albums1,
     ...albums2,
     ...albums3,
-    ...albums4
+    ...albums4,
+    ...albums5,
+    ...albums6
   ];
 
   res.status(200).send(albumCovers);
