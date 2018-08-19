@@ -170,7 +170,7 @@ class HomePage extends Component {
               Footer
             </Typography>
             <Typography variant="subheading" align="center" color="textSecondary" component="p">
-              Thank you and I hope you learned something...ya filthy bastards!
+              Thank you and I hope you learned something...ya filthy animal!
             </Typography>
           </footer>
           {/* End footer */}
