@@ -73,10 +73,18 @@ class HomePage extends Component {
     }
 
     handleDoor1(event, index) {
+        if (this.props.dataLoading) {
+          return;
+        }
+
         this.props.getAlbumCovers();
     }
 
     handleDoor2(event, index) {
+        if (this.props.dataLoading) {
+          return;
+        }
+
         this.props.getAlbumCovers();
     }
 
@@ -99,7 +107,7 @@ class HomePage extends Component {
             <div className={classes.heroUnit}>
               <div className={classes.heroContent}>
                 <Typography variant="display3" align="center" color="textPrimary" gutterBottom>
-                  What do I listen to today?
+                  What do you listen to today?
                 </Typography>
                 <Typography variant="title" align="center" color="textSecondary" paragraph>
                   Pick door 1 or 2 to find out.
@@ -135,7 +143,8 @@ class HomePage extends Component {
                 }
               <Grid container spacing={40}>
                 {
-                  !dataLoading && albumCovers.map(albumCover => (
+                  !dataLoading && 
+                  albumCovers.sort(function() { return 0.5 - Math.random() }).map(albumCover => (
                   <Grid item key={get(albumCover,'term')} sm={6} md={4} lg={3}>
                     <Card>
                       <CardMedia

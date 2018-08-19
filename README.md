@@ -26,7 +26,7 @@ Client:
 
 Hosting server:
 
-- Heroku / Amazon Web Services (AWS)
+- ** coming soon ** Heroku / Amazon Web Services (AWS)
 
 # To run app locally:
 
