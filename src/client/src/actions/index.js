@@ -7,18 +7,18 @@ import last from 'lodash/last';
 import { CALL_API, Schemas } from '../middleware/api';
 import history from '../middleware/history';
 
-export const HOMES_REQUEST = 'HOMES_REQUEST';
-export const HOMES_SUCCESS = 'HOMES_SUCCESS';
-export const HOMES_FAILURE = 'HOMES_FAILURE';
+export const ALBUMCOVERS_REQUEST = 'ALBUMCOVERS_REQUEST';
+export const ALBUMCOVERS_SUCCESS = 'ALBUMCOVERS_SUCCESS';
+export const ALBUMCOVERS_FAILURE = 'ALBUMCOVERS_FAILURE';
 
-const fetchHomes = (query, types) => ({
+const fetchAlbumCovers = query => ({
   [CALL_API]: {
-    types,
-    endpoint: `/api/homemanagement/homes?${queryString.stringify(query)}`,
-    schema: Schemas.HOME_ARRAY
+    types: [ ALBUMCOVERS_REQUEST, ALBUMCOVERS_SUCCESS, ALBUMCOVERS_FAILURE ],
+    endpoint: `/api/albummanagement/albumcovers?${queryString.stringify(query)}`,
+    schema: Schemas.ALBUMCOVER_ARRAY
   }
 });
 
-export const searchHomes = (query, requiredFields = []) => (dispatch, getState) => {
-  return dispatch(fetchHomes(query));
+export const getAlbumCovers = (query, requiredFields = []) => (dispatch, getState) => {
+  return dispatch(fetchAlbumCovers(query));
 };

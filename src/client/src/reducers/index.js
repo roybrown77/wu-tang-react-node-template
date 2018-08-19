@@ -2,25 +2,24 @@ import { combineReducers } from 'redux-immutable';
 import { Map, List } from 'immutable';
 import * as ActionTypes from '../actions';
 
-const homeDomain = (
+const albumDomain = (
   state = Map({ 
-    homes: List(), 
+    albumCovers: List(), 
     dataLoading: false 
   }), 
   action) => {
   switch (action.type) {
-    case ActionTypes.HOMES_REQUEST:
+    case ActionTypes.ALBUMCOVERS_REQUEST:
       return state.set('dataLoading', true);
-    case ActionTypes.HOMES_SUCCESS:
+    case ActionTypes.ALBUMCOVERS_SUCCESS:
       if (action.response) {
-        const homeList = action.response.map(item=>{
+        const albumCoverList = action.response.map(item=>{
           return Map(item);
         });
-
-        return state.set('homes', List(homeList)).set("dataLoading", false);
+        return state.set('albumCovers', List(albumCoverList)).set("dataLoading", false);
       }
       return state;
-    case ActionTypes.HOMES_FAILURE:
+    case ActionTypes.ALBUMCOVERS_FAILURE:
       return state.set('dataLoading', false);
     default:
       return state;
@@ -28,7 +27,7 @@ const homeDomain = (
 };
 
 const rootReducer = combineReducers({
-  homeDomain
+  albumDomain
 });
 
 export default rootReducer;

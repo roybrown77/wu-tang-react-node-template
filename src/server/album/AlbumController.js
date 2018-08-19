@@ -24,7 +24,7 @@ const getImage = async (term) => {
   try {
     browser = await puppeteer.launch({
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
-      headless: false
+      //headless: false
     });
 
     page = await browser.newPage();
@@ -62,7 +62,7 @@ const getImage = async (term) => {
   }
 };
 
-router.get('/albums', async function (req, res) {
+router.get('/albumcovers', async function (req, res) {
   const albums1 = await Promise.all([
     getImage('wu-tang 36 chambers album'),
     getImage('method man tical album'),
@@ -87,78 +87,12 @@ router.get('/albums', async function (req, res) {
     getImage('gza beneath the surface album')
   ]);
 
-  const albums = [
+  const albumCovers = [
     ...albums1,
     ...albums2,
     ...albums3,
     ...albums4
   ];
 
-  res.status(200).send(albums);
+  res.status(200).send(albumCovers);
 });
-
-const getBulkImages = async (terms) => {
-  const browser = await puppeteer.launch({
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    headless: false
-  });
-
-  const page = await browser.newPage();
-
-  await page.setViewport({width:1000,height:700});
-
-  let images = [];
-
-  asyncForEach(terms, async (term) => {
-    try {
-      await page.goto('https://en.wikipedia.org/wiki/Main_Page');
-
-      await page.type("#searchInput", term);
-
-      await page.click('#searchButton');
-
-      await page.waitForNavigation();
-
-      await page.click('#mw-content-text > div > ul > li:nth-child(1) > div.mw-search-result-heading > a');
-
-      await page.waitFor(1000);
-
-      const image = await page.evaluate((sel) => {
-        return document.querySelector(sel).getAttribute('srcset');
-      }, '#mw-content-text > div > table.infobox.vevent.haudio > tbody > tr:nth-child(2) > td > a > img');
-
-      //await page.close();
-      //await browser.close();
-
-      console.log('image: https:' + image.split(' ')[0]);
-      
-      images.push({term, image: 'https:' + image.split(' ')[0]});
-    } catch (err) {
-      console.log(err);
-      //await page.close();
-      //await browser.close();
-      images.push({term, error: err});
-    }
-  });
-
-  await page.close();
-  await browser.close();
-
-  return images;
-};
-
-router.get('/bulkAlbums', async function (req, res) {
-  const albums = [
-    'wu-tang 36 chambers album',
-    'method man tical album',
-    'gza liquid swords album',
-    'raekwon only built for cuban links album',  
-    'ghostface ironman album'
-  ];
-
-  const response = await getBulkImages(albums);
-  
-  res.status(200).send(response);
-});
-
-module.exports = router;

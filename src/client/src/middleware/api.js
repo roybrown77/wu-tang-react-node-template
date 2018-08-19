@@ -15,13 +15,13 @@ const callApi = ({endpoint, method, body, schema}) => {
     });
 };
 
-const homeSchema = new schema.Entity('homes', {}, {
-  idAttribute: home => home._id
+const albumCoverSchema = new schema.Entity('albumCovers', {}, {
+  idAttribute: albumCover => albumCover._id
 });
 
 export const Schemas = {
-  HOME: homeSchema,
-  HOME_ARRAY: [homeSchema]
+  ALBUMCOVER: albumCoverSchema,
+  ALBUMCOVER_ARRAY: [albumCoverSchema]
 };
 
 export const CALL_API = 'Call API';
