@@ -19,8 +19,12 @@ import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 const styles = theme => ({
+  linearProgress: {
+    flexGrow: 1,
+  },
   appBar: {
     position: 'relative',
   },
@@ -77,7 +81,7 @@ class HomePage extends Component {
     }
 
     render() {
-      const { classes, albumCovers } = this.props;
+      const { classes, albumCovers, dataLoading } = this.props;
 
       return (
         <React.Fragment>
@@ -118,20 +122,29 @@ class HomePage extends Component {
             </div>
             <div className={classNames(classes.layout, classes.cardGrid)}>
               {/* End hero unit */}
+              {
+                  dataLoading && 
+                  <div className={classes.linearProgress}>
+                    <LinearProgress />
+                    <br />
+                    <LinearProgress color="secondary" />
+                  </div>
+                }
               <Grid container spacing={40}>
-                {albumCovers.map(albumCover => (
+                {
+                  !dataLoading && albumCovers.map(albumCover => (
                   <Grid item key={get(albumCover,'term')} sm={6} md={4} lg={3}>
                     <Card>
                       <CardMedia
                         className={classes.cardMedia}
-                        image={get(albumCover,'image')}
+                        image={get(albumCover,'image','https://upload.wikimedia.org/wikipedia/en/7/75/Ironman.jpg')}
                       />
                       <CardContent>
                         <Typography gutterBottom variant="headline" component="h2">
                           {get(get(albumCover,'term','').split(' album'),[0])}
                         </Typography>
                         <Typography>
-                          {get(albumCover,'image') ? '' : 'tell wikipedia to setup the page already!  geez.'}
+                          {get(albumCover,'image') ? '' : 'tell wikipedia to setup the page already!  geez. until then u get another wu banger.'}
                         </Typography>
                       </CardContent>
                       <CardActions>

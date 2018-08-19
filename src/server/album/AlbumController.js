@@ -59,7 +59,7 @@ const getImage = async (term) => {
     await page.close();
     await browser.close();
     console.log(term + ' error: ' + JSON.stringify(err));
-    return {term, image: ''};
+    return {term};
   }
 };
 
