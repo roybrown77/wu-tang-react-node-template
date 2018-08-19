@@ -125,6 +125,9 @@ class HomePage extends Component {
               {
                   dataLoading && 
                   <div className={classes.linearProgress}>
+                    <Typography variant="title" align="center" color="textSecondary" paragraph>
+                      Takes a minute to screen scrape wikipedia for images so watch youtube or netflix or something.  :D
+                    </Typography>
                     <LinearProgress />
                     <br />
                     <LinearProgress color="secondary" />
