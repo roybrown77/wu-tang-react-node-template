@@ -6,6 +6,7 @@ const puppeteer = require('puppeteer');
 
 let router = express.Router();
 router.use(bodyParser.urlencoded({ extended: true }));
+router.use(bodyParser.json());
 
 const albumRepository = require('./AlbumRepository');
 
@@ -96,3 +97,5 @@ router.get('/albumcovers', async function (req, res) {
 
   res.status(200).send(albumCovers);
 });
+
+module.exports = router;

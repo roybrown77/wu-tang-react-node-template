@@ -2,7 +2,7 @@
 var doCache = false;
 
 // Name our cache
-var CACHE_NAME = 'home-dollar-cache-v1';
+var CACHE_NAME = 'wu-react-cache-v1';
 
 // Delete old caches that are not our current one!
 self.addEventListener("activate", event => {
