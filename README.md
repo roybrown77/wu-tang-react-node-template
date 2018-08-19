@@ -6,19 +6,19 @@ Tiger style. Tiger style. Yes, like the song this will help you build a web app 
 
 Backend:
 
-- NodeJs - lightweight and efficient javascript web server
-- Auth0 - service based authentication for securing login that is tested on billions of logins instead of reinventing wheel
-- MongoDB - document based data storage that allows for schemaless architecture
+- NodeJs - lightweight and efficient javascript web server aka serve up the site like banana pudding in the A
+- ** coming soon ** Auth0 - service based authentication for securing login that is tested on billions of logins instead of reinventing wheel aka easy login code
+- ** coming soon ** MongoDB - document based data storage that allows for schemaless architecture aka
 - Puppeteer - api to control headless chrome in order to screen scrape
 
 Client:
 
-- ReactJs - javascript framework to build composable user interfaces
-- ReduxJs - fast data state management
-- ImmutableJs - faster way to avoid mutating data and thus unexpected side effects for less bug prone features
-- Auth0 - service based authentication for securing login that is tested on billions of logins instead of reinventing wheel
-- Google Material Design - framework to create beautiful, customizable ui components
-- Progressive Web App capabilities to be
+- ReactJs - javascript framework to build composable user interfaces aka make sites like lego blocks
+- ReduxJs - fast data state management aka keep data in order
+- ImmutableJs - faster way to avoid mutating data and thus unexpected side effects for less bug prone features aka keep data in order even faster
+- ** coming soon ** Auth0 - service based authentication for securing login that is tested on billions of logins instead of reinventing wheel aka easy login code
+- Google Material Design - framework to create beautiful, customizable ui components aka make it look as good as Google stuff
+- ** coming soon ** Progressive Web App capabilities aka make a web site look, feel and respond as well as a native app:
   1. Reliable - Load instantly and never show the downasaur, even in uncertain network conditions.
   2. Fast - Respond quickly to user interactions with silky smooth animations and no janky scrolling.
   3. Engaging - Feel like a natural app on the device, with an immersive user experience.
@@ -28,13 +28,16 @@ Hosting server:
 
 - Heroku / Amazon Web Services (AWS)
 
-# To run application locally use latest node and npm versions and perform the following:
+# To run application locally:
 
-1. npm i
-2. cd src/client
-3. npm i
-4. cd ../../
-5. npm start
+1. install latest node
+2. install latest npm
+3. open command line to root of this project and type rest
+4. npm i
+5. cd src/client
+6. npm i
+7. cd ../../
+8. npm start
 
 Please listen to Wu-Tang Clan as it will enhance your coding experience. :D
 
