@@ -7,7 +7,7 @@ Tiger style. Tiger style. Yes, like the song this will help you build a web app 
 Backend:
 
 - NodeJs - lightweight and efficient javascript web server aka serve up the site like banana pudding in the A
-- ** coming soon ** Auth0 - service based authentication for securing login that is tested on billions of logins instead of reinventing wheel aka easy login code
+- ** coming soon ** Auth0 - service based authentication for securing login that is tested on billions of logins instead of reinventing wheel aka easy login
 - ** coming soon ** MongoDB - document based data storage that allows for schemaless architecture aka build data models easy peasy
 - Puppeteer - api to control headless chrome in order to screen scrape aka look ma no api
 
@@ -16,9 +16,9 @@ Client:
 - ReactJs - javascript framework to build composable user interfaces aka make sites like lego blocks
 - ReduxJs - fast data state management aka keep data in order
 - ImmutableJs - faster way to avoid mutating data and thus unexpected side effects for less bug prone features aka keep data in order even faster
-- ** coming soon ** Auth0 - service based authentication for securing login that is tested on billions of logins instead of reinventing wheel aka easy login code
+- ** coming soon ** Auth0 - service based authentication for securing login that is tested on billions of logins instead of reinventing wheel aka easy login
 - Google Material Design - framework to create beautiful, customizable ui components aka make it look as good as Google stuff
-- ** coming soon ** Progressive Web App capabilities aka make a web site look, feel and respond as well as a native app even on a flip errr 2g phone:
+- ** coming soon ** Progressive Web App capabilities aka make a web site look, feel and respond as well as a normal app even on a flip errr 2g phone:
   1. Reliable - Load instantly and never show the downasaur, even in uncertain network conditions.
   2. Fast - Respond quickly to user interactions with silky smooth animations and no janky scrolling.
   3. Engaging - Feel like a natural app on the device, with an immersive user experience.
@@ -28,7 +28,7 @@ Hosting server:
 
 - Heroku / Amazon Web Services (AWS)
 
-# To run application locally:
+# To run app locally:
 
 1. install latest node
 2. install latest npm
@@ -46,5 +46,6 @@ Please listen to Wu-Tang Clan as it will enhance your coding experience. :D
 
 ![patty wu joint](https://user-images.githubusercontent.com/1335262/44239019-34998a00-a185-11e8-8887-3e96ddbe1a10.png) 
 ![charlie wu again](https://user-images.githubusercontent.com/1335262/44239031-44b16980-a185-11e8-8f2e-6df34589f1e5.png)
+![franklin](https://user-images.githubusercontent.com/1335262/44304912-5be48880-a338-11e8-935c-d28553a8788a.png)
 
 ![wu jeopardy](https://user-images.githubusercontent.com/1335262/44239056-6874af80-a185-11e8-9c5b-b85d8633925f.png)
