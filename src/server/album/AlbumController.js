@@ -31,7 +31,10 @@ const getImage = async (term) => {
 
     await page.setViewport({width:1000,height:700});
 
-    await page.goto('https://en.wikipedia.org/wiki/Main_Page');
+    await page.goto('https://en.wikipedia.org/wiki/Main_Page',{
+      waitUntil: 'networkidle2',
+      timeout: 0
+    });
 
     await page.type("#searchInput", term);
 
@@ -49,14 +52,12 @@ const getImage = async (term) => {
 
     await page.close();
     await browser.close();
-
     console.log('image: https:' + image.split(' ')[0]);
-    
     return {term, image: 'https:' + image.split(' ')[0]};
   } catch (err) {
-    console.log(term + ' error: ' + JSON.stringify(err));
     await page.close();
     await browser.close();
+    console.log(term + ' error: ' + JSON.stringify(err));
     return {term, image: ''};
   }
 };
