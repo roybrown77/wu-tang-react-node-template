@@ -8,8 +8,8 @@ Backend:
 
 - NodeJs - lightweight and efficient javascript web server aka serve up the site like banana pudding in the A
 - ** coming soon ** Auth0 - service based authentication for securing login that is tested on billions of logins instead of reinventing wheel aka easy login code
-- ** coming soon ** MongoDB - document based data storage that allows for schemaless architecture aka
-- Puppeteer - api to control headless chrome in order to screen scrape
+- ** coming soon ** MongoDB - document based data storage that allows for schemaless architecture aka build data models easy peasy
+- Puppeteer - api to control headless chrome in order to screen scrape aka look ma no api
 
 Client:
 
