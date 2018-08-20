@@ -107,10 +107,10 @@ router.get('/albumcovers', async function (req, res) {
   const albumCovers = [
     ...albums1,
     ...albums2,
-    ...albums3,
-    ...albums4,
-    ...albums5,
-    ...albums6
+    // ...albums3,
+    // ...albums4,
+    // ...albums5,
+    // ...albums6
   ];
 
   res.status(200).send(albumCovers);
