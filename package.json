@@ -23,6 +23,10 @@
     "node_modules",
     "src/client/node_modules"
   ],
+  "engines": {
+    "node": ">=10.8.0",
+    "npm": ">=6.3.0"
+  },
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "nodemon src/server/server.js",
