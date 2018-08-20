@@ -74,12 +74,14 @@ router.get('/albumcovers', async function (req, res) {
     getImage('wu-tang 36 chambers album'),
     getImage('method man tical album'),
     getImage('gza liquid swords album'),
+    getImage('gza beneath the surface album'),
   ]);
 
   const albums2 = await Promise.all([
     getImage('raekwon only built 4 cuban linx album'),  
     getImage('rza afro samurai album'), 
     getImage('ghostface supreme clientele album'), 
+    getImage('wu-tang iron flag album'),
   ]);
 
   // const albums3 = await Promise.all([
