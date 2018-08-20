@@ -78,31 +78,31 @@ router.get('/albumcovers', async function (req, res) {
 
   const albums2 = await Promise.all([
     getImage('raekwon only built 4 cuban linx album'),  
-    getImage('ghostface ironman album'), 
+    getImage('rza afro samurai album'), 
     getImage('ghostface supreme clientele album'), 
   ]);
 
-  const albums3 = await Promise.all([
-    getImage('rza bobby digital album'), 
-    getImage('old dirty bastard return to 36 chambers album'),
-    getImage('wu-tang iron flag album'),
-  ]);
+  // const albums3 = await Promise.all([
+  //   getImage('rza bobby digital album'), 
+  //   getImage('old dirty bastard return to 36 chambers album'),
+  //   getImage('wu-tang iron flag album'),
+  // ]);
 
-  const albums4 = await Promise.all([
-    getImage('rza afro samurai album'),
-    getImage('ghostface fishscale album'),
-    getImage('gza beneath the surface album')
-  ]);
+  // const albums4 = await Promise.all([
+  //   getImage('ghostface ironman album'),
+  //   getImage('ghostface fishscale album'),
+  //   getImage('gza beneath the surface album')
+  // ]);
 
-  const albums5 = await Promise.all([
-    getImage('wu-tang forever album'),
-    getImage('inspectah deck uncontrollable substance album'),
-    getImage('wu-tang the w album')
-  ]);
+  // const albums5 = await Promise.all([
+  //   getImage('wu-tang forever album'),
+  //   getImage('inspectah deck uncontrollable substance album'),
+  //   getImage('wu-tang the w album')
+  // ]);
 
-  const albums6 = await Promise.all([
-    getImage('ghostface pretty toney album')
-  ]);
+  // const albums6 = await Promise.all([
+  //   getImage('ghostface pretty toney album')
+  // ]);
 
   const albumCovers = [
     ...albums1,
