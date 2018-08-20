@@ -56,8 +56,14 @@ const getImage = async (term) => {
     console.log('image: https:' + image.split(' ')[0]);
     return {term, image: 'https:' + image.split(' ')[0]};
   } catch (err) {
-    await page.close();
-    await browser.close();
+    if (page) {
+      await page.close();
+    }
+
+    if (browser) {
+      await browser.close();
+    }
+    
     console.log(term + ' error: ' + JSON.stringify(err));
     return {term};
   }

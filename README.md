@@ -4,6 +4,8 @@
 
 Tiger style. Tiger style. Yes, like the song this will help you build a web app the world can't $%#@ wit.
 
+This app will retrieve Wu-Tang album covers from wikipedia and display them.
+
 Backend:
 
 - NodeJs - lightweight and efficient javascript web server aka serve up the site like banana pudding in the A
