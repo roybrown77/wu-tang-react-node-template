@@ -139,6 +139,14 @@ class HomePage extends Component {
                     <LinearProgress />
                     <br />
                     <LinearProgress color="secondary" />
+                    <br />
+                    <LinearProgress />
+                    <br />
+                    <LinearProgress color="secondary" />
+                    <br />
+                    <LinearProgress />
+                    <br />
+                    <LinearProgress color="secondary" />
                   </div>
                 }
               <Grid container spacing={40}>
