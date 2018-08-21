@@ -98,7 +98,7 @@ class HomePage extends Component {
             <Toolbar>
               <CameraIcon className={classes.icon} />
               <Typography variant="title" color="inherit" noWrap>
-                {'Wu-Tang x React Node Template'}
+                {'Wu-Tang x React Node'}
               </Typography>
             </Toolbar>
           </AppBar>
