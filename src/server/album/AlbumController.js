@@ -85,35 +85,49 @@ function getRandomList(size, min, max) {
 router.get('/albumcovers', async function (req, res) {
   const albums = [
     'wu-tang 36 chambers album',
-    'method man tical album',
-    'gza liquid swords album',
-    'gza beneath the surface album',
+    'wu-tang the w album',
     'raekwon only built 4 cuban linx album',
     'rza afro samurai album',
     'ghostface supreme clientele album',
     'wu-tang iron flag album',
     'rza bobby digital album',
     'old dirty bastard return to 36 chambers album',
+    'gza liquid swords album',
     'ghostface fishscale album',
     'wu-tang forever album',
-    'wu-tang the w album',
+    'gza beneath the surface album',
+    'method man tical album',
     'inspectah deck uncontrollable substance album',
   ];
 
-  const list = getRandomList(8, 0, albums.length-1);
+  // const list = getRandomList(8, 0, albums.length-1);
+
+  // const albums1 = await Promise.all([
+  //   getImage(albums[list[0]]),
+  //   getImage(albums[list[1]]),
+  //   getImage(albums[list[2]]),
+  //   getImage(albums[list[3]]),
+  // ]);
+
+  // const albums2 = await Promise.all([
+  //   getImage(albums[list[4]]),
+  //   getImage(albums[list[5]]),
+  //   getImage(albums[list[6]]),
+  //   getImage(albums[list[7]]),
+  // ]);
 
   const albums1 = await Promise.all([
-    getImage(albums[list[0]]),
-    getImage(albums[list[1]]),
-    getImage(albums[list[2]]),
-    getImage(albums[list[3]]),
+    getImage(albums[0]),
+    getImage(albums[1]),
+    getImage(albums[2]),
+    getImage(albums[3]),
   ]);
 
   const albums2 = await Promise.all([
-    getImage(albums[list[4]]),
-    getImage(albums[list[5]]),
-    getImage(albums[list[6]]),
-    getImage(albums[list[7]]),
+    getImage(albums[4]),
+    getImage(albums[5]),
+    getImage(albums[6]),
+    getImage(albums[7]),
   ]);
 
   const albumCovers = [
