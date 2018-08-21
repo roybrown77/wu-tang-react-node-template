@@ -17,6 +17,7 @@ const transform = require('lodash/transform');
 const groupBy = require('lodash/groupBy');
 const some = require('lodash/some');
 const sortBy = require('lodash/sortBy');
+const sample = require('lodash/sample');
 
 const getImage = async (term) => {
   let browser;
@@ -84,20 +85,20 @@ function getRandomList(size, min, max) {
 
 router.get('/albumcovers', async function (req, res) {
   const albums = [
+    'inspectah deck uncontrollable substance album',
     'wu-tang 36 chambers album',
-    'wu-tang the w album',
-    'raekwon only built 4 cuban linx album',
     'rza afro samurai album',
     'ghostface supreme clientele album',
     'wu-tang iron flag album',
     'rza bobby digital album',
-    'old dirty bastard return to 36 chambers album',
     'gza liquid swords album',
     'ghostface fishscale album',
+    'raekwon only built 4 cuban linx album',
     'wu-tang forever album',
     'gza beneath the surface album',
     'method man tical album',
-    'inspectah deck uncontrollable substance album',
+    'old dirty bastard return to 36 chambers album',
+    'wu-tang the w album',
   ];
 
   // const list = getRandomList(8, 0, albums.length-1);
@@ -116,18 +117,20 @@ router.get('/albumcovers', async function (req, res) {
   //   getImage(albums[list[7]]),
   // ]);
 
+  const index = sample([true, false]) ? 0 : 6;
+
   const albums1 = await Promise.all([
-    getImage(albums[0]),
-    getImage(albums[1]),
-    getImage(albums[2]),
-    getImage(albums[3]),
+    getImage(albums.slice(index)[0]),
+    getImage(albums.slice(index)[1]),
+    getImage(albums.slice(index)[2]),
+    getImage(albums.slice(index)[3]),
   ]);
 
   const albums2 = await Promise.all([
-    getImage(albums[4]),
-    getImage(albums[5]),
-    getImage(albums[6]),
-    getImage(albums[7]),
+    getImage(albums.slice(index)[4]),
+    getImage(albums.slice(index)[5]),
+    getImage(albums.slice(index)[6]),
+    getImage(albums.slice(index)[7]),
   ]);
 
   const albumCovers = [
