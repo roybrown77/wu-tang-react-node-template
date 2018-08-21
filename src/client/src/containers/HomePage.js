@@ -149,7 +149,7 @@ class HomePage extends Component {
                     <Card>
                       <CardMedia
                         className={classes.cardMedia}
-                        image={get(albumCover,'image','https://upload.wikimedia.org/wikipedia/en/7/75/Ironman.jpg')}
+                        image={get(albumCover,'image','https://upload.wikimedia.org/wikipedia/en/e/e2/GZALiquidSwords.jpg')}
                       />
                       <CardContent>
                         <Typography gutterBottom variant="headline" component="h2">

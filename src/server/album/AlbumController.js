@@ -69,50 +69,56 @@ const getImage = async (term) => {
   }
 };
 
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min) ) + min;
+}
+
+function getRandomList(size, min, max) {
+  let list = [];
+  while(list.length < size) {
+    list.push(getRndInteger(min,max))
+    list = uniq(list);
+  }
+  return list;
+};
+
 router.get('/albumcovers', async function (req, res) {
+  const albums = [
+    'wu-tang 36 chambers album',
+    'method man tical album',
+    'gza liquid swords album',
+    'gza beneath the surface album',
+    'raekwon only built 4 cuban linx album',
+    'rza afro samurai album',
+    'ghostface supreme clientele album',
+    'wu-tang iron flag album',
+    'rza bobby digital album',
+    'old dirty bastard return to 36 chambers album',
+    'ghostface fishscale album',
+    'wu-tang forever album',
+    'wu-tang the w album',
+    'inspectah deck uncontrollable substance album',
+  ];
+
+  const list = getRandomList(8, 0, albums.length-1);
+
   const albums1 = await Promise.all([
-    getImage('wu-tang 36 chambers album'),
-    getImage('method man tical album'),
-    getImage('gza liquid swords album'),
-    getImage('gza beneath the surface album'),
+    getImage(albums[list[0]]),
+    getImage(albums[list[1]]),
+    getImage(albums[list[2]]),
+    getImage(albums[list[3]]),
   ]);
 
   const albums2 = await Promise.all([
-    getImage('raekwon only built 4 cuban linx album'),  
-    getImage('rza afro samurai album'), 
-    getImage('ghostface supreme clientele album'), 
-    getImage('wu-tang iron flag album'),
+    getImage(albums[list[4]]),
+    getImage(albums[list[5]]),
+    getImage(albums[list[6]]),
+    getImage(albums[list[7]]),
   ]);
-
-  // const albums3 = await Promise.all([
-  //   getImage('rza bobby digital album'), 
-  //   getImage('old dirty bastard return to 36 chambers album'),
-  //   getImage('wu-tang iron flag album'),
-  // ]);
-
-  // const albums4 = await Promise.all([
-  //   getImage('ghostface ironman album'),
-  //   getImage('ghostface fishscale album'),
-  //   getImage('gza beneath the surface album')
-  // ]);
-
-  // const albums5 = await Promise.all([
-  //   getImage('wu-tang forever album'),
-  //   getImage('inspectah deck uncontrollable substance album'),
-  //   getImage('wu-tang the w album')
-  // ]);
-
-  // const albums6 = await Promise.all([
-  //   getImage('ghostface pretty toney album')
-  // ]);
 
   const albumCovers = [
     ...albums1,
-    ...albums2,
-    // ...albums3,
-    // ...albums4,
-    // ...albums5,
-    // ...albums6
+    ...albums2
   ];
 
   res.status(200).send(albumCovers);
