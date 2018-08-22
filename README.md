@@ -4,7 +4,7 @@
 
 Tiger style. Tiger style. Yes, like the song this will help you build a web app the world can't $%#@ wit.
 
-This demo app will retrieve Wu-Tang album covers from wikipedia and display them.
+This serveless demo app will retrieve Wu-Tang album covers from wikipedia and display them.
 
 https://wu-tang-react-node-template.herokuapp.com/
 
