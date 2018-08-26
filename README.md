@@ -22,11 +22,7 @@ Client:
 - ImmutableJs - faster way to avoid mutating data and thus unexpected side effects for less bug prone features aka keep data in order even faster
 - ** coming soon ** Auth0 - service based authentication for securing login that is tested on billions of logins instead of reinventing wheel aka easy login
 - Google Material Design - framework to create beautiful, customizable ui components aka make it look as good as Google stuff
-- ** coming soon ** Progressive Web App capabilities aka make a web site look, feel and respond as well as a normal app even on a flip errr 2g phone:
-  1. Reliable - Load instantly and never show the downasaur, even in uncertain network conditions.
-  2. Fast - Respond quickly to user interactions with silky smooth animations and no janky scrolling.
-  3. Engaging - Feel like a natural app on the device, with an immersive user experience.
-  4. more info at https://developers.google.com/web/progressive-web-apps/
+- ** coming soon ** Progressive Web App capabilities to make a web site look, feel and respond as well as an installed app especially when there are network and memory limitations.  More info at https://developers.google.com/web/progressive-web-apps/
 
 Hosting server:
 
