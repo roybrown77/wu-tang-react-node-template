@@ -6,8 +6,6 @@ Tiger style. Tiger style. Yes, like the song this will help you build a web app 
 
 This serveless demo app will retrieve Wu-Tang album covers from wikipedia and display them.
 
-https://wu-tang-react-node-template.herokuapp.com/
-
 Backend:
 
 - NodeJs - lightweight and efficient javascript web server aka serve up the site like banana pudding in the A
