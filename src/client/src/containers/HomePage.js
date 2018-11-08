@@ -97,9 +97,9 @@ class HomePage extends Component {
           <AppBar position="static" style={{backgroundColor:'#E2A42B'}}>
             <Toolbar>
               <CameraIcon className={classes.icon} />
-              <Typography color="inherit" noWrap>
+              <h3 style={{color:"#ffffff"}}>
                 {'Wu-Tang x React Node'}
-              </Typography>
+              </h3>
             </Toolbar>
           </AppBar>
           <main>
