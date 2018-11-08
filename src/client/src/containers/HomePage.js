@@ -97,7 +97,7 @@ class HomePage extends Component {
           <AppBar position="static" style={{backgroundColor:'#E2A42B'}}>
             <Toolbar>
               <CameraIcon className={classes.icon} />
-              <Typography variant="title" color="inherit" noWrap>
+              <Typography color="inherit" noWrap>
                 {'Wu-Tang x React Node'}
               </Typography>
             </Toolbar>
@@ -106,12 +106,12 @@ class HomePage extends Component {
             {/* Hero unit */}
             <div className={classes.heroUnit}>
               <div className={classes.heroContent}>
-                <Typography variant="display3" align="center" color="textPrimary" gutterBottom>
+                <h1 style={{color:"#ffffff"}}>
                   What do you listen to today?
-                </Typography>
-                <Typography variant="title" align="center" color="textSecondary" paragraph>
+                </h1>
+                <h3 style={{color:"#ffffff"}}>
                   Pick door 1 or 2 to find out.
-                </Typography>
+                </h3>
                 <div className={classes.heroButtons}>
                   <Grid container spacing={16} justify="center">
                     <Grid item>
@@ -133,7 +133,7 @@ class HomePage extends Component {
               {
                   dataLoading && 
                   <div className={classes.linearProgress}>
-                    <Typography variant="title" align="center" color="textSecondary" paragraph>
+                    <Typography align="center" color="textSecondary" paragraph>
                       Takes a minute to screen scrape wikipedia for images so watch youtube or netflix or something.  :D
                     </Typography>
                     <LinearProgress />
@@ -160,7 +160,7 @@ class HomePage extends Component {
                         image={get(albumCover,'image','https://upload.wikimedia.org/wikipedia/en/e/e2/GZALiquidSwords.jpg')}
                       />
                       <CardContent>
-                        <Typography gutterBottom variant="headline" component="h2">
+                        <Typography gutterBottom component="h2">
                           {get(get(albumCover,'term','').split(' album'),[0])}
                         </Typography>
                         <Typography>
@@ -183,10 +183,10 @@ class HomePage extends Component {
           </main>
           {/* Footer */}
           <footer className={classes.footer}>
-            <Typography variant="title" align="center" gutterBottom>
+            <Typography align="center" gutterBottom>
               Footer
             </Typography>
-            <Typography variant="subheading" align="center" color="textSecondary" component="p">
+            <Typography align="center" color="textSecondary" component="p">
               Thank you and I hope you learned something.
             </Typography>
           </footer>

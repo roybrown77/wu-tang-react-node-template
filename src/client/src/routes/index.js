@@ -7,18 +7,21 @@ const theme = createMuiTheme({
   palette: {
     type: 'dark', // Switching the dark mode on is a single property value change.
   },
+  typography: {
+	useNextVariants: true
+  }
 });
 
 const routes = (
-		 <MuiThemeProvider theme={theme}>
-		    <div className="App">
-		        <main>
-			            <Switch>
-			                <Route exact path='/' component={HomePage}/>
-			            </Switch>
-		        </main>
-		    </div>
-		</MuiThemeProvider>
+	<MuiThemeProvider theme={theme}>
+	    <div className="App">
+	        <main>
+	            <Switch>
+	                <Route exact path='/' component={HomePage}/>
+	            </Switch>
+	        </main>
+	    </div>
+	</MuiThemeProvider>
 )
 
 export default routes;
