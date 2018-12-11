@@ -19,71 +19,6 @@ const some = require('lodash/some');
 const sortBy = require('lodash/sortBy');
 const sample = require('lodash/sample');
 
-const buySupremeShit = async () => {
-  let browser;
-  let page;
-
-  try {
-    browser = await puppeteer.launch({
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
-      headless: false
-    });
-    page = await browser.newPage();
-
-    //await page.setViewport({width:1000,height:700});
-    //await page.setRequestInterception(true);
-    // page.on('request', (req) => {
-    //     if(req.resourceType() == 'stylesheet' || req.resourceType() == 'font' || req.resourceType() == 'image'){
-    //         req.abort();
-    //     }
-    //     else {
-    //         req.continue();
-    //     }
-    // });
-
-    await page.goto('https://www.supremenewyork.com/shop/new');
-    await page.waitForSelector('div.turbolink_scroller');
-    await page.click('#container > article:nth-child(20) > div > a');
-    await page.waitForSelector('#details > h1');
-
-    const name = await page.evaluate((sel) => {
-      return document.querySelector(sel).innerText;
-    }, '#details > h1');
-
-    console.log('name: ' + name);
-
-    if ((name || '').toLowerCase().includes('thermal')) {
-      await page.click('#add-remove-buttons > input');
-      await page.waitForSelector('#cart');
-      await page.click('#cart > a.button.checkout');
-      await page.waitForSelector('#order_billing_name');
-      await page.type("#order_billing_name", 'Roy Brown');
-      // await page.type("#order_email", 'roybrown77@gmail.com');
-      // await page.type("#order_tel", '4045397786');
-      // await page.type("#bo", '720 Village Crest Drive');
-      // await page.type("#order_billing_zip", '30024');
-      // await page.type("#order_billing_city", 'Suwanee');
-      // await pgae.click("#order_billing_state > option:nth-child(13)");
-      // await page.type("#nnaerb", '515');
-      // await pgae.click("#credit_card_month > option:nth-child(4)");
-      // await pgae.click("#credit_card_year > option:nth-child(4)");
-      // await page.type("#orcer", '515');
-      await page.waitForNavigation();
-    }
-
-    await page.close();
-    await browser.close();
-  } catch (err) {
-    if (page) {
-      await page.close();
-    }
-
-    if (browser) {
-      await browser.close();
-    }
-  }
-};
-
 const getImage = async (term) => {
   let browser;
   let page;
@@ -149,63 +84,61 @@ function getRandomList(size, min, max) {
 };
 
 router.get('/albumcovers', async function (req, res) {
-  // const albums = [
-  //   'inspectah deck uncontrollable substance album',
-  //   'wu-tang 36 chambers album',
-  //   'rza afro samurai album',
-  //   'ghostface supreme clientele album',
-  //   'wu-tang iron flag album',
-  //   'rza bobby digital album',
-  //   'gza liquid swords album',
-  //   'ghostface fishscale album',
-  //   'raekwon only built 4 cuban linx album',
-  //   'wu-tang forever album',
-  //   'gza beneath the surface album',
-  //   'method man tical album',
-  //   'old dirty bastard return to 36 chambers album',
-  //   'wu-tang the w album',
-  // ];
+  const albums = [
+    'inspectah deck uncontrollable substance album',
+    'wu-tang 36 chambers album',
+    'rza afro samurai album',
+    'ghostface supreme clientele album',
+    'wu-tang iron flag album',
+    'rza bobby digital album',
+    'gza liquid swords album',
+    'ghostface fishscale album',
+    'raekwon only built 4 cuban linx album',
+    'wu-tang forever album',
+    'gza beneath the surface album',
+    'method man tical album',
+    'old dirty bastard return to 36 chambers album',
+    'wu-tang the w album',
+  ];
 
-  // // const list = getRandomList(8, 0, albums.length-1);
-
-  // // const albums1 = await Promise.all([
-  // //   getImage(albums[list[0]]),
-  // //   getImage(albums[list[1]]),
-  // //   getImage(albums[list[2]]),
-  // //   getImage(albums[list[3]]),
-  // // ]);
-
-  // // const albums2 = await Promise.all([
-  // //   getImage(albums[list[4]]),
-  // //   getImage(albums[list[5]]),
-  // //   getImage(albums[list[6]]),
-  // //   getImage(albums[list[7]]),
-  // // ]);
-
-  // const index = sample([true, false]) ? 0 : 6;
+  // const list = getRandomList(8, 0, albums.length-1);
 
   // const albums1 = await Promise.all([
-  //   getImage(albums.slice(index)[0]),
-  //   getImage(albums.slice(index)[1]),
-  //   getImage(albums.slice(index)[2]),
-  //   getImage(albums.slice(index)[3]),
+  //   getImage(albums[list[0]]),
+  //   getImage(albums[list[1]]),
+  //   getImage(albums[list[2]]),
+  //   getImage(albums[list[3]]),
   // ]);
 
   // const albums2 = await Promise.all([
-  //   getImage(albums.slice(index)[4]),
-  //   getImage(albums.slice(index)[5]),
-  //   getImage(albums.slice(index)[6]),
-  //   getImage(albums.slice(index)[7]),
+  //   getImage(albums[list[4]]),
+  //   getImage(albums[list[5]]),
+  //   getImage(albums[list[6]]),
+  //   getImage(albums[list[7]]),
   // ]);
 
-  // const albumCovers = [
-  //   ...albums1,
-  //   ...albums2
-  // ];
+  const index = sample([true, false]) ? 0 : 6;
 
-  buySupremeShit();
+  const albums1 = await Promise.all([
+    getImage(albums.slice(index)[0]),
+    getImage(albums.slice(index)[1]),
+    getImage(albums.slice(index)[2]),
+    getImage(albums.slice(index)[3]),
+  ]);
 
-  res.status(200).send([]);
+  const albums2 = await Promise.all([
+    getImage(albums.slice(index)[4]),
+    getImage(albums.slice(index)[5]),
+    getImage(albums.slice(index)[6]),
+    getImage(albums.slice(index)[7]),
+  ]);
+
+  const albumCovers = [
+    ...albums1,
+    ...albums2
+  ];
+
+  res.status(200).send(albumCovers);
 });
 
 module.exports = router;
