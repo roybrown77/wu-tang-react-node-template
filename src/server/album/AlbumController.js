@@ -31,12 +31,7 @@ const getImage = async (term) => {
 
     page = await browser.newPage();
 
-    await page.setViewport({width:1000,height:700});
-
-    await page.goto('https://en.wikipedia.org/wiki/Main_Page',{
-      waitUntil: 'networkidle2',
-      timeout: 0
-    });
+    await page.goto('https://en.wikipedia.org/wiki/Main_Page');
 
     await page.type("#searchInput", term);
 
@@ -100,22 +95,6 @@ router.get('/albumcovers', async function (req, res) {
     'old dirty bastard return to 36 chambers album',
     'wu-tang the w album',
   ];
-
-  // const list = getRandomList(8, 0, albums.length-1);
-
-  // const albums1 = await Promise.all([
-  //   getImage(albums[list[0]]),
-  //   getImage(albums[list[1]]),
-  //   getImage(albums[list[2]]),
-  //   getImage(albums[list[3]]),
-  // ]);
-
-  // const albums2 = await Promise.all([
-  //   getImage(albums[list[4]]),
-  //   getImage(albums[list[5]]),
-  //   getImage(albums[list[6]]),
-  //   getImage(albums[list[7]]),
-  // ]);
 
   const index = sample([true, false]) ? 0 : 6;
 
