@@ -114,12 +114,12 @@ class HomePage extends Component {
                 </h3>
                 <div className={classes.heroButtons}>
                   <Grid container spacing={16} justify="center">
-                    <Grid item>
+                    <Grid item xs={3}>
                       <Button variant="contained" style={{backgroundColor:'#E2A42B'}} onClick={() => { this.handleDoor1() }}>
                         Door 1
                       </Button>
                     </Grid>
-                    <Grid item>
+                    <Grid item xs={3}>
                       <Button variant="outlined" style={{color:'#E2A42B'}} onClick={() => { this.handleDoor2() }}>
                         Door 2
                       </Button>
