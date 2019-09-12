@@ -15,7 +15,7 @@ import Home from './pages/Home';
 
 const theme = createMuiTheme({
   palette: {
-    type: 'dark', // Switching the dark mode on is a single property value change.
+    type: 'light', // Switching the dark mode on is a single property value change.
   },
   typography: {
     useNextVariants: true
