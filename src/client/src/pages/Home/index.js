@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import get from 'lodash/get';
 
-import { getAlbumCovers } from '../actions/albumActions';
+import { getAlbumCovers } from '../../actions/albumActions';
 
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
@@ -64,7 +64,7 @@ const styles = theme => ({
   },
 });
 
-class HomePage extends Component {
+class Home extends Component {
     constructor(props) {
         super(props);
 
@@ -181,7 +181,6 @@ class HomePage extends Component {
               </Grid>
             </div>
           </main>
-          {/* Footer */}
           <footer className={classes.footer}>
             <Typography align="center" gutterBottom>
               Footer
@@ -197,9 +196,9 @@ class HomePage extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const albumDomain = state.get('albumDomain').toJS();
-    const dataLoading = get(albumDomain, 'dataLoading');
-    const albumCovers = get(albumDomain, 'albumCovers', []);
+    const albumList = state.albumList;
+    const dataLoading = get(albumList, 'dataLoading');
+    const albumCovers = get(albumList, 'items', []);
 
     return {
         dataLoading,
@@ -207,7 +206,7 @@ const mapStateToProps = (state, ownProps) => {
     }
 };
 
-HomePage.propTypes = {
+Home.propTypes = {
   classes: PropTypes.object.isRequired,
   albumCovers: PropTypes.array,
   dataLoading: PropTypes.bool
@@ -215,4 +214,4 @@ HomePage.propTypes = {
 
 export default connect(mapStateToProps, {
   getAlbumCovers
-})(withStyles(styles)(HomePage));
+})(withStyles(styles)(Home));
