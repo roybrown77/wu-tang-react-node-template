@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import get from 'lodash/get';
 
-import { getAlbumCovers } from '../actions';
+import { getAlbumCovers } from '../actions/albumActions';
 
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';

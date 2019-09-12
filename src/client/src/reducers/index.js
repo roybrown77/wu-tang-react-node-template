@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux-immutable';
 import { Map, List } from 'immutable';
-import * as ActionTypes from '../actions';
+import {albumActionTypes} from '../constants/actionTypes';
 
 const albumDomain = (
   state = Map({ 
@@ -9,9 +9,9 @@ const albumDomain = (
   }), 
   action) => {
   switch (action.type) {
-    case ActionTypes.ALBUMCOVERS_REQUEST:
+    case albumActionTypes.ALBUMCOVERS_REQUEST:
       return state.set('dataLoading', true);
-    case ActionTypes.ALBUMCOVERS_SUCCESS:
+    case albumActionTypes.ALBUMCOVERS_SUCCESS:
       if (action.response) {
         const albumCoverList = action.response.map(item=>{
           return Map(item);
@@ -19,7 +19,7 @@ const albumDomain = (
         return state.set('albumCovers', List(albumCoverList)).set("dataLoading", false);
       }
       return state;
-    case ActionTypes.ALBUMCOVERS_FAILURE:
+    case albumActionTypes.ALBUMCOVERS_FAILURE:
       return state.set('dataLoading', false);
     default:
       return state;

@@ -1,4 +1,3 @@
-import { schema } from 'normalizr';
 import axios from 'axios';
 
 const callApi = ({endpoint, method, body, schema}) => {  
@@ -13,15 +12,6 @@ const callApi = ({endpoint, method, body, schema}) => {
     .then(function(response) {
       return response.data;
     });
-};
-
-const albumCoverSchema = new schema.Entity('albumCovers', {}, {
-  idAttribute: albumCover => albumCover._id
-});
-
-export const Schemas = {
-  ALBUMCOVER: albumCoverSchema,
-  ALBUMCOVER_ARRAY: [albumCoverSchema]
 };
 
 export const CALL_API = 'Call API';
