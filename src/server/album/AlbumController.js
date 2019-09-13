@@ -18,7 +18,7 @@ const some = require('lodash/some');
 const sortBy = require('lodash/sortBy');
 const sample = require('lodash/sample');
 
-const getImage = async (term) => {
+const getImage = async (album) => {
   let browser;
   let page;
 
@@ -32,7 +32,7 @@ const getImage = async (term) => {
 
     await page.goto('https://en.wikipedia.org/wiki/Main_Page');
 
-    await page.type("#searchInput", term);
+    await page.type("#searchInput", album.searchTerm);
 
     await page.click('#searchButton');
 
@@ -47,7 +47,7 @@ const getImage = async (term) => {
     await page.close();
     await browser.close();
     console.log('image: https:' + image.split(' ')[0]);
-    return {term, image: 'https:' + image.split(' ')[0]};
+    return {album.searchTerm, album.id, coverArt: 'https:' + image.split(' ')[0]};
   } catch (err) {
     if (page) {
       await page.close();
@@ -57,8 +57,8 @@ const getImage = async (term) => {
       await browser.close();
     }
     
-    console.log(term + ' error: ' + JSON.stringify(err));
-    return {term};
+    console.log(term.searchTerm + ' error: ' + JSON.stringify(err));
+    return {album.searchTerm};
   }
 };
 
@@ -77,10 +77,10 @@ function getRandomList(size, min, max) {
 
 router.get('/albumcovers', async function (req, res) {
   const albums = [
-    '36 chambers',
-    'Ironman (Ghostface Killah album)',
-    'Liquid Swords',
-    'Only Built 4 Cuban Linx'
+    {id: 1, searchTerm: 'Enter the Wu-Tang (36 Chambers)'},
+    {id: 2, searchTerm: 'Ironman (Ghostface Killah album)'},
+    {id: 3, searchTerm: 'Liquid Swords'},
+    {id: 4, searchTerm: 'Only Built 4 Cuban Linx'}
   ];
 
   const index = sample([true, false]) ? 0 : 2;

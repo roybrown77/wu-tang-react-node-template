@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import classNames from 'classnames';
+import ReactAudioPlayer from 'react-audio-player';
 
 import get from 'lodash/get';
 
@@ -75,12 +76,17 @@ const SingleLineGridList = (props) => {
 const albums = [
     {
         id: 1,
-        name: '36 Chambers',
-        year: '1993',
-        month: 'December',
-        description: 'Epic first album.',
+        name: 'Enter the Wu-Tang (36 Chambers)',
+        released: 'November 9, 1993',
+        length: '61:31',
+        label: 'Loud',
+        producer: 'RZA (also exec.), Ol' Dirty Bastard, Method Man',
+        description: 'epic first group album',
         coverArt: '',
-        producer: 'RZA',
+        sampleTrack: {
+            title: 'Protect Ya Neck',
+            src: 'https://upload.wikimedia.org/wikipedia/en/a/ae/Protectyaneck.ogg'
+        },
         visuals: [
             {
                 img: lucyKillerTape,
@@ -91,12 +97,20 @@ const albums = [
 ];
 
 class Home extends React.Component {
-    searchForWu = () => {
+    handleSearchWuBangers = () => {
         this.props.getAlbumCovers();
     }
 
     render() {
         const {width, albumList, dataLoading} = this.props;
+
+        const mergedAlbumList = albumList.map(album=>{
+            const albumDataFound = albums.find(albumData=>albumData.id===album.id);
+            return {
+                ...album,
+                ...albumDataFound
+            }
+        });
 
         return (
             <AppLayout title="Discover Wu-Tang Albums!">
@@ -128,9 +142,9 @@ class Home extends React.Component {
                             }
                             <Grid item xs={8} md={8} lg={1}>
                                 <Button 
-                                    onClick={()=>this.searchForWu}
-                                    variant="contained" style={{backgroundColor:'#ea4c89', color: '#fff', fontWeight:'bold', padding:'16px 40px', margin: '16px 0'}}>
-                                    <span style={{fontSize:'12px'}}>Search</span>
+                                    onClick={()=>this.handleSearchWuBangers}
+                                    variant="contained" style={{backgroundColor:'#E2A42B', color: '#fff', fontWeight:'bold', padding:'16px 40px', margin: '16px 0'}}>
+                                    <span style={{fontSize:'12px'}}>Search Wu Bangers</span>
                                 </Button>
                             </Grid>
                         </Grid>
@@ -174,7 +188,7 @@ class Home extends React.Component {
                         </Grid>
                     </div>
                     {
-                        albumList.map(album=>{
+                        mergedAlbumList.map(album=>{
                             return (
                                 <div key={album.id} style={{marginLeft: '1.1rem'}}>
                                     <Divider light style={{marginRight: '1.1rem'}}/>
@@ -189,7 +203,9 @@ class Home extends React.Component {
                                                         alt={album.name} />
                                                     </div>
                                                     <div style={{textAlign:'center',marginTop:'1.1rem'}}>
-                                                        <Link to='/albums' style={{
+                                                        {
+                                                            false &&
+                                                            <Link to='/albums' style={{
                                                                 display: 'inline-block',
                                                                     height: '75px',
                                                                     width: '75px',
@@ -201,15 +217,25 @@ class Home extends React.Component {
                                                                     color: '#3a8bbb'
                                                                 }
                                                             }}>
-                                                            <AddIcon style={{margin: '18px', fontSize: '30px'}}/>
-                                                        </Link>
+                                                                <AddIcon style={{margin: '18px', fontSize: '30px'}}/>
+                                                            </Link>
+                                                        }
+                                                        <div>{album.album.sampleTrack.title}</div>
+                                                        <ReactAudioPlayer
+                                                            src={album.sampleTrack.src}
+                                                            controls
+                                                        />
                                                     </div>
                                                 </div>
                                                 <div style={{marginLeft: '1.1rem', fontSize:'12px'}}>
                                                     <h2 style={{fontSize:'16px', fontWeight:'bold', margin: '0'}}>
-                                                        {album.description}
+                                                        {album.name}
                                                     </h2>
+                                                    <div>{album.released}</div>
+                                                    <div>{album.length}</div>
+                                                    <div>{album.label}</div>
                                                     <div>{album.producer}</div>
+                                                    <div>{album.description}</div>
                                                 </div>
                                             </div>
                                         </Grid>
