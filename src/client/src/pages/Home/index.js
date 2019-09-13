@@ -21,6 +21,7 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 
 import AddIcon from '@material-ui/icons/Add';
+import PlayIcon from '@material-ui/icons/play_circle_outline';
 
 import { getAlbumCovers } from '../../actions/albumActions';
 import AppLayout from '../../components/Layouts/App';
