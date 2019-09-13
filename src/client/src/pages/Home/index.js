@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import classNames from 'classnames';
-import ReactAudioPlayer from 'react-audio-player';
+//import ReactAudioPlayer from 'react-audio-player';
 
 import get from 'lodash/get';
 
@@ -21,7 +21,7 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 
 import AddIcon from '@material-ui/icons/Add';
-import PlayIcon from '@material-ui/icons/play_circle_outline';
+//import PlayIcon from '@material-ui/icons/PlacyCircleOutline';
 
 import { getAlbumCovers } from '../../actions/albumActions';
 import AppLayout from '../../components/Layouts/App';
@@ -74,14 +74,14 @@ const SingleLineGridList = (props) => {
     );
 };
 
-const albums = [
+const albumData = [
     {
         id: 1,
         name: 'Enter the Wu-Tang (36 Chambers)',
         released: 'November 9, 1993',
         length: '61:31',
         label: 'Loud',
-        producer: 'RZA (also exec.), Ol' Dirty Bastard, Method Man',
+        producer: 'RZA (also exec.), Ol Dirty Bastard, Method Man',
         description: 'epic first group album',
         coverArt: '',
         sampleTrack: {
@@ -98,15 +98,17 @@ const albums = [
 ];
 
 class Home extends React.Component {
-    handleSearchWuBangers = () => {
+    handleSearchWuBangers = async (event) => {
+        event.preventDefault();
         this.props.getAlbumCovers();
-    }
+    };
+
 
     render() {
-        const {width, albumList, dataLoading} = this.props;
+        const {width, albums, dataLoading} = this.props;
 
-        const mergedAlbumList = albumList.map(album=>{
-            const albumDataFound = albums.find(albumData=>albumData.id===album.id);
+        const mergedAlbumList = albums.map(album=>{
+            const albumDataFound = albumData.find(data=>data.id===album.id);
             return {
                 ...album,
                 ...albumDataFound
@@ -141,9 +143,9 @@ class Home extends React.Component {
                                     </Grid>
                                 </div>
                             }
-                            <Grid item xs={8} md={8} lg={1}>
+                            <Grid item xs={12}>
                                 <Button 
-                                    onClick={()=>this.handleSearchWuBangers}
+                                    onClick={this.handleSearchWuBangers}
                                     variant="contained" style={{backgroundColor:'#E2A42B', color: '#fff', fontWeight:'bold', padding:'16px 40px', margin: '16px 0'}}>
                                     <span style={{fontSize:'12px'}}>Search Wu Bangers</span>
                                 </Button>
@@ -222,10 +224,6 @@ class Home extends React.Component {
                                                             </Link>
                                                         }
                                                         <div>{album.album.sampleTrack.title}</div>
-                                                        <ReactAudioPlayer
-                                                            src={album.sampleTrack.src}
-                                                            controls
-                                                        />
                                                     </div>
                                                 </div>
                                                 <div style={{marginLeft: '1.1rem', fontSize:'12px'}}>
@@ -256,23 +254,23 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    const albumList = state.albumList;
+    const albumList = get(state,'albumList',{});
     const dataLoading = get(albumList, 'dataLoading');
-    const albumCovers = get(albumList, 'items', []);
+    const albums = get(albumList, 'items', []);
 
     return {
         dataLoading,
-        albumCovers
+        albums
     }
 };
 
 Home.propTypes = {
-    albumCovers: PropTypes.array,
+    albums: PropTypes.array,
     dataLoading: PropTypes.bool
 };
 
 Home.defaultProps = {
-    albumCovers: [],
+    albums: [],
     dataLoading: true
 };
 

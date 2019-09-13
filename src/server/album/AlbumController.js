@@ -47,7 +47,7 @@ const getImage = async (album) => {
     await page.close();
     await browser.close();
     console.log('image: https:' + image.split(' ')[0]);
-    return {album.searchTerm, album.id, coverArt: 'https:' + image.split(' ')[0]};
+    return {...album, coverArt: 'https:' + image.split(' ')[0]};
   } catch (err) {
     if (page) {
       await page.close();
@@ -57,8 +57,8 @@ const getImage = async (album) => {
       await browser.close();
     }
     
-    console.log(term.searchTerm + ' error: ' + JSON.stringify(err));
-    return {album.searchTerm};
+    console.log(album.searchTerm + ' error: ' + JSON.stringify(err));
+    return album;
   }
 };
 
@@ -86,13 +86,13 @@ router.get('/albumcovers', async function (req, res) {
   const index = sample([true, false]) ? 0 : 2;
 
   const albums1 = await Promise.all([
-    getImage(albums.slice(index)[0]),
-    getImage(albums.slice(index)[1]),
+    getImage(albums[0]),
+    getImage(albums[1]),
   ]);
 
   const albums2 = await Promise.all([
-    getImage(albums.slice(index)[2]),
-    getImage(albums.slice(index)[3])
+    getImage(albums[2]),
+    getImage(albums[3])
   ]);
 
   const albumCovers = [

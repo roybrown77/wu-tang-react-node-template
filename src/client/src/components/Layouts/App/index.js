@@ -120,7 +120,7 @@ class AppLayout extends React.Component {
                     <CssBaseline />
                     <AppBar position="static" className={classNames(classes.appBar)}>
                         <Toolbar className={classNames(classes.toolBar)}>
-                            <h3 style={{fontFamily: 'Josefin Sans, cursive', fontSize: '18px'}}>
+                            <h3 style={{fontFamily: 'Amatic SC', fontSize: '18px'}}>
                                 {'Wu-Tang x React Node Template'}
                             </h3>
                         </Toolbar>
