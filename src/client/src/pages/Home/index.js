@@ -1,217 +1,249 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import compose from 'recompose/compose';
 
-import get from 'lodash/get';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import withWidth from '@material-ui/core/withWidth'
 
-import { getAlbumCovers } from '../../actions/albumActions';
-
-import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
-import CameraIcon from '@material-ui/icons/PhotoCamera';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
-import LinearProgress from '@material-ui/core/LinearProgress';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
 
-const styles = theme => ({
-  linearProgress: {
-    flexGrow: 1,
-  },
-  appBar: {
-    position: 'relative',
-  },
-  icon: {
-    marginRight: theme.spacing.unit * 2,
-  },
-  heroUnit: {
-    backgroundColor: theme.palette.background.paper,
-  },
-  heroContent: {
-    maxWidth: 600,
-    margin: '0 auto',
-    padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
-  },
-  heroButtons: {
-    marginTop: theme.spacing.unit * 4,
-  },
-  layout: {
-    width: 'auto',
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
-      width: 1100,
-      marginLeft: 'auto',
-      marginRight: 'auto',
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
+
+import AddIcon from '@material-ui/icons/Add';
+
+const styles = makeStyles(theme => ({
+    root: {
+        margin: '1.1rem 0',
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        overflow: 'hidden',
+        backgroundColor: theme.palette.background.paper,
     },
-  },
-  cardGrid: {
-    padding: `${theme.spacing.unit * 8}px 0`,
-  },
-  cardMedia: {
-    padding: '50%', // 16:9
-  },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing.unit * 6,
-  },
-});
+    gridList: {
+        flexWrap: 'nowrap',
+        backgroundColor: '#fafafa',
+        // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
+        transform: 'translateZ(0)',
+    },
+    tile: {
+        border: '1rem white solid',
+        marginRight: '10px'
+    },
+    title: {
+        color: theme.palette.primary.light
+    },
+    titleBar: {
+        background: 'none'
+    }
+}));
 
-class Home extends Component {
+const SingleLineGridList = (props) => {
+    const classes = styles();
+
+    return (
+        <div className={classes.root}>
+        <GridList className={classes.gridList} cols={props.width === 'lg' ? 4.5 : props.width === 'md' ? 2.5 : 1.5}>
+            {props.tileData.map(tile => (
+                    <GridListTile key={tile.img} classes={{
+            tile: classes.tile
+        }}>
+            <img src={tile.img} alt={tile.title} />
+                <GridListTileBar
+                    classes={{
+                        root: classes.titleBar,
+                            title: classes.title,
+                    }}
+                    />
+                </GridListTile>
+            ))}
+        </GridList>
+    </div>
+);
+};
+
+const albums = [
+    {
+        id: 1,
+        name: '36 Chambers',
+        year: '1993',
+        month: 'December',
+        description: 'Epic first album.',
+        coverArt: '',
+        producer: 'RZA',
+        visuals: [
+            {
+                img: lucyKillerTape,
+                title: 'Lucy Killer Tape'
+            }
+        ]
+    }
+];
+
+class Home extends React.Component {
     constructor(props) {
         super(props);
 
-        this.handleDoor1 = this.handleDoor1.bind(this);
-        this.handleDoor2 = this.handleDoor2.bind(this);
-    }
-
-    handleDoor1(event, index) {
-        if (this.props.dataLoading) {
-          return;
-        }
-
-        this.props.getAlbumCovers();
-    }
-
-    handleDoor2(event, index) {
-        if (this.props.dataLoading) {
-          return;
-        }
-
-        this.props.getAlbumCovers();
+        this.state = {
+        };
     }
 
     render() {
-      const { classes, albumCovers, dataLoading } = this.props;
+        const {width} = this.props;
+        const {} = this.state;
 
-      return (
-        <React.Fragment>
-          <CssBaseline />
-          <AppBar position="static" style={{backgroundColor:'#E2A42B'}}>
-            <Toolbar>
-              <CameraIcon className={classes.icon} />
-              <h3 style={{color:"#ffffff"}}>
-                {'Wu-Tang x React Node'}
-              </h3>
-            </Toolbar>
-          </AppBar>
-          <main>
-            {/* Hero unit */}
-            <div className={classes.heroUnit}>
-              <div className={classes.heroContent}>
-                <h1 style={{color:"#ffffff"}}>
-                  What do you listen to today?
-                </h1>
-                <h3 style={{color:"#ffffff"}}>
-                  Pick door 1 or 2 to find out.
-                </h3>
-                <div className={classes.heroButtons}>
-                  <Grid container spacing={16} justify="center">
-                    <Grid item xs={3}>
-                      <Button variant="contained" style={{backgroundColor:'#E2A42B'}} onClick={() => { this.handleDoor1() }}>
-                        Door 1
-                      </Button>
-                    </Grid>
-                    <Grid item xs={3}>
-                      <Button variant="outlined" style={{color:'#E2A42B'}} onClick={() => { this.handleDoor2() }}>
-                        Door 2
-                      </Button>
-                    </Grid>
-                  </Grid>
+        return (
+            <AppLayout title="Discover Wu-Tang Albums!">
+            <section data-component="album-list">
+            <div style={{padding:'1rem 0', backgroundColor: '#e1e4e8', borderBottom: '1px solid #d7dbdf'}}>
+    <Grid container justify={'center'}>
+            <Grid item xs={8} md={8} lg={2}>
+            <TextField
+        id="outlined-name"
+        label="Organization"
+        onChange={()=>{}}
+        margin="normal"
+        variant="outlined"
+            />
+            </Grid>
+            <Grid item xs={8} md={8} lg={2}>
+            <TextField
+        id="outlined-name"
+        label="Squad"
+        onChange={()=>{}}
+        margin="normal"
+        variant="outlined"
+            />
+            </Grid>
+            <Grid item xs={8} md={8} lg={1}>
+            <Button variant="contained" style={{backgroundColor:'#ea4c89', color: '#fff', fontWeight:'bold', padding:'16px 40px', margin: '16px 0'}}>
+    <span style={{fontSize:'12px'}}>Search</span>
+        </Button>
+        </Grid>
+        </Grid>
+        </div>
+        <div style={{padding:'2rem 0'}}>
+    <Grid container justify={'center'}>
+            {
+                width === 'lg' &&
+            <Grid item lg={1}>
+            <Link to='/albums' style={{
+            display: 'inline-block',
+                height: '100px',
+                width: '100px',
+                color: '#bbb',
+                border: '5px dashed #bbb',
+                background: 'transparent',
+                borderRadius: '50px',
+                visited: {
+                color: '#3a8bbb'
+            }
+        }}>
+    <AddIcon
+        style={{margin: '25px', fontSize: '40px'}}/>
+        </Link>
+        </Grid>
+    }
+    <Grid item lg={4}>
+            <div style={{display:'flex', flex: '0 0 270px', color:'#444'}}>
+    <div style={{marginLeft: '1.1rem', fontSize:'16px'}}>
+    <h2 style={{fontSize:'24px', fontWeight:'bold', margin: '0'}}>
+        Share Your Wu With Everyone
+        </h2>
+        <div>From 36 chambers to Wu Saga soundtrack.</div>
+        <div style={{marginTop:'1.1rem'}}>
+    <Button variant="contained" style={{backgroundColor:'#00b6e3', color: '#fff', fontWeight:'bold', padding:'10px 40px' }}>
+    <span style={{fontSize:'12px'}}>Upload Album</span>
+        </Button>
+        </div>
+        </div>
+        </div>
+        </Grid>
+        </Grid>
+        </div>
+        {
+            albums.map(album=>{
+                return (
+                    <div
+                key={album.id}
+                style={{marginLeft: '1.1rem'}}>
+            <Divider light style={{marginRight: '1.1rem'}}/>
+                <Grid container>
+                <Grid item xs={12} md={5} lg={3}>
+                    <div style={{display:'flex', flex: '0 0 270px', color:'#444', margin:'1.1rem 0'}}>
+            <div>
+                <div>
+                <img
+                style={{width: '175px', borderRadius: '8px'}}
+                src={album.coverArt}
+                alt={album.name} />
                 </div>
-              </div>
-            </div>
-            <div className={classNames(classes.layout, classes.cardGrid)}>
-              {/* End hero unit */}
-              {
-                  dataLoading && 
-                  <div className={classes.linearProgress}>
-                    <Typography align="center" color="textSecondary" paragraph>
-                      Takes a minute to screen scrape wikipedia for images so watch youtube or netflix or something.  :D
-                    </Typography>
-                    <LinearProgress />
-                    <br />
-                    <LinearProgress color="secondary" />
-                    <br />
-                    <LinearProgress />
-                    <br />
-                    <LinearProgress color="secondary" />
-                    <br />
-                    <LinearProgress />
-                    <br />
-                    <LinearProgress color="secondary" />
-                  </div>
-                }
-              <Grid container spacing={40}>
-                {
-                  !dataLoading && 
-                  albumCovers.sort(function() { return 0.5 - Math.random() }).map(albumCover => (
-                  <Grid item key={get(albumCover,'term')} sm={6} md={4} lg={3}>
-                    <Card>
-                      <CardMedia
-                        className={classes.cardMedia}
-                        image={get(albumCover,'image','https://upload.wikimedia.org/wikipedia/en/e/e2/GZALiquidSwords.jpg')}
-                      />
-                      <CardContent>
-                        <Typography gutterBottom component="h2">
-                          {get(get(albumCover,'term','').split(' album'),[0])}
-                        </Typography>
-                        <Typography>
-                          {get(albumCover,'image') ? '' : 'tell wikipedia to setup the page already!  geez. until then u get another wu banger.'}
-                        </Typography>
-                      </CardContent>
-                      <CardActions>
-                        <Button size="small" color="primary">
-                          View
-                        </Button>
-                        <Button size="small" color="primary">
-                          Edit
-                        </Button>
-                      </CardActions>
-                    </Card>
-                  </Grid>
-                ))}
-              </Grid>
-            </div>
-          </main>
-          <footer className={classes.footer}>
-            <Typography align="center" gutterBottom>
-              Footer
-            </Typography>
-            <Typography align="center" color="textSecondary" component="p">
-              Thank you and I hope you learned something.
-            </Typography>
-          </footer>
-          {/* End footer */}
-        </React.Fragment>
-      );
+                <div style={{textAlign:'center',marginTop:'1.1rem'}}>
+            <Link to='/albums' style={{
+                    display: 'inline-block',
+                        height: '75px',
+                        width: '75px',
+                        color: '#bbb',
+                        border: '5px dashed #bbb',
+                        background: 'transparent',
+                        borderRadius: '37.5px',
+                        visited: {
+                        color: '#3a8bbb'
+                    }
+                }}>
+            <AddIcon
+                style={{margin: '18px', fontSize: '30px'}}/>
+                </Link>
+                </div>
+                </div>
+                <div style={{marginLeft: '1.1rem', fontSize:'12px'}}>
+            <h2 style={{fontSize:'16px', fontWeight:'bold', margin: '0'}}>
+                {album.description}
+            </h2>
+                <div>{album.producer}</div>
+                </div>
+                </div>
+                </Grid>
+                <Grid item xs={12} md={7} lg={9}>
+                    <SingleLineGridList tileData={album.visuals} width={width}/>
+                </Grid>
+                </Grid>
+                </div>
+            );
+            })
+        }
+    <div style={{height:'5rem'}}></div>
+        </section>
+        </AppLayout>
+    );
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    const albumList = state.albumList;
-    const dataLoading = get(albumList, 'dataLoading');
-    const albumCovers = get(albumList, 'items', []);
-
+const mapStateToProps = (state) => {
     return {
-        dataLoading,
-        albumCovers
+        albumList: state.albumList
     }
 };
 
 Home.propTypes = {
-  classes: PropTypes.object.isRequired,
-  albumCovers: PropTypes.array,
-  dataLoading: PropTypes.bool
+    albumList: PropTypes.shape({
+        items: PropTypes.array
+    })
 };
 
-export default connect(mapStateToProps, {
-  getAlbumCovers
-})(withStyles(styles)(Home));
+Home.defaultProps = {
+    albumList: {}
+};
+
+export default compose(
+    withStyles(styles),
+    withWidth(),
+    connect(mapStateToProps),
+)(Home);
