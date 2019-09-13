@@ -19,6 +19,8 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import Typography from '@material-ui/core/Typography';
 
 import AddIcon from '@material-ui/icons/Add';
 //import PlayIcon from '@material-ui/icons/PlacyCircleOutline';
@@ -55,7 +57,7 @@ const styles = makeStyles(theme => ({
     },
     titleBar: {
         background: 'none'
-    }
+    },
 }));
 
 const SingleLineGridList = (props) => {
@@ -318,6 +320,26 @@ class Home extends React.Component {
                         </Grid>
                     </div>
                     {
+                      dataLoading && 
+                      <div style={{flexGrow: 1,padding:'1rem'}}>
+                        <Typography align="center" color="textSecondary" paragraph>
+                          Takes a minute to screen scrape wikipedia for images so watch youtube or netflix or something.  :D
+                        </Typography>
+                        <LinearProgress />
+                        <br />
+                        <LinearProgress color="secondary" />
+                        <br />
+                        <LinearProgress />
+                        <br />
+                        <LinearProgress color="secondary" />
+                        <br />
+                        <LinearProgress />
+                        <br />
+                        <LinearProgress color="secondary" />
+                      </div>
+                    }
+                    {
+                        !dataLoading &&
                         mergedAlbumList.map(album=>{
                             return (
                                 <div key={album.id} style={{marginLeft: '1.1rem'}}>
