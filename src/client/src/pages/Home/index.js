@@ -33,6 +33,7 @@ import lucyKillerTape from '../../images/lucy-killer-tape.jpg';
 import linusShorty from '../../images/linus-shorty.jpg';
 import wutangJoint from '../../images/wu-tang-joint.png';
 import wutangAgain from '../../images/wu-tang-again.png';
+import wu from '../../images/wu.jpg';
 
 const styles = makeStyles(theme => ({
     root: {
@@ -273,6 +274,12 @@ class Home extends React.Component {
                                 </div>
                             }
                             <Grid item xs={12}>
+                                <div>
+                                    <img
+                                    style={{height:'300px'}}
+                                    src={wu}
+                                    alt={'Wu!'} />
+                                </div>
                                 <Button 
                                     onClick={this.handleSearchWuBangers}
                                     variant="contained" style={{backgroundColor:'#E2A42B', color: '#fff', fontWeight:'bold', padding:'16px 40px', margin: '16px 0'}}>
@@ -308,7 +315,7 @@ class Home extends React.Component {
                                         <h2 style={{fontSize:'24px', fontWeight:'bold', margin: '0'}}>
                                             Share Your Wu With Everyone
                                         </h2>
-                                        <div>Life stories from 36 Chambers to Wu Saga soundtrack.</div>
+                                        <div>Life stories from 36 Chambers to Wu American Saga.</div>
                                         <div style={{marginTop:'1.1rem'}}>
                                             <Button variant="contained" style={{backgroundColor:'#00b6e3', color: '#fff', fontWeight:'bold', padding:'10px 40px' }}>
                                                 <span style={{fontSize:'12px'}}>Upload Story</span>
@@ -342,7 +349,7 @@ class Home extends React.Component {
                         !dataLoading &&
                         mergedAlbumList.map(album=>{
                             return (
-                                <div key={album.id} style={{marginLeft: '1.1rem'}}>
+                                <div key={album.id} style={{margin: '1.1rem'}}>
                                     <Divider light style={{marginRight: '1.1rem'}}/>
                                     <Grid container>
                                         <Grid item xs={12} md={5} lg={3}>
@@ -372,28 +379,28 @@ class Home extends React.Component {
                                                                 <AddIcon style={{margin: '18px', fontSize: '30px'}}/>
                                                             </Link>
                                                         }
+                                                        <div>{album.description}</div>
+                                                        <div style={{fontWeight:'bold'}}>{album.sampleTrack.title}</div>
+                                                        <div>
+                                                            <ReactPlayer 
+                                                                url={album.sampleTrack.src} 
+                                                                playing={true}
+                                                                loop 
+                                                                controls
+                                                                width={'200px'}
+                                                                height={'35px'}
+                                                            />
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div style={{marginLeft: '1.1rem', fontSize:'12px'}}>
-                                                    <h2 style={{fontSize:'16px', fontWeight:'bold', margin: '0'}}>
+                                                <div style={{marginLeft: '0 .7rem', fontSize:'12px',textAlign:'left'}}>
+                                                    <h2 style={{fontWeight:'bold', margin: '0'}}>
                                                         {album.name}
                                                     </h2>
-                                                    <div>{album.released}</div>
-                                                    <div>{album.length}</div>
-                                                    <div>{album.label}</div>
-                                                    <div>{album.producer}</div>
-                                                    <div>{album.description}</div>
-                                                     <div style={{fontWeight:'bold'}}>{album.sampleTrack.title}</div>
-                                                    <div>
-                                                        <ReactPlayer 
-                                                            url={album.sampleTrack.src} 
-                                                            playing={true}
-                                                            loop 
-                                                            controls
-                                                            width={'250px'}
-                                                            height={'35px'}
-                                                        />
-                                                    </div>
+                                                    <div><b>Released </b>{album.released}</div>
+                                                    <div><b>Length </b>{album.length}</div>
+                                                    <div><b>Label </b>{album.label}</div>
+                                                    <div><b>Producer </b>{album.producer}</div>
                                                 </div>
                                             </div>
                                         </Grid>
