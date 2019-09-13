@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import classNames from 'classnames';
-//import ReactAudioPlayer from 'react-audio-player';
+import ReactPlayer from 'react-player'
 
 import get from 'lodash/get';
 
@@ -26,7 +26,7 @@ import AddIcon from '@material-ui/icons/Add';
 import { getAlbumCovers } from '../../actions/albumActions';
 import AppLayout from '../../components/Layouts/App';
 
-const lucyKillerTape = 'https://user-images.githubusercontent.com/1335262/44238991-16cc2500-a185-11e8-9abe-145d2d9619ba.png';
+import wuFranklin from '../../images/wu-franklin.jpg';
 
 const styles = makeStyles(theme => ({
     root: {
@@ -34,8 +34,7 @@ const styles = makeStyles(theme => ({
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
-        overflow: 'hidden',
-        backgroundColor: theme.palette.background.paper,
+        overflow: 'hidden'
     },
     gridList: {
         flexWrap: 'nowrap',
@@ -64,7 +63,7 @@ const SingleLineGridList = (props) => {
             {
                 props.tileData.map(tile => (
                     <GridListTile key={tile.img} classes={{tile: classes.tile}}>
-                        <img src={tile.img} alt={tile.title} />
+                        <img style={{width:'50%'}} src={tile.img} alt={tile.title} />
                         <GridListTileBar classes={{root: classes.titleBar,title: classes.title}}/>
                     </GridListTile>
                 ))
@@ -90,8 +89,164 @@ const albumData = [
         },
         visuals: [
             {
-                img: lucyKillerTape,
-                title: 'Lucy Killer Tape'
+                img: wuFranklin,
+                title: 'Wu Franklin'
+            },
+            {
+                img: wuFranklin,
+                title: 'Wu Franklin'
+            },
+            {
+                img: wuFranklin,
+                title: 'Wu Franklin'
+            },
+            {
+                img: wuFranklin,
+                title: 'Wu Franklin'
+            },
+            {
+                img: wuFranklin,
+                title: 'Wu Franklin'
+            },
+            {
+                img: wuFranklin,
+                title: 'Wu Franklin'
+            },
+            {
+                img: wuFranklin,
+                title: 'Wu Franklin'
+            }
+        ]
+    },
+    {
+        id: 2,
+        name: 'Enter the Wu-Tang (36 Chambers)',
+        released: 'November 9, 1993',
+        length: '61:31',
+        label: 'Loud',
+        producer: 'RZA (also exec.), Ol Dirty Bastard, Method Man',
+        description: 'epic first group album',
+        coverArt: '',
+        sampleTrack: {
+            title: 'Protect Ya Neck',
+            src: 'https://upload.wikimedia.org/wikipedia/en/a/ae/Protectyaneck.ogg'
+        },
+        visuals: [
+            {
+                img: wuFranklin,
+                title: 'Wu Franklin'
+            },
+            {
+                img: wuFranklin,
+                title: 'Wu Franklin'
+            },
+            {
+                img: wuFranklin,
+                title: 'Wu Franklin'
+            },
+            {
+                img: wuFranklin,
+                title: 'Wu Franklin'
+            },
+            {
+                img: wuFranklin,
+                title: 'Wu Franklin'
+            },
+            {
+                img: wuFranklin,
+                title: 'Wu Franklin'
+            },
+            {
+                img: wuFranklin,
+                title: 'Wu Franklin'
+            }
+        ]
+    },
+    {
+        id: 3,
+        name: 'Enter the Wu-Tang (36 Chambers)',
+        released: 'November 9, 1993',
+        length: '61:31',
+        label: 'Loud',
+        producer: 'RZA (also exec.), Ol Dirty Bastard, Method Man',
+        description: 'epic first group album',
+        coverArt: '',
+        sampleTrack: {
+            title: 'Protect Ya Neck',
+            src: 'https://upload.wikimedia.org/wikipedia/en/a/ae/Protectyaneck.ogg'
+        },
+        visuals: [
+            {
+                img: wuFranklin,
+                title: 'Wu Franklin'
+            },
+            {
+                img: wuFranklin,
+                title: 'Wu Franklin'
+            },
+            {
+                img: wuFranklin,
+                title: 'Wu Franklin'
+            },
+            {
+                img: wuFranklin,
+                title: 'Wu Franklin'
+            },
+            {
+                img: wuFranklin,
+                title: 'Wu Franklin'
+            },
+            {
+                img: wuFranklin,
+                title: 'Wu Franklin'
+            },
+            {
+                img: wuFranklin,
+                title: 'Wu Franklin'
+            }
+        ]
+    },
+    {
+        id: 4,
+        name: 'Only Built 4 Cuban Linx',
+        released: 'August 1, 1995',
+        length: '   69:30',
+        label: 'Loud RCA',
+        producer: 'RZA (also exec.), Mitchell Diggs (exec.), Oli Grant (exec.)',
+        description: 'The Purple Tape',
+        coverArt: '',
+        sampleTrack: {
+            title: 'Criminology',
+            src: 'https://upload.wikimedia.org/wikipedia/en/d/d6/Criminology.ogg'
+        },
+        visuals: [
+            {
+                img: wuFranklin,
+                title: 'Wu Franklin'
+            },
+            {
+                img: wuFranklin,
+                title: 'Wu Franklin'
+            },
+            {
+                img: wuFranklin,
+                title: 'Wu Franklin'
+            },
+            {
+                img: wuFranklin,
+                title: 'Wu Franklin'
+            },
+            {
+                img: wuFranklin,
+                title: 'Wu Franklin'
+            },
+            {
+                img: wuFranklin,
+                title: 'Wu Franklin'
+            },
+            {
+                img: wuFranklin,
+                title: 'Wu Franklin'
             }
         ]
     }
@@ -110,8 +265,8 @@ class Home extends React.Component {
         const mergedAlbumList = albums.map(album=>{
             const albumDataFound = albumData.find(data=>data.id===album.id);
             return {
-                ...album,
-                ...albumDataFound
+                ...albumDataFound,
+                ...album
             }
         });
 
@@ -152,12 +307,12 @@ class Home extends React.Component {
                             </Grid>
                         </Grid>
                     </div>
-                    <div style={{padding:'2rem 0'}}>
+                    <div style={{padding:'2rem 2rem 2rem 3rem'}}>
                         <Grid container justify={'center'}>
                             {
                                 width === 'lg' &&
                                 <Grid item lg={1}>
-                                    <Link to='/albums' style={{
+                                    <Link to='/stories' style={{
                                         display: 'inline-block',
                                         height: '100px',
                                         width: '100px',
@@ -179,10 +334,10 @@ class Home extends React.Component {
                                         <h2 style={{fontSize:'24px', fontWeight:'bold', margin: '0'}}>
                                             Share Your Wu With Everyone
                                         </h2>
-                                        <div>From 36 chambers to Wu Saga soundtrack.</div>
+                                        <div>Life stories from 36 Chambers to Wu Saga soundtrack.</div>
                                         <div style={{marginTop:'1.1rem'}}>
                                             <Button variant="contained" style={{backgroundColor:'#00b6e3', color: '#fff', fontWeight:'bold', padding:'10px 40px' }}>
-                                                <span style={{fontSize:'12px'}}>Upload Album</span>
+                                                <span style={{fontSize:'12px'}}>Upload Story</span>
                                             </Button>
                                         </div>
                                     </div>
@@ -223,7 +378,6 @@ class Home extends React.Component {
                                                                 <AddIcon style={{margin: '18px', fontSize: '30px'}}/>
                                                             </Link>
                                                         }
-                                                        <div>{album.album.sampleTrack.title}</div>
                                                     </div>
                                                 </div>
                                                 <div style={{marginLeft: '1.1rem', fontSize:'12px'}}>
@@ -235,6 +389,17 @@ class Home extends React.Component {
                                                     <div>{album.label}</div>
                                                     <div>{album.producer}</div>
                                                     <div>{album.description}</div>
+                                                     <div>{album.sampleTrack.title}</div>
+                                                    <div>
+                                                        <ReactPlayer 
+                                                            url={album.sampleTrack.src} 
+                                                            playing={true}
+                                                            loop 
+                                                            controls
+                                                            width={'250px'}
+                                                            height={'60px'}
+                                                        />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </Grid>
