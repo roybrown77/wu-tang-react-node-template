@@ -111,7 +111,6 @@ class AppLayout extends React.Component {
     };
 
     render() {
-        const {} = this.state;
         const {classes, children, title} = this.props;
 
         return (

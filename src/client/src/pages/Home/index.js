@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
-import classNames from 'classnames';
 import ReactPlayer from 'react-player';
 
 import get from 'lodash/get';
@@ -88,7 +87,7 @@ const albumData = [
         length: '61:31',
         label: 'Loud',
         producer: 'RZA (also exec.), Ol Dirty Bastard, Method Man',
-        description: 'epic first group album',
+        description: 'Epic first group album',
         coverArt: '',
         sampleTrack: {
             title: 'Protect Ya Neck',
@@ -119,16 +118,16 @@ const albumData = [
     },
     {
         id: 2,
-        name: 'Enter the Wu-Tang (36 Chambers)',
-        released: 'November 9, 1993',
-        length: '61:31',
-        label: 'Loud',
-        producer: 'RZA (also exec.), Ol Dirty Bastard, Method Man',
-        description: 'epic first group album',
+        name: 'Ironman (Ghostface Killah album)',
+        released: 'October 29, 1996',
+        length: '64:48',
+        label: 'Epic, Razor Sharp',
+        producer: 'RZA (also exec.), Mitchell Diggs (exec.), Oli Grant (exec.), D.Coles (exec.), True Master',
+        description: 'Tony Starks',
         coverArt: '',
         sampleTrack: {
-            title: 'Protect Ya Neck',
-            src: 'https://upload.wikimedia.org/wikipedia/en/a/ae/Protectyaneck.ogg'
+            title: 'After the Smoke is Clear',
+            src: 'https://upload.wikimedia.org/wikipedia/en/4/46/After_the_Smoke_Is_Clear_%28Ghostface_Killah_song_-_sample%29.ogg'
         },
         visuals: [
             {
@@ -155,16 +154,16 @@ const albumData = [
     },
     {
         id: 3,
-        name: 'Enter the Wu-Tang (36 Chambers)',
-        released: 'November 9, 1993',
-        length: '61:31',
-        label: 'Loud',
-        producer: 'RZA (also exec.), Ol Dirty Bastard, Method Man',
-        description: 'epic first group album',
+        name: 'Liquid Swords',
+        released: 'November 7, 1995',
+        length: '50:49',
+        label: 'Geffen, MCA',
+        producer: 'RZA',
+        description: 'GZA Genius',
         coverArt: '',
         sampleTrack: {
-            title: 'Protect Ya Neck',
-            src: 'https://upload.wikimedia.org/wikipedia/en/a/ae/Protectyaneck.ogg'
+            title: 'I Gotcha Back',
+            src: 'https://upload.wikimedia.org/wikipedia/en/f/f7/I_Gotcha_Back.ogg'
         },
         visuals: [
             {
@@ -358,7 +357,7 @@ class Home extends React.Component {
                                                     <div>
                                                         <img
                                                         style={{width: '175px', borderRadius: '8px'}}
-                                                        src={album.coverArt}
+                                                        src={album.coverArt || wu}
                                                         alt={album.name} />
                                                     </div>
                                                     <div style={{textAlign:'center',marginTop:'1.1rem'}}>
