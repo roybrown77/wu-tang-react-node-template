@@ -77,10 +77,10 @@ function getRandomList(size, min, max) {
 
 router.get('/albumcovers', async function (req, res) {
   const albums = [
-    {id: 1, searchTerm: 'Enter the Wu-Tang (36 Chambers)'},
+    //{id: 1, searchTerm: 'Enter the Wu-Tang (36 Chambers)'},
     {id: 2, searchTerm: 'Ironman (Ghostface Killah album)'},
     {id: 3, searchTerm: 'Liquid Swords'},
-    {id: 4, searchTerm: 'Only Built 4 Cuban Linx'}
+    //{id: 4, searchTerm: 'Only Built 4 Cuban Linx'}
   ];
 
   const index = sample([true, false]) ? 0 : 2;
