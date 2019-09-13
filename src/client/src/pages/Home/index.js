@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import classNames from 'classnames';
-import ReactPlayer from 'react-player'
+import ReactPlayer from 'react-player';
 
 import get from 'lodash/get';
 
