@@ -302,7 +302,7 @@ class Home extends React.Component {
                             }
                             <Grid item lg={4}>
                                 <div style={{display:'flex', flex: '0 0 270px', color:'#444'}}>
-                                    <div style={{marginLeft: '1.1rem', fontSize:'16px'}}>
+                                    <div style={{fontSize:'16px'}}>
                                         <h2 style={{fontSize:'24px', fontWeight:'bold', margin: '0'}}>
                                             Share Your Wu With Everyone
                                         </h2>
