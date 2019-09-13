@@ -85,19 +85,14 @@ router.get('/albumcovers', async function (req, res) {
 
   const index = sample([true, false]) ? 0 : 2;
 
-  const albums1 = await Promise.all([
+  const albumsFound = await Promise.all([
     getImage(albums[0]),
     //getImage(albums[1]),
     //getImage(albums[2]),
     //getImage(albums[3]),
   ]);
 
-
-  const albumCovers = [
-    ...albums1
-  ];
-
-  res.status(200).send(albumCovers);
+  res.status(200).send(albumsFound);
 });
 
 module.exports = router;
