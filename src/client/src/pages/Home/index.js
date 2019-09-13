@@ -23,7 +23,8 @@ import AddIcon from '@material-ui/icons/Add';
 
 import { getAlbumCovers } from '../../actions/albumActions';
 import AppLayout from '../../components/Layouts/App';
-import lucyKillerTape from '../../images/lucy-killer-tape';
+
+const lucyKillerTape = 'https://user-images.githubusercontent.com/1335262/44238991-16cc2500-a185-11e8-9abe-145d2d9619ba.png';
 
 const styles = makeStyles(theme => ({
     root: {
