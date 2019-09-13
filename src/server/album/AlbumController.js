@@ -38,9 +38,7 @@ const getImage = async (term) => {
 
     await page.waitForNavigation();
 
-    await page.click('#mw-content-text > div > ul > li:nth-child(1) > div.mw-search-result-heading > a');
-
-    await page.waitFor(1000);
+    await page.waitForSelector('#mw-content-text > div > table.infobox.vevent.haudio > tbody > tr:nth-child(2) > td > a > img');
 
     const image = await page.evaluate((sel) => {
       return document.querySelector(sel).getAttribute('srcset');
@@ -79,36 +77,22 @@ function getRandomList(size, min, max) {
 
 router.get('/albumcovers', async function (req, res) {
   const albums = [
-    'inspectah deck uncontrollable substance album',
-    'wu-tang 36 chambers album',
-    'rza afro samurai album',
-    'ghostface supreme clientele album',
-    'wu-tang iron flag album',
-    'rza bobby digital album',
-    'gza liquid swords album',
-    'ghostface fishscale album',
-    'raekwon only built 4 cuban linx album',
-    'wu-tang forever album',
-    'gza beneath the surface album',
-    'method man tical album',
-    'old dirty bastard return to 36 chambers album',
-    'wu-tang the w album',
+    '36 chambers',
+    'Ironman (Ghostface Killah album)',
+    'Liquid Swords',
+    'Only Built 4 Cuban Linx'
   ];
 
-  const index = sample([true, false]) ? 0 : 6;
+  const index = sample([true, false]) ? 0 : 2;
 
   const albums1 = await Promise.all([
     getImage(albums.slice(index)[0]),
     getImage(albums.slice(index)[1]),
-    getImage(albums.slice(index)[2]),
-    getImage(albums.slice(index)[3]),
   ]);
 
   const albums2 = await Promise.all([
-    getImage(albums.slice(index)[4]),
-    getImage(albums.slice(index)[5]),
-    getImage(albums.slice(index)[6]),
-    getImage(albums.slice(index)[7]),
+    getImage(albums.slice(index)[2]),
+    getImage(albums.slice(index)[3])
   ]);
 
   const albumCovers = [
