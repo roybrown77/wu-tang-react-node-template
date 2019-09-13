@@ -88,8 +88,8 @@ router.get('/albumcovers', async function (req, res) {
   const albums1 = await Promise.all([
     getImage(albums[0]),
     getImage(albums[1]),
-    getImage(albums[2]),
-    getImage(albums[3]),
+    //getImage(albums[2]),
+    //getImage(albums[3]),
   ]);
 
 
