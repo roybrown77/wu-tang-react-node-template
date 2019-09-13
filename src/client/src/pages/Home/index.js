@@ -29,6 +29,8 @@ import AppLayout from '../../components/Layouts/App';
 import wuFranklin from '../../images/wu-franklin.jpg';
 import lucyKillerTape from '../../images/lucy-killer-tape.jpg';
 import linusShorty from '../../images/linus-shorty.jpg';
+import wutangJoint from '../../images/wu-tang-joint.png';
+import wutangAgain from '../../images/wu-tang-again.png';
 
 const styles = makeStyles(theme => ({
     root: {
@@ -101,6 +103,14 @@ const albumData = [
             {
                 img: linusShorty,
                 title: 'Life As a Shorty'
+            },
+            {
+                img: wutangJoint,
+                title: 'Wu-Tang Joint'
+            },
+            {
+                img: wutangAgain,
+                title: 'Wu-Tang Again'
             }
         ]
     },
@@ -129,6 +139,14 @@ const albumData = [
             {
                 img: linusShorty,
                 title: 'Life As a Shorty'
+            },
+            {
+                img: wutangJoint,
+                title: 'Wu-Tang Joint'
+            },
+            {
+                img: wutangAgain,
+                title: 'Wu-Tang Again'
             }
         ]
     },
@@ -157,6 +175,14 @@ const albumData = [
             {
                 img: linusShorty,
                 title: 'Life As a Shorty'
+            },
+            {
+                img: wutangJoint,
+                title: 'Wu-Tang Joint'
+            },
+            {
+                img: wutangAgain,
+                title: 'Wu-Tang Again'
             }
         ]
     },
@@ -185,6 +211,14 @@ const albumData = [
             {
                 img: linusShorty,
                 title: 'Life As a Shorty'
+            },
+            {
+                img: wutangJoint,
+                title: 'Wu-Tang Joint'
+            },
+            {
+                img: wutangAgain,
+                title: 'Wu-Tang Again'
             }
         ]
     }
@@ -250,7 +284,7 @@ class Home extends React.Component {
                             {
                                 width === 'lg' &&
                                 <Grid item lg={1}>
-                                    <Link to='/stories' style={{
+                                    <div style={{
                                         display: 'inline-block',
                                         height: '100px',
                                         width: '100px',
@@ -263,7 +297,7 @@ class Home extends React.Component {
                                         }
                                     }}>
                                         <AddIcon style={{margin: '25px', fontSize: '40px'}}/>
-                                    </Link>
+                                    </div>
                                 </Grid>
                             }
                             <Grid item lg={4}>
