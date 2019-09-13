@@ -360,7 +360,7 @@ class Home extends React.Component {
                                                         src={album.coverArt || wu}
                                                         alt={album.name} />
                                                     </div>
-                                                    <div style={{textAlign:'center',marginTop:'1.1rem'}}>
+                                                    <div style={{textAlign:'center',}}>
                                                         {
                                                             false &&
                                                             <Link to='/albums' style={{
@@ -392,7 +392,7 @@ class Home extends React.Component {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div style={{marginLeft: '0 .7rem', fontSize:'12px',textAlign:'left'}}>
+                                                <div style={{margin: '0 .7rem', fontSize:'12px',textAlign:'left'}}>
                                                     <h2 style={{fontWeight:'bold', margin: '0'}}>
                                                         {album.name}
                                                     </h2>
