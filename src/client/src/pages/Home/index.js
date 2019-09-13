@@ -27,6 +27,8 @@ import { getAlbumCovers } from '../../actions/albumActions';
 import AppLayout from '../../components/Layouts/App';
 
 import wuFranklin from '../../images/wu-franklin.jpg';
+import lucyKillerTape from '../../images/lucy-killer-tape.jpg';
+import linusShorty from '../../images/linus-shorty.jpg';
 
 const styles = makeStyles(theme => ({
     root: {
@@ -93,28 +95,12 @@ const albumData = [
                 title: 'Wu Franklin'
             },
             {
-                img: wuFranklin,
-                title: 'Wu Franklin'
+                img: lucyKillerTape,
+                title: 'Lucy Killer Tape'
             },
             {
-                img: wuFranklin,
-                title: 'Wu Franklin'
-            },
-            {
-                img: wuFranklin,
-                title: 'Wu Franklin'
-            },
-            {
-                img: wuFranklin,
-                title: 'Wu Franklin'
-            },
-            {
-                img: wuFranklin,
-                title: 'Wu Franklin'
-            },
-            {
-                img: wuFranklin,
-                title: 'Wu Franklin'
+                img: linusShorty,
+                title: 'Life As a Shorty'
             }
         ]
     },
@@ -137,28 +123,12 @@ const albumData = [
                 title: 'Wu Franklin'
             },
             {
-                img: wuFranklin,
-                title: 'Wu Franklin'
+                img: lucyKillerTape,
+                title: 'Lucy Killer Tape'
             },
             {
-                img: wuFranklin,
-                title: 'Wu Franklin'
-            },
-            {
-                img: wuFranklin,
-                title: 'Wu Franklin'
-            },
-            {
-                img: wuFranklin,
-                title: 'Wu Franklin'
-            },
-            {
-                img: wuFranklin,
-                title: 'Wu Franklin'
-            },
-            {
-                img: wuFranklin,
-                title: 'Wu Franklin'
+                img: linusShorty,
+                title: 'Life As a Shorty'
             }
         ]
     },
@@ -181,28 +151,12 @@ const albumData = [
                 title: 'Wu Franklin'
             },
             {
-                img: wuFranklin,
-                title: 'Wu Franklin'
+                img: lucyKillerTape,
+                title: 'Lucy Killer Tape'
             },
             {
-                img: wuFranklin,
-                title: 'Wu Franklin'
-            },
-            {
-                img: wuFranklin,
-                title: 'Wu Franklin'
-            },
-            {
-                img: wuFranklin,
-                title: 'Wu Franklin'
-            },
-            {
-                img: wuFranklin,
-                title: 'Wu Franklin'
-            },
-            {
-                img: wuFranklin,
-                title: 'Wu Franklin'
+                img: linusShorty,
+                title: 'Life As a Shorty'
             }
         ]
     },
@@ -225,28 +179,12 @@ const albumData = [
                 title: 'Wu Franklin'
             },
             {
-                img: wuFranklin,
-                title: 'Wu Franklin'
+                img: lucyKillerTape,
+                title: 'Lucy Killer Tape'
             },
             {
-                img: wuFranklin,
-                title: 'Wu Franklin'
-            },
-            {
-                img: wuFranklin,
-                title: 'Wu Franklin'
-            },
-            {
-                img: wuFranklin,
-                title: 'Wu Franklin'
-            },
-            {
-                img: wuFranklin,
-                title: 'Wu Franklin'
-            },
-            {
-                img: wuFranklin,
-                title: 'Wu Franklin'
+                img: linusShorty,
+                title: 'Life As a Shorty'
             }
         ]
     }
@@ -307,7 +245,7 @@ class Home extends React.Component {
                             </Grid>
                         </Grid>
                     </div>
-                    <div style={{padding:'2rem 2rem 2rem 3rem'}}>
+                    <div style={{padding:'2rem'}}>
                         <Grid container justify={'center'}>
                             {
                                 width === 'lg' &&
@@ -389,7 +327,7 @@ class Home extends React.Component {
                                                     <div>{album.label}</div>
                                                     <div>{album.producer}</div>
                                                     <div>{album.description}</div>
-                                                     <div>{album.sampleTrack.title}</div>
+                                                     <div style={{fontWeight:'bold'}}>{album.sampleTrack.title}</div>
                                                     <div>
                                                         <ReactPlayer 
                                                             url={album.sampleTrack.src} 
@@ -397,7 +335,7 @@ class Home extends React.Component {
                                                             loop 
                                                             controls
                                                             width={'250px'}
-                                                            height={'60px'}
+                                                            height={'35px'}
                                                         />
                                                     </div>
                                                 </div>
