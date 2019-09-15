@@ -9,15 +9,6 @@ router.use(bodyParser.json());
 
 const albumRepository = require('./AlbumRepository');
 
-const omit = require('lodash/omit');
-const get = require('lodash/get');
-const uniq = require('lodash/uniq');
-const transform = require('lodash/transform');
-const groupBy = require('lodash/groupBy');
-const some = require('lodash/some');
-const sortBy = require('lodash/sortBy');
-const sample = require('lodash/sample');
-
 const getImage = async (album) => {
   let browser;
   let page;
@@ -62,35 +53,19 @@ const getImage = async (album) => {
   }
 };
 
-function getRndInteger(min, max) {
-    return Math.floor(Math.random() * (max - min) ) + min;
-}
-
-function getRandomList(size, min, max) {
-  let list = [];
-  while(list.length < size) {
-    list.push(getRndInteger(min,max))
-    list = uniq(list);
-  }
-  return list;
-};
-
 router.get('/albumcovers', async function (req, res) {
   const albums = [
-    //{id: 1, searchTerm: 'Enter the Wu-Tang (36 Chambers)'},
-    //{id: 2, searchTerm: 'Ironman (Ghostface Killah album)'},
-    //{id: 3, searchTerm: 'Liquid Swords'},
+    {id: 1, searchTerm: 'Enter the Wu-Tang (36 Chambers)'},
+    {id: 2, searchTerm: 'Ironman (Ghostface Killah album)'},
+    {id: 3, searchTerm: 'Liquid Swords'},
     {id: 4, searchTerm: 'Only Built 4 Cuban Linx'}
   ];
 
-  const index = sample([true, false]) ? 0 : 2;
+  const promises = albums.map((album,index)=>{
+    return getImage(albums[index]);
+  });
 
-  const albumsFound = await Promise.all([
-    getImage(albums[0]),
-    //getImage(albums[1]),
-    //getImage(albums[2]),
-    //getImage(albums[3]),
-  ]);
+  const albumsFound = await Promise.all(promises);
 
   res.status(200).send(albumsFound);
 });
