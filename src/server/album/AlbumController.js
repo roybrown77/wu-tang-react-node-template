@@ -55,7 +55,7 @@ const getImage = async (album) => {
 
 router.get('/albumcovers', async function (req, res) {
   const albums = [
-    {id: 1, searchTerm: 'Enter the Wu-Tang (36 Chambers)'},
+    //{id: 1, searchTerm: 'Enter the Wu-Tang (36 Chambers)'},
     //{id: 2, searchTerm: 'Ironman (Ghostface Killah album)'},
     //{id: 3, searchTerm: 'Liquid Swords'},
     {id: 4, searchTerm: 'Only Built 4 Cuban Linx'}
