@@ -346,7 +346,7 @@ class Home extends React.Component {
                       dataLoading && 
                       <div style={{flexGrow: 1,padding:'1rem'}}>
                         <Typography align="center" color="textSecondary" paragraph>
-                          Takes a minute to screen scrape wikipedia for images so watch youtube or netflix.  :D
+                          Takes a minute to read wikipedia for images so watch youtube or netflix.  :D
                         </Typography>
                         <LinearProgress />
                         <br />
