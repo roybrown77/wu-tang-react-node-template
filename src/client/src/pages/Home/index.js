@@ -305,38 +305,35 @@ class Home extends React.Component {
                         </Grid>
                     </div>
                     <div style={{padding:'2rem'}}>
+                        {
+                            width === 'lg' &&
+                            <div style={{
+                                position: 'absolute',
+                                left: '25%',
+                                height: '100px',
+                                width: '100px',
+                                color: '#bbb',
+                                border: '5px dashed #bbb',
+                                background: 'transparent',
+                                borderRadius: '50px',
+                                visited: {
+                                    color: '#3a8bbb'
+                                }
+                            }}>
+                                <AddIcon style={{margin: '25px', fontSize: '40px'}}/>
+                            </div>
+                        }
                         <Grid container justify={'center'}>
-                            {
-                                width === 'lg' &&
-                                <Grid item lg={1}>
-                                    <div style={{
-                                        display: 'inline-block',
-                                        height: '100px',
-                                        width: '100px',
-                                        color: '#bbb',
-                                        border: '5px dashed #bbb',
-                                        background: 'transparent',
-                                        borderRadius: '50px',
-                                        visited: {
-                                            color: '#3a8bbb'
-                                        }
-                                    }}>
-                                        <AddIcon style={{margin: '25px', fontSize: '40px'}}/>
-                                    </div>
-                                </Grid>
-                            }
-                            <Grid item lg={4}>
-                                <div style={{display:'flex', flex: '0 0 270px', color:'#444'}}>
-                                    <div style={{fontSize:'16px'}}>
-                                        <h2 style={{fontSize:'24px', fontWeight:'bold', margin: '0'}}>
-                                            Share Your Wu With Everyone
-                                        </h2>
-                                        <div>Life stories from 36 Chambers to Wu American Saga.</div>
-                                        <div style={{marginTop:'1.1rem'}}>
-                                            <Button variant="contained" style={{backgroundColor:'#00b6e3', color: '#fff', fontWeight:'bold', padding:'10px 40px' }}>
-                                                <span style={{fontSize:'12px'}}>Upload Story</span>
-                                            </Button>
-                                        </div>
+                            <Grid item lg={12}>
+                                <div style={{fontSize:'16px', color:'#444'}}>
+                                    <h2 style={{fontSize:'24px', fontWeight:'bold', margin: '0'}}>
+                                        Share Your Wu With Everyone
+                                    </h2>
+                                    <div>Life stories from 36 Chambers to Wu American Saga.</div>
+                                    <div style={{marginTop:'1.1rem'}}>
+                                        <Button variant="contained" style={{backgroundColor:'#00b6e3', color: '#fff', fontWeight:'bold', padding:'10px 40px' }}>
+                                            <span style={{fontSize:'12px'}}>Upload Story</span>
+                                        </Button>
                                     </div>
                                 </div>
                             </Grid>
