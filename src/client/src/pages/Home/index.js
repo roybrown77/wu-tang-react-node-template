@@ -209,6 +209,7 @@ const albumData = [
         label: 'Loud RCA',
         producer: 'RZA (also exec.), Mitchell Diggs (exec.), Oli Grant (exec.)',
         description: 'The Purple Tape',
+        descriptionColor: 'purple',
         coverArt: '',
         sampleTrack: {
             title: 'Criminology',
@@ -356,6 +357,8 @@ class Home extends React.Component {
                         <LinearProgress />
                         <br />
                         <LinearProgress color="secondary" />
+                        <br />
+                        <LinearProgress />
                       </div>
                     }
                     {
@@ -392,7 +395,7 @@ class Home extends React.Component {
                                                                 <AddIcon style={{margin: '18px', fontSize: '30px'}}/>
                                                             </Link>
                                                         }
-                                                        <div>{album.description}</div>
+                                                        <div style={{color: album.descriptionColor}}>{album.description}</div>
                                                         <div style={{fontWeight:'bold'}}>{album.sampleTrack.title}</div>
                                                         <div>
                                                             <ReactPlayer 
