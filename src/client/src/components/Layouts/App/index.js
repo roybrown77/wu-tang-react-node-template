@@ -129,8 +129,8 @@ class AppLayout extends React.Component {
                     </div>
                     <div className={classNames(classes.footer)}>
                         This is a Wu-Tang themed web app to showcase how to build one using ReactJs and NodeJs 
-                        javascript software.  Code can be found <a href="https://www.github.com/roybrown77/wu-tang-react-node-template">here</a>.  
-                        Since Wu-Tang is for the kids.  Music doesn't auto play on ios so listen on pc.  Enjoy.  :D
+                        javascript software.  Code can be found <a href="https://www.github.com/roybrown77/wu-tang-react-node-template">here</a> since   
+                        Wu-Tang is for the kids.  Music doesn't auto play on ios so listen on pc.  Enjoy.  :D
                     </div>
                 </React.Fragment>
             </DocumentTitle>

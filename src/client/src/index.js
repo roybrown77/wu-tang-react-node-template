@@ -13,6 +13,8 @@ import rootReducer from './reducers';
 import api from './middleware/api';
 import Home from './pages/Home';
 
+import './index.css';
+
 const theme = createMuiTheme({
   palette: {
     type: 'light', // Switching the dark mode on is a single property value change.

@@ -16,7 +16,7 @@ const getImage = async (album) => {
   try {
     browser = await puppeteer.launch({
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
-      //headless: false
+      headless: false
     });
 
     page = await browser.newPage();
@@ -55,17 +55,18 @@ const getImage = async (album) => {
 
 router.get('/albumcovers', async function (req, res) {
   const albums = [
-    //{id: 1, searchTerm: 'Enter the Wu-Tang (36 Chambers)'},
-    //{id: 2, searchTerm: 'Ironman (Ghostface Killah album)'},
-    //{id: 3, searchTerm: 'Liquid Swords'},
+    {id: 1, searchTerm: 'Enter the Wu-Tang (36 Chambers)'},
+    {id: 2, searchTerm: 'Ironman (Ghostface Killah album)'},
+    {id: 3, searchTerm: 'Liquid Swords'},
     {id: 4, searchTerm: 'Only Built 4 Cuban Linx'}
   ];
 
-  const promises = albums.map((album,index)=>{
-    return getImage(albums[index]);
-  });
+  const albumsFound = [];
 
-  const albumsFound = await Promise.all(promises);
+  albumsFound.push(await getImage(albums[0]));
+  albumsFound.push(await getImage(albums[1]));
+  albumsFound.push(await getImage(albums[2]));
+  albumsFound.push(await getImage(albums[3]));
 
   res.status(200).send(albumsFound);
 });

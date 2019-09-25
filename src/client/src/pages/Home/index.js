@@ -27,7 +27,8 @@ import AddIcon from '@material-ui/icons/Add';
 import { getAlbumCovers } from '../../actions/albumActions';
 import AppLayout from '../../components/Layouts/App';
 
-import wuFranklin from '../../images/wu-franklin.jpg';
+import wuFranklin from '../../images/franklin-benzi.jpg';
+import linusWu from '../../images/linus-wu.png';
 import lucyKillerTape from '../../images/lucy-killer-tape.jpg';
 import linusShorty from '../../images/linus-shorty.jpg';
 import wutangJoint from '../../images/wu-tang-joint.png';
@@ -99,6 +100,10 @@ const albumData = [
                 title: 'Wu Franklin'
             },
             {
+                img: linusWu,
+                title: 'Linus Wu'
+            },
+            {
                 img: lucyKillerTape,
                 title: 'Lucy Killer Tape'
             },
@@ -133,6 +138,10 @@ const albumData = [
             {
                 img: wuFranklin,
                 title: 'Wu Franklin'
+            },
+            {
+                img: linusWu,
+                title: 'Linus Wu'
             },
             {
                 img: lucyKillerTape,
@@ -171,6 +180,10 @@ const albumData = [
                 title: 'Wu Franklin'
             },
             {
+                img: linusWu,
+                title: 'Linus Wu'
+            },
+            {
                 img: lucyKillerTape,
                 title: 'Lucy Killer Tape'
             },
@@ -205,6 +218,10 @@ const albumData = [
             {
                 img: wuFranklin,
                 title: 'Wu Franklin'
+            },
+            {
+                img: linusWu,
+                title: 'Linus Wu'
             },
             {
                 img: lucyKillerTape,
