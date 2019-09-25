@@ -48,6 +48,6 @@ Please listen to Wu-Tang Clan as it will enhance your coding experience. :D
 ![charlie wu again](https://user-images.githubusercontent.com/1335262/44239031-44b16980-a185-11e8-8f2e-6df34589f1e5.png)
 
 ![franklin](https://user-images.githubusercontent.com/1335262/44304912-5be48880-a338-11e8-935c-d28553a8788a.png)
-![franklin-benzi-small](https://user-images.githubusercontent.com/1335262/65600080-66c31100-df6d-11e9-9372-430292f1361f.jpg)
+![franklin-benzi-small](https://user-images.githubusercontent.com/1335262/65600161-9a9e3680-df6d-11e9-9d21-cea6cf4e9d55.jpg)
 
 ![wu jeopardy](https://user-images.githubusercontent.com/1335262/44239056-6874af80-a185-11e8-9c5b-b85d8633925f.png)
