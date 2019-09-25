@@ -42,12 +42,12 @@ Please listen to Wu-Tang Clan as it will enhance your coding experience. :D
 
 ![linus wu](https://user-images.githubusercontent.com/1335262/44238981-06b44580-a185-11e8-92e1-55d460c3b81e.png) 
 ![lucy killer tape](https://user-images.githubusercontent.com/1335262/44238991-16cc2500-a185-11e8-9abe-145d2d9619ba.png)
-![linus-shorty](https://user-images.githubusercontent.com/1335262/65599155-2bbfde00-df6b-11e9-8f1f-0f902a6436f0.jpg)
+![linus-shorty-small](https://user-images.githubusercontent.com/1335262/65600046-498e4280-df6d-11e9-9b5d-fda1ef93022b.jpg)
 
 ![patty wu joint](https://user-images.githubusercontent.com/1335262/44239019-34998a00-a185-11e8-8887-3e96ddbe1a10.png) 
 ![charlie wu again](https://user-images.githubusercontent.com/1335262/44239031-44b16980-a185-11e8-8f2e-6df34589f1e5.png)
 
 ![franklin](https://user-images.githubusercontent.com/1335262/44304912-5be48880-a338-11e8-935c-d28553a8788a.png)
-![franklin-benzi](https://user-images.githubusercontent.com/1335262/65598838-53fb0d00-df6a-11e9-8aea-7783ef691b4d.jpg)
+![franklin-benzi-small](https://user-images.githubusercontent.com/1335262/65600080-66c31100-df6d-11e9-9372-430292f1361f.jpg)
 
 ![wu jeopardy](https://user-images.githubusercontent.com/1335262/44239056-6874af80-a185-11e8-9c5b-b85d8633925f.png)
