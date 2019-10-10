@@ -57,6 +57,7 @@ const styles = theme => ({
     footer: {
         backgroundColor: theme.palette.background.paper,
         padding: theme.spacing(6),
+        fontFamily: 'Poppins'
     },
     navigationUnselected: {
         fontWeight: '600',
@@ -128,8 +129,8 @@ class AppLayout extends React.Component {
                         {children}
                     </div>
                     <div className={classNames(classes.footer)}>
-                        This is a Wu-Tang themed web app to showcase how to build one using ReactJs and NodeJs 
-                        javascript software.  Code can be found <a href="https://www.github.com/roybrown77/wu-tang-react-node-template">here</a> since   
+                        This serverless web app will retrieve Wu-Tang album covers from wikipedia and display them.  It's a demo to showcase how to 
+                        build one using ReactJs and NodeJs javascript software.  Code can be found <a href="https://www.github.com/roybrown77/wu-tang-react-node-template">here</a> since 
                         Wu-Tang is for the kids.  Music doesn't auto play on ios so listen on pc.  Enjoy.  :D
                     </div>
                 </React.Fragment>
