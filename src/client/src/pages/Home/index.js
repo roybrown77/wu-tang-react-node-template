@@ -22,7 +22,6 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import Typography from '@material-ui/core/Typography';
 
 import AddIcon from '@material-ui/icons/Add';
-//import PlayIcon from '@material-ui/icons/PlacyCircleOutline';
 
 import { getAlbumCovers } from '../../actions/albumActions';
 import AppLayout from '../../components/Layouts/App';
@@ -250,7 +249,6 @@ class Home extends React.Component {
         this.props.getAlbumCovers();
     };
 
-
     render() {
         const {width, albums, dataLoading} = this.props;
 
@@ -448,7 +446,8 @@ const mapStateToProps = (state) => {
 
 Home.propTypes = {
     albums: PropTypes.array,
-    dataLoading: PropTypes.bool
+    dataLoading: PropTypes.bool,
+    getAlbumCovers: PropTypes.func.isRequired
 };
 
 Home.defaultProps = {
