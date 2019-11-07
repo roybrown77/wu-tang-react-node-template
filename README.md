@@ -11,7 +11,6 @@ https://wu-tang-react-node-template.herokuapp.com
 Backend:
 
 - NodeJs - lightweight and efficient javascript web server aka serve up the site like banana pudding in the A
-- ** coming soon ** Auth0 - service based authentication for securing login that is tested on billions of logins instead of reinventing wheel aka easy login
 - ** coming soon ** MongoDB - document based data storage that allows for schemaless architecture aka build data models easy peasy
 - Puppeteer - api to control headless chrome in order to screen scrape aka look ma no api
 
@@ -19,7 +18,6 @@ Client:
 
 - ReactJs - javascript framework to build composable user interfaces aka make sites like lego blocks
 - ReduxJs - fast data state management aka keep data in order
-- ** coming soon ** Auth0 - service based authentication for securing login that is tested on billions of logins instead of reinventing wheel aka easy login
 - Google Material Design - framework to create beautiful, customizable ui components aka make it look as good as Google stuff
 - ** coming soon ** Progressive Web App capabilities to make a web site look, feel and respond as well as an installed app especially when there are network and memory limitations.  More info at https://developers.google.com/web/progressive-web-apps/
 

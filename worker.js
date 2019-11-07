@@ -131,7 +131,7 @@ process.on('warning', (warning) => {
 
 try {
   console.log('[MONGODB] - Connecting...');
-  mongoose.connect(`mongodb://${dbUsername}:${dbPassword}@ds129183.mlab.com:29183/mevsyall-dev`,options);
+  mongoose.connect(`mongodb://${dbUsername}:${dbPassword}@ds129183.mlab.com:29183/wu-tang`,options);
 } catch (err) {
   console.log("Server initialization failed: " , err.message);
 }
