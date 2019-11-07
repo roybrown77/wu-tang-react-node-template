@@ -152,7 +152,7 @@ function onMessage(data) {
   }
 
   switch (message.taskName) {
-    case 'updateAlbumCovers': 
+    case 'getAlbumCovers': 
       break;
     default:
       console.error('No task was found with name => '+message.taskName)

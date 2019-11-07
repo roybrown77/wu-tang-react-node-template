@@ -26,8 +26,8 @@
   },
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "nodemon src/server/server.js",
-    "prod-server": "node src/server/server.js",
+    "server": "nodemon src/server",
+    "prod-server": "node --optimize_for_size --max_old_space_size=460 --gc_interval=100 src/server",
     "client": "nodemon start-client.js",
     "dev": "echo \"This command has been deprecated. Use 'npm start'\" && exit 1",
     "lint": "eslint .",

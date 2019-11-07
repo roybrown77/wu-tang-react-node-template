@@ -35,15 +35,10 @@ const getImage = async (album) => {
       return document.querySelector(sel).getAttribute('srcset');
     }, '#mw-content-text > div > table.infobox.vevent.haudio > tbody > tr:nth-child(2) > td > a > img');
 
-    await page.close();
     await browser.close();
     console.log('image: https:' + image.split(' ')[0]);
     return {...album, coverArt: 'https:' + image.split(' ')[0]};
   } catch (err) {
-    if (page) {
-      await page.close();
-    }
-
     if (browser) {
       await browser.close();
     }

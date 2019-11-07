@@ -1,9 +1,8 @@
-require('./db');
+const mongoose = require('mongoose');
+const express = require('express');
+const path = require('path');
 
-var express = require('express');
-var path = require('path');
-
-var app = express();
+const app = express();
 
 app.set("port", process.env.PORT || 3001);
 
@@ -11,7 +10,7 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.resolve(__dirname, '../client/build')));
 }
 
-var AlbumController = require('./album/AlbumController');
+const AlbumController = require('./album/AlbumController');
 app.use('/api/albummanagement', AlbumController);
 
 app.get('*', function(request, response) {

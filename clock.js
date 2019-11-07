@@ -15,7 +15,7 @@ const CLOCK_QUEUE = 'clock-queue';  // To consume from clock process
 
 const JOBS = [{  // You could store these jobs in a database
   name: "Cron process 1",
-  message: {taskName: 'updateAlbumCovers', queue: 'worker-queue'},  // message in json format
+  message: {taskName: 'getAlbumCovers', queue: 'worker-queue'},  // message in json format
   cronTime: '15 * * * * *',
   repeat: true
 }];
