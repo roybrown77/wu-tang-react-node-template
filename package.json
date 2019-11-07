@@ -9,21 +9,20 @@
     "express-jwt": "^5.3.1",
     "jwks-rsa": "^1.6.0",
     "lodash": "^4.17.15",
-    "mongoose": "^5.7.5",
+    "mongoose": "^5.7.8",
     "path": "^0.12.7",
-    "puppeteer": "^1.20.0"
+    "puppeteer": "^2.0.0"
   },
   "devDependencies": {
     "concurrently": "^5.0.0",
-    "nodemon": "^1.19.3"
+    "nodemon": "^1.19.4"
   },
   "cacheDirectories": [
     "node_modules",
     "src/client/node_modules"
   ],
   "engines": {
-    "node": "=10.13.0",
-    "npm": "=6.4.1"
+    "node": "12.x"
   },
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
