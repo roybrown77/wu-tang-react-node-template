@@ -1,37 +1,9 @@
-const CronJob = require('cron').CronJob;
-const amqp = require('amqp-connection-manager');
-const moment = require('moment-timezone');
-const mongoose = require('mongoose');
-const albumRepository = require('./src/server/album/AlbumRepository');
-const { dbUsername, dbPassword, queueUrl } = require('./config');
+const { dbUsername, dbPassword, dbName, queueUrl } = require('./config');
 
-if (!queueUrl || !dbUsername || !dbPassword) {
+if (!queueUrl || !dbUsername || !dbName || !dbPassword) {
   console.log('Missing an environment variable');
   process.exit(1);
 }
-
-const WORKER_QUEUE = 'worker-queue';  // To consume from worker process
-const CLOCK_QUEUE = 'clock-queue';  // To consume from clock process
-
-const JOBS = [{  // You could store these jobs in a database
-  name: "Cron process 1",
-  message: {taskName: 'getAlbumCovers', queue: 'worker-queue'},  // message in json format
-  cronTime: '15 * * * * *',
-  repeat: true
-}];
-
-//Create a new connection manager from AMQP
-console.log('[AMQP] - Connecting...');
-const connection = amqp.connect([queueUrl]);
-
-connection.on('connect', function() {
-  console.log('[AMQP] - Connected!');
-  return startCronProcess(JOBS);
-});
-
-connection.on('disconnect', function(params) {
-  return console.error('[AMQP] - Disconnected.', params.err.stack);
-});
 
 const options = {
   useUnifiedTopology: true,
@@ -42,6 +14,8 @@ const options = {
   poolSize: 10, // Maintain up to 10 socket connections
   bufferMaxEntries: 0 // If not connected, return errors immediately rather than waiting for reconnect
 };
+
+const mongoose = require('mongoose');
 
 mongoose.connection.on("connected", function(ref) {
   console.log("Connected to DB!", ref);
@@ -56,6 +30,90 @@ mongoose.connection.on("error", function(err) {
 mongoose.connection.on('disconnected', function () {
   console.log('Mongoose default connection to DB disconnected.');
 });
+
+try {
+  console.log('[MONGODB] - Connecting...');
+  mongoose.connect(`mongodb://${dbUsername}:${dbPassword}@ds129183.mlab.com:29183/${dbName}`,options);
+} catch (err) {
+  console.log("Server initialization failed: " , err.message);
+}
+
+const WORKER_QUEUE = 'worker-queue';  // To consume from worker process
+
+const JOBS = [{  // You could store these jobs in a database
+  name: "Cron process 1",
+  message: {taskName: 'getAlbumCovers', queue: 'worker-queue'},  // message in json format
+  cronTime: '15 * * * * *',
+  repeat: true
+}];
+
+//Create a new connection manager from AMQP
+console.log('[AMQP] - Connecting...');
+const amqp = require('amqp-connection-manager');
+const connection = amqp.connect([queueUrl]);
+
+connection.on('connect', function() {
+  console.log('[AMQP] - Connected!');
+  return startCronProcess(JOBS);
+});
+
+connection.on('disconnect', function(params) {
+  return console.error('[AMQP] - Disconnected.', params.err.stack);
+});
+
+const CronJob = require('cron').CronJob;
+
+const startCronProcess = (jobs) => {
+  if (jobs && jobs.length) {
+    jobs.forEach(job => {
+      let j = new CronJob({
+        cronTime: job.cronTime ? job.cronTime : new Date(job.dateTime),
+        onTick: () => {
+          sendMessage(JSON.stringify(job.message));
+          if (!job.repeat) j.stop();
+        },
+        onComplete: () => {
+          console.log('Job completed! Removing now...')
+        },  
+        timeZone: 'America/Argentina/Buenos_Aires',
+        start: true  // Start now
+      });
+    });
+  }
+};
+
+const moment = require('moment-timezone');
+const albumRepository = require('./src/server/album/AlbumRepository');
+
+const sendMessage = async (data) => {
+  let message;
+  try {
+    message = JSON.parse(data);
+  } catch(e) {
+    console.error(e);
+  }
+
+  if (!message) { return; }
+
+  let queue = message.queue || WORKER_QUEUE;
+
+  let senderChannelWrapper = connection.createChannel({
+    json: true,
+    setup: function(channel) {
+      return channel.assertQueue(queue, {durable: true});
+    }
+  });
+
+  senderChannelWrapper.sendToQueue(queue, message, { contentType: 'application/json', persistent: true })
+    .then(function() {
+      console.log('[AMQP] - Message sent to queue =>', queue);
+      senderChannelWrapper.close();
+    })
+    .catch(err => {
+      console.error('[AMQP] - Message to queue => '+queue+ '<= was rejected! ', err.stack);
+      senderChannelWrapper.close();
+    })
+};
 
 const gracefulExitSIGINT = () => {
   console.info(`SIGINT signal received.`);
@@ -119,58 +177,3 @@ process.on('disconnect', (code) => {
 process.on('warning', (warning) => {
   console.warn(`Process warning: ${JSON.stringify(warning)}`);
 });
-try {
-  console.log('[MONGODB] - Connecting...');
-  mongoose.connect(`mongodb://${dbUsername}:${dbPassword}@ds129183.mlab.com:29183/wu-tang`,options);
-} catch (err) {
-  console.log("Server initialization failed: " , err.message);
-}
-
-const startCronProcess = (jobs) => {
-  if (jobs && jobs.length) {
-    jobs.forEach(job => {
-      let j = new CronJob({
-        cronTime: job.cronTime ? job.cronTime : new Date(job.dateTime),
-        onTick: () => {
-          sendMessage(JSON.stringify(job.message));
-          if (!job.repeat) j.stop();
-        },
-        onComplete: () => {
-          console.log('Job completed! Removing now...')
-        },  
-        timeZone: 'America/Argentina/Buenos_Aires',
-        start: true  // Start now
-      });
-    });
-  }
-};
-
-const sendMessage = async (data) => {
-  let message;
-  try {
-    message = JSON.parse(data);
-  } catch(e) {
-    console.error(e);
-  }
-
-  if (!message) { return; }
-
-  let queue = message.queue || WORKER_QUEUE;
-
-  let senderChannelWrapper = connection.createChannel({
-    json: true,
-    setup: function(channel) {
-      return channel.assertQueue(queue, {durable: true});
-    }
-  });
-
-  senderChannelWrapper.sendToQueue(queue, message, { contentType: 'application/json', persistent: true })
-    .then(function() {
-      console.log('[AMQP] - Message sent to queue =>', queue);
-      senderChannelWrapper.close();
-    })
-    .catch(err => {
-      console.error('[AMQP] - Message to queue => '+queue+ '<= was rejected! ', err.stack);
-      senderChannelWrapper.close();
-    })
-};

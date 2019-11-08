@@ -1,17 +1,48 @@
-const amqp = require('amqp-connection-manager');
-const moment = require('moment-timezone');
-const mongoose = require('mongoose');
-const { dbUsername, dbPassword, queueUrl } = require('./config');
+const { dbUsername, dbPassword, dbName, queueUrl } = require('./config');
 
-if (!queueUrl || !dbUsername || !dbPassword) {
+if (!queueUrl || !dbUsername || !dbPassword || !dbName) {
   console.log('Missing an environment variable');
   process.exit(1);
+}
+
+const options = {
+  useUnifiedTopology: true,
+  useNewUrlParser: true, // use new connection string parser
+  autoIndex: false, // Don't build indexes
+  reconnectTries: 100, // Never stop trying to reconnect
+  reconnectInterval: 500, // Reconnect every 500ms
+  poolSize: 10, // Maintain up to 10 socket connections
+  bufferMaxEntries: 0 // If not connected, return errors immediately rather than waiting for reconnect
+};
+
+const mongoose = require('mongoose');
+
+mongoose.connection.on("connected", function(ref) {
+  console.log("Connected to DB!", ref);
+});
+
+// If the connection throws an error
+mongoose.connection.on("error", function(err) {
+  console.error('Failed to connect to DB on startup: ', err);
+});
+
+// When the connection is disconnected
+mongoose.connection.on('disconnected', function () {
+  console.log('Mongoose default connection to DB disconnected.');
+});
+
+try {
+  console.log('[MONGODB] - Connecting...');
+  mongoose.connect(`mongodb://${dbUsername}:${dbPassword}@ds129183.mlab.com:29183/${dbName}`,options);
+} catch (err) {
+  console.log("Server initialization failed: " , err.message);
 }
 
 const WORKER_QUEUE = 'worker-queue';
 
 // Create a new connection manager from AMQP
 console.log('[AMQP] - Connecting....');
+const amqp = require('amqp-connection-manager');
 const connection = amqp.connect([queueUrl]);
 
 connection.on('connect', function() {
@@ -42,29 +73,30 @@ channelWrapper.waitForConnect()
   console.error('[AMQP] - Error! ', err);
 }); 
 
-const options = {
-  useUnifiedTopology: true,
-  useNewUrlParser: true, // use new connection string parser
-  autoIndex: false, // Don't build indexes
-  reconnectTries: 100, // Never stop trying to reconnect
-  reconnectInterval: 500, // Reconnect every 500ms
-  poolSize: 10, // Maintain up to 10 socket connections
-  bufferMaxEntries: 0 // If not connected, return errors immediately rather than waiting for reconnect
-};
+const moment = require('moment-timezone');
 
-mongoose.connection.on("connected", function(ref) {
-  console.log("Connected to DB!", ref);
-});
+// Process message from AMQP
+function onMessage(data) {
+  let message;
+  try {
+    message = JSON.parse(data.content.toString());
+  } catch(e) {
+    console.error('[AMQP] - Error parsing message... ', data);
+  }
 
-// If the connection throws an error
-mongoose.connection.on("error", function(err) {
-  console.error('Failed to connect to DB on startup: ', err);
-});
+  console.log('[AMQP] - Message incoming... ', message);
+  channelWrapper.ack(data);
+  if (!message) {
+    return;
+  }
 
-// When the connection is disconnected
-mongoose.connection.on('disconnected', function () {
-  console.log('Mongoose default connection to DB disconnected.');
-});
+  switch (message.taskName) {
+    case 'getAlbumCovers': 
+      break;
+    default:
+      console.error('No task was found with name => '+message.taskName)
+  }
+}
 
 const gracefulExitSIGINT = () => {
   console.info(`SIGINT signal received.`);
@@ -128,33 +160,3 @@ process.on('disconnect', (code) => {
 process.on('warning', (warning) => {
   console.warn(`Process warning: ${JSON.stringify(warning)}`);
 });
-
-try {
-  console.log('[MONGODB] - Connecting...');
-  mongoose.connect(`mongodb://${dbUsername}:${dbPassword}@ds129183.mlab.com:29183/wu-tang`,options);
-} catch (err) {
-  console.log("Server initialization failed: " , err.message);
-}
-
-// Process message from AMQP
-function onMessage(data) {
-  let message;
-  try {
-    message = JSON.parse(data.content.toString());
-  } catch(e) {
-    console.error('[AMQP] - Error parsing message... ', data);
-  }
-
-  console.log('[AMQP] - Message incoming... ', message);
-  channelWrapper.ack(data);
-  if (!message) {
-    return;
-  }
-
-  switch (message.taskName) {
-    case 'getAlbumCovers': 
-      break;
-    default:
-      console.error('No task was found with name => '+message.taskName)
-  }
-}
