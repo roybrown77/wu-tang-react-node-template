@@ -15,7 +15,7 @@ describe('albumReducer', () => {
 			const action = {type:'ALBUMCOVERS_REQUEST'};
 			const response = albumReducer(undefined,action);
 			console.log(response);
-			expect(response).toEqual({...initialState, dataLoading: true});
+			expect(response).toEqual({...initialState, dataLoading: false});
 		});
 	});
 });

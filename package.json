@@ -32,6 +32,8 @@
     "client": "nodemon start-client.js",
     "dev": "echo \"This command has been deprecated. Use 'npm start'\" && exit 1",
     "lint": "eslint .",
-    "heroku-postbuild": "cd src/client/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "cd src/client/ && npm install && npm install --only=dev --no-shrinkwrap && npm run test && npm run build"
   }
 }
