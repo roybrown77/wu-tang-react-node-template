@@ -1,12 +1,12 @@
 import {albumReducer} from './albumReducer';
-import {albumActionTypes} from '../constants/actionTypes';
+//import {albumActionTypes} from '../constants/actionTypes';
 
 const initialState = {items: [], dataLoading: false};
 
 describe('albumReducer', () => {
 	describe('get album covers', () => {
 		it('with undefined state and action type should return initial state', async () => {
-			const action = {type:'ALBUMCOVERS_REQUEST'};
+//			const action = {type:'ALBUMCOVERS_REQUEST'};
 			const response = albumReducer(undefined,{});
 			expect(response).toEqual(initialState);
 		});
