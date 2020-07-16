@@ -9,7 +9,7 @@
     "express": "4.17.1",
     "express-jwt": "5.3.3",
     "jwks-rsa": "1.8.0",
-    "lodash": "4.17.15",
+    "lodash": "4.17.19",
     "mongoose": "5.9.14",
     "path": "0.12.7",
     "puppeteer": "3.0.4"
