@@ -1,4 +1,4 @@
-export default {
+const AXIOS_MOCK = {
 	get: jest.fn(()=>Promise.resolve({data:{}})),
 	post: jest.fn(()=>Promise.resolve({data:{}})),
 	interceptors: {
@@ -10,3 +10,5 @@ export default {
 		}
 	}
 };
+
+export default AXIOS_MOCK;
