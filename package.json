@@ -5,17 +5,18 @@
   "dependencies": {
     "babel-core": "6.26.3",
     "body-parser": "1.19.0",
-    "dotenv": "8.2.0",
+    "chrome-aws-lambda": "9.1.0",
+    "dotenv": "9.0.1",
     "express": "4.17.1",
     "express-jwt": "6.0.0",
-    "jwks-rsa": "2.0.2",
+    "jwks-rsa": "2.0.3",
     "lodash": "4.17.21",
-    "mongoose": "5.12.3",
+    "mongoose": "5.12.7",
     "path": "0.12.7",
-    "puppeteer": "8.0.0"
+    "puppeteer-core": "9.1.1"
   },
   "devDependencies": {
-    "concurrently": "6.0.0",
+    "concurrently": "6.1.0",
     "nodemon": "2.0.7"
   },
   "cacheDirectories": [
@@ -26,13 +27,13 @@
     "node": "14.x"
   },
   "scripts": {
+    "start_local": "concurrently \"npm run local-server\" \"npm run client\"",
+    "local-server": "node --expose-gc --inspect --optimize_for_size --max_old_space_size=460 --gc_interval=100 -r dotenv/config src/server",
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "nodemon src/server",
-    "prod-server": "node --optimize_for_size --max_old_space_size=460 --gc_interval=100 src/server",
+    "prod-server": "node --expose-gc --inspect --optimize_for_size --max_old_space_size=460 --gc_interval=100 src/server",
     "client": "nodemon start-client.js",
     "dev": "echo \"This command has been deprecated. Use 'npm start'\" && exit 1",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
     "heroku-postbuild": "cd src/client/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   }
 }

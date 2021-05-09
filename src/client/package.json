@@ -4,9 +4,9 @@
   "private": true,
   "proxy": "http://localhost:3001/",
   "dependencies": {
-    "@material-ui/core": "4.11.3",
+    "@material-ui/core": "4.11.4",
     "@material-ui/icons": "4.11.2",
-    "auth0-js": "9.15.0",
+    "auth0-js": "9.16.0",
     "axios": "0.21.1",
     "babel-plugin-transform-class-properties": "6.24.1",
     "classnames": "2.3.1",
@@ -19,11 +19,11 @@
     "react-document-title": "2.0.3",
     "react-dom": "17.0.2",
     "react-player": "2.9.0",
-    "react-redux": "7.2.3",
+    "react-redux": "7.2.4",
     "react-router-dom": "5.2.0",
     "react-scripts": "4.0.3",
     "recompose": "0.30.0",
-    "redux": "4.0.5",
+    "redux": "4.1.0",
     "redux-devtools-extension": "2.13.9",
     "redux-thunk": "2.3.0",
     "url-search-params": "1.1.0"
@@ -31,7 +31,7 @@
   "devDependencies": {},
   "scripts": {
     "start": "npm run lint && react-scripts start",
-    "build": "npm run lint && npm run test && react-scripts build",
+    "build": "npm run lint && react-scripts test --watchAll=false && react-scripts build",
     "test": "jest",
     "eject": "react-scripts eject",
     "lint": "eslint --max-warnings 0 --ext .jsx --ext .js src/"
