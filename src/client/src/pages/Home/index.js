@@ -256,7 +256,7 @@ class Home extends React.Component {
     render() {
         const {width, albums, dataLoading, loadingComplete} = this.props;
 
-        const mergedAlbumList = albums.map(album=>{
+        const mergedAlbumList = (albums || []).map(album=>{
             const albumDataFound = albumData.find(data=>data.id===album.id);
             return {
                 ...albumDataFound,
