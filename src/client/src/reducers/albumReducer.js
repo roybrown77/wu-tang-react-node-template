@@ -2,7 +2,8 @@ import {albumActionTypes} from '../constants/actionTypes';
 
 const initialState = {
   items: [],
-  dataLoading: false
+  dataLoading: false,
+  loadingComplete: false
 };
 
 export const albumReducer = (state = initialState, action) => {
@@ -10,18 +11,21 @@ export const albumReducer = (state = initialState, action) => {
     case albumActionTypes.ALBUMCOVERS_REQUEST:
       return {
         ...state,
-        dataLoading: true
+        dataLoading: true,
+        loadingComplete: false
       };
     case albumActionTypes.ALBUMCOVERS_SUCCESS:
       return {
           ...state,
           items: action.response,
-          dataLoading: false
+          dataLoading: false,
+          loadingComplete: true
         };
     case albumActionTypes.ALBUMCOVERS_FAILURE:
       return {
         ...state,
-        dataLoading: false
+        dataLoading: false,
+        loadingComplete: true
       };
     default:
       return state;

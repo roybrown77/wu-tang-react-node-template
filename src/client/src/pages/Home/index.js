@@ -254,7 +254,7 @@ class Home extends React.Component {
     };
 
     render() {
-        const {width, albums, dataLoading} = this.props;
+        const {width, albums, dataLoading, loadingComplete} = this.props;
 
         const mergedAlbumList = albums.map(album=>{
             const albumDataFound = albumData.find(data=>data.id===album.id);
@@ -267,7 +267,7 @@ class Home extends React.Component {
         return (
             <AppLayout title="Discover Wu-Tang Albums!">
                 <section data-component="album-list">
-                    <div style={{padding:'1rem 0', backgroundColor: '#e1e4e8', borderBottom: '1px solid #d7dbdf'}}>
+                    <div style={{padding:'1rem 0'}}>
                         <Grid container justify={'center'}>
                             {
                                 false &&
@@ -306,8 +306,106 @@ class Home extends React.Component {
                                 </Button>
                             </Grid>
                         </Grid>
+                        {
+                          dataLoading && 
+                          <div style={{flexGrow: 1,padding:'1rem'}}>
+                            <Typography align="center" color="textSecondary" paragraph>
+                              Takes a minute to get album covers from wikipedia so watch youtube or netflix.  :D
+                            </Typography>
+                            <LinearProgress />
+                            <br />
+                            <LinearProgress color="secondary" />
+                            <br />
+                            <LinearProgress />
+                            <br />
+                            <LinearProgress color="secondary" />
+                            <br />
+                            <LinearProgress />
+                            <br />
+                            <LinearProgress color="secondary" />
+                            <br />
+                            <LinearProgress />
+                          </div>
+                        }
+                        {
+                            loadingComplete &&
+                            mergedAlbumList.length === 0 &&
+                            <div>
+                                <h3 style={{fontSize:'17px', fontWeight:'bold', margin: '10px 0', color:'#444'}}>
+                                    No albums found.  Please try again.
+                                </h3>
+                                <img style={{width:'50%'}} src={linusShorty} alt="No albums found" />
+                            </div>
+                        }
+                        {
+                            !dataLoading &&
+                            mergedAlbumList.map(album=>{
+                                return (
+                                    <div key={album.id} style={{margin: '1.1rem'}}>
+                                        <Divider light style={{marginRight: '1.1rem'}}/>
+                                        <Grid container>
+                                            <Grid item xs={12} md={5} lg={3}>
+                                                <div style={{display:'flex', flex: '0 0 270px', color:'#444', margin:'1.1rem 0'}}>
+                                                    <div>
+                                                        <div>
+                                                            <img
+                                                            style={{width: '175px', borderRadius: '8px'}}
+                                                            src={album.coverArt || wu}
+                                                            alt={album.name} />
+                                                        </div>
+                                                        <div style={{textAlign:'center',}}>
+                                                            {
+                                                                false &&
+                                                                <Link to='/albums' style={{
+                                                                    display: 'inline-block',
+                                                                        height: '75px',
+                                                                        width: '75px',
+                                                                        color: '#bbb',
+                                                                        border: '5px dashed #bbb',
+                                                                        background: 'transparent',
+                                                                        borderRadius: '37.5px',
+                                                                        visited: {
+                                                                        color: '#3a8bbb'
+                                                                    }
+                                                                }}>
+                                                                    <AddIcon style={{margin: '18px', fontSize: '30px'}}/>
+                                                                </Link>
+                                                            }
+                                                            <div style={album.descriptionStyling}>{album.description}</div>
+                                                            <div style={{fontWeight:'bold'}}>{album.sampleTrack.title}</div>
+                                                            <div>
+                                                                <ReactPlayer 
+                                                                    url={album.sampleTrack.src} 
+                                                                    playing={true}
+                                                                    loop 
+                                                                    controls
+                                                                    width={'200px'}
+                                                                    height={'35px'}
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div style={{margin: '0 .7rem', fontSize:'12px',textAlign:'left'}}>
+                                                        <h2 style={{fontWeight:'bold', margin: '0'}}>
+                                                            {album.name}
+                                                        </h2>
+                                                        <div><b>Released </b>{album.released}</div>
+                                                        <div><b>Length </b>{album.length}</div>
+                                                        <div><b>Label </b>{album.label}</div>
+                                                        <div><b>Producer </b>{album.producer}</div>
+                                                    </div>
+                                                </div>
+                                            </Grid>
+                                            <Grid item xs={12} md={7} lg={9}>
+                                                <SingleLineGridList tileData={album.visuals} width={width}/>
+                                            </Grid>
+                                        </Grid>
+                                    </div>
+                                );
+                            })
+                        }
                     </div>
-                    <div style={{padding:'2rem'}}>
+                    <div style={{padding:'2rem', backgroundColor: '#F7F7F7'}}>
                         {
                             width === 'lg' &&
                             <div style={{
@@ -342,95 +440,6 @@ class Home extends React.Component {
                             </Grid>
                         </Grid>
                     </div>
-                    {
-                      dataLoading && 
-                      <div style={{flexGrow: 1,padding:'1rem'}}>
-                        <Typography align="center" color="textSecondary" paragraph>
-                          Takes a minute to get album covers from wikipedia so watch youtube or netflix.  :D
-                        </Typography>
-                        <LinearProgress />
-                        <br />
-                        <LinearProgress color="secondary" />
-                        <br />
-                        <LinearProgress />
-                        <br />
-                        <LinearProgress color="secondary" />
-                        <br />
-                        <LinearProgress />
-                        <br />
-                        <LinearProgress color="secondary" />
-                        <br />
-                        <LinearProgress />
-                      </div>
-                    }
-                    {
-                        !dataLoading &&
-                        mergedAlbumList.map(album=>{
-                            return (
-                                <div key={album.id} style={{margin: '1.1rem'}}>
-                                    <Divider light style={{marginRight: '1.1rem'}}/>
-                                    <Grid container>
-                                        <Grid item xs={12} md={5} lg={3}>
-                                            <div style={{display:'flex', flex: '0 0 270px', color:'#444', margin:'1.1rem 0'}}>
-                                                <div>
-                                                    <div>
-                                                        <img
-                                                        style={{width: '175px', borderRadius: '8px'}}
-                                                        src={album.coverArt || wu}
-                                                        alt={album.name} />
-                                                    </div>
-                                                    <div style={{textAlign:'center',}}>
-                                                        {
-                                                            false &&
-                                                            <Link to='/albums' style={{
-                                                                display: 'inline-block',
-                                                                    height: '75px',
-                                                                    width: '75px',
-                                                                    color: '#bbb',
-                                                                    border: '5px dashed #bbb',
-                                                                    background: 'transparent',
-                                                                    borderRadius: '37.5px',
-                                                                    visited: {
-                                                                    color: '#3a8bbb'
-                                                                }
-                                                            }}>
-                                                                <AddIcon style={{margin: '18px', fontSize: '30px'}}/>
-                                                            </Link>
-                                                        }
-                                                        <div style={album.descriptionStyling}>{album.description}</div>
-                                                        <div style={{fontWeight:'bold'}}>{album.sampleTrack.title}</div>
-                                                        <div>
-                                                            <ReactPlayer 
-                                                                url={album.sampleTrack.src} 
-                                                                playing={true}
-                                                                loop 
-                                                                controls
-                                                                width={'200px'}
-                                                                height={'35px'}
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div style={{margin: '0 .7rem', fontSize:'12px',textAlign:'left'}}>
-                                                    <h2 style={{fontWeight:'bold', margin: '0'}}>
-                                                        {album.name}
-                                                    </h2>
-                                                    <div><b>Released </b>{album.released}</div>
-                                                    <div><b>Length </b>{album.length}</div>
-                                                    <div><b>Label </b>{album.label}</div>
-                                                    <div><b>Producer </b>{album.producer}</div>
-                                                </div>
-                                            </div>
-                                        </Grid>
-                                        <Grid item xs={12} md={7} lg={9}>
-                                            <SingleLineGridList tileData={album.visuals} width={width}/>
-                                        </Grid>
-                                    </Grid>
-                                </div>
-                            );
-                        })
-                    }
-                    <div style={{height:'5rem'}}></div>
                 </section>
             </AppLayout>
         );
@@ -440,10 +449,12 @@ class Home extends React.Component {
 const mapStateToProps = (state) => {
     const albumList = get(state,'albumList',{});
     const dataLoading = get(albumList, 'dataLoading');
+    const loadingComplete = get(albumList, 'loadingComplete');
     const albums = get(albumList, 'items', []);
 
     return {
         dataLoading,
+        loadingComplete,
         albums
     }
 };
@@ -451,12 +462,14 @@ const mapStateToProps = (state) => {
 Home.propTypes = {
     albums: PropTypes.array,
     dataLoading: PropTypes.bool,
+    loadingComplete: PropTypes.bool,
     getAlbumCovers: PropTypes.func.isRequired
 };
 
 Home.defaultProps = {
     albums: [],
-    dataLoading: true
+    dataLoading: true,
+    loadingComplete: false
 };
 
 export default compose(
