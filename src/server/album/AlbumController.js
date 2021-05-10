@@ -45,23 +45,25 @@ const getImage = async (album) => {
     }, '#mw-content-text > div > table.infobox.vevent.haudio > tbody > tr:nth-child(2) > td > a > img');
 
     await browser.close();
-    console.log('image: https:' + image.split(' ')[0]);
-    return {...album, coverArt: 'https:' + image.split(' ')[0]};
+    const coverArt = 'https:' + image.split(' ')[0];
+    console.log(coverArt);
+    //if (album.id === 1) throw 'test';
+    return Promise.resolve({...album, coverArt});
   } catch (err) {
     if (browser) {
       await browser.close();
     }
-    
-    console.log(album.searchTerm + ' error: ' + JSON.stringify(err));
-    return album;
+    const error = album.searchTerm + ' error: ' + JSON.stringify(err);
+    console.log(error);
+    return Promise.reject(error);
   }
 };
 
 router.get('/albumcovers', async function (req, res) {
   const albums = [
     {id: 1, searchTerm: 'Enter the Wu-Tang (36 Chambers)'},
-    //{id: 2, searchTerm: 'Ironman (Ghostface Killah album)'},
-    //{id: 3, searchTerm: 'Liquid Swords'},
+    {id: 2, searchTerm: 'Ironman (Ghostface Killah album)'},
+    {id: 3, searchTerm: 'Liquid Swords'},
     {id: 4, searchTerm: 'Only Built 4 Cuban Linx'}
   ];
 
@@ -69,7 +71,17 @@ router.get('/albumcovers', async function (req, res) {
     return getImage(albums[index]);
   });
 
-  const albumsFound = await Promise.all(promises);
+  let albumsFound = [];
+
+  try {
+    const albumsSettled = await Promise.allSettled(promises);
+    console.log('albumsSettled: ' + JSON.stringify(albumsSettled));
+    albumsFound = albumsSettled.filter(album=>album.status === 'fulfilled').map(album=>album.value);
+    console.log('albumsFound: ' + JSON.stringify(albumsFound));
+  } catch (err) {
+    const error = 'error: ' + JSON.stringify(err);
+    console.log(error);
+  }
 
   res.status(200).send(albumsFound);
 });
