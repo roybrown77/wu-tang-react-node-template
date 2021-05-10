@@ -32,7 +32,7 @@
   "scripts": {
     "start": "npm run lint && react-scripts start",
     "build": "npm run lint && react-scripts test --watchAll=false && react-scripts build",
-    "test": "jest",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint --max-warnings 0 --ext .jsx --ext .js src/"
   },

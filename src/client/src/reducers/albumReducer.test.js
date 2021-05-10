@@ -1,12 +1,10 @@
 import {albumReducer} from './albumReducer';
-//import {albumActionTypes} from '../constants/actionTypes';
 
-const initialState = {items: [], dataLoading: false};
+const initialState = {items: [], dataLoading: false, loadingComplete: false};
 
 describe('albumReducer', () => {
 	describe('get album covers', () => {
 		it('with undefined state and action type should return initial state', async () => {
-//			const action = {type:'ALBUMCOVERS_REQUEST'};
 			const response = albumReducer(undefined,{});
 			expect(response).toEqual(initialState);
 		});
@@ -15,7 +13,14 @@ describe('albumReducer', () => {
 			const action = {type:'ALBUMCOVERS_REQUEST'};
 			const response = albumReducer(undefined,action);
 			console.log(response);
-			expect(response).toEqual({...initialState, dataLoading: true});
+			expect(response).toEqual({...initialState, dataLoading: true, loadingComplete: false});
+		});
+
+		it('with undefined state and action type ALBUMCOVERS_SUCCESS', async () => {
+			const action = {type:'ALBUMCOVERS_SUCCESS'};
+			const response = albumReducer({items: []},action);
+			console.log(response);
+			expect(response).toEqual({items: undefined, dataLoading: false, loadingComplete: true});
 		});
 	});
 });
