@@ -14,13 +14,13 @@ app.set("port", httpPort || 3001);
 
 if (nodeEnv === "production") {
     app.use(express.static(path.resolve(__dirname, '../client/build')));
-
-    app.get('*', function(request, response) {
-      response.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
-    });
 }
 
 app.use('/api/albummanagement', require('./album/AlbumController'));
+
+app.get('*', function(request, response) {
+  response.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+});
 
 const server = app.listen(app.get("port"), () => {
     console.log(`Find the server at: http://localhost:${app.get("port")}/`);
