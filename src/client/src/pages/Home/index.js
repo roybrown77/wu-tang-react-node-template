@@ -301,7 +301,9 @@ class Home extends React.Component {
                                 </div>
                                 <Button 
                                     onClick={this.handleSearchWuBangers}
-                                    variant="contained" style={{backgroundColor:'#E2A42B', color: '#fff', fontWeight:'bold', padding:'16px 40px', margin: '16px 0'}}>
+                                    variant="contained" 
+                                    disabled={dataLoading}
+                                    style={{backgroundColor:'#E2A42B', color: '#fff', fontWeight:'bold', padding:'16px 40px', margin: '16px 0'}}>
                                     <span style={{fontSize:'12px'}}>Search Wu Bangers</span>
                                 </Button>
                             </Grid>
