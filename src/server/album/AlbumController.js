@@ -1,14 +1,8 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 const puppeteer = require('puppeteer-core');
 const chromium = require('chrome-aws-lambda');
 
 let router = express.Router();
-router.use(bodyParser.urlencoded({ extended: true }));
-router.use(bodyParser.json());
-
-const albumRepository = require('./AlbumRepository');
 
 const getImage = async (album) => {
   let browser;
@@ -59,28 +53,38 @@ const getImage = async (album) => {
   }
 };
 
+const getRandomIntInclusive = (min, max) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
+}
+
 router.get('/albumcovers', async function (req, res) {
-  const albums = [
-    {id: 1, searchTerm: 'Enter the Wu-Tang (36 Chambers)'},
-    {id: 2, searchTerm: 'Ironman (Ghostface Killah album)'},
-    {id: 3, searchTerm: 'Liquid Swords'},
-    {id: 4, searchTerm: 'Only Built 4 Cuban Linx'}
-  ];
-
-  const promises = albums.map((album,index)=>{
-    return getImage(albums[index]);
-  });
-
   let albumsFound = [];
 
-  try {
-    const albumsSettled = await Promise.allSettled(promises);
-    console.log('albumsSettled: ' + JSON.stringify(albumsSettled));
-    albumsFound = albumsSettled.filter(album=>album.status === 'fulfilled').map(album=>album.value);
-    console.log('albumsFound: ' + JSON.stringify(albumsFound));
-  } catch (err) {
-    const error = 'error: ' + JSON.stringify(err);
-    console.log(error);
+  const binaryDiceRoll = getRandomIntInclusive(0,1);
+
+  if (binaryDiceRoll === 1) {
+    try {
+      const albums = [
+        {id: 1, searchTerm: 'Enter the Wu-Tang (36 Chambers)'},
+        {id: 2, searchTerm: 'Ironman (Ghostface Killah album)'},
+        {id: 3, searchTerm: 'Liquid Swords'},
+        {id: 4, searchTerm: 'Only Built 4 Cuban Linx'}
+      ];
+
+      const promises = albums.map((album,index)=>{
+        return getImage(albums[index]);
+      });
+
+      const albumsSettled = await Promise.allSettled(promises);
+      console.log('albumsSettled: ' + JSON.stringify(albumsSettled));
+      albumsFound = albumsSettled.filter(album=>album.status === 'fulfilled').map(album=>album.value);
+      console.log('albumsFound: ' + JSON.stringify(albumsFound));
+    } catch (err) {
+      const error = 'error: ' + JSON.stringify(err);
+      console.log(error);
+    }
   }
 
   res.status(200).send(albumsFound);
