@@ -1,20 +1,27 @@
-const { dbUsername, dbPassword, dbName, nodeEnv, httpPort } = require('../../config');
+/*
+  Get environment variables
+*/
 
-if (!dbUsername || !dbPassword || !dbName) {
-  console.log('Missing an environment variable');
-  process.exit(1);
-}
+const { nodeEnv, httpPort } = require('../../config');
+
+/*
+  Setup web server
+*/
 
 const express = require('express');
-const path = require('path');
-
 const app = express();
 
 app.set("port", httpPort || 3001);
 
+const path = require('path');
+
 if (nodeEnv === "production") {
     app.use(express.static(path.resolve(__dirname, '../client/build')));
 }
+
+/*
+  Setup api end points
+*/
 
 app.use('/api/albummanagement', require('./album/AlbumController'));
 
@@ -23,14 +30,18 @@ app.get('*', function(request, response) {
 });
 
 const server = app.listen(app.get("port"), () => {
-    console.log(`Find the server at: http://localhost:${app.get("port")}/`);
+    console.log(`[WEB_SERVER] - http://localhost:${app.get("port")}/`);
 });
+
+/*
+  Handle web server events gracefully
+*/
 
 const gracefulExitSIGINT = () => {
   console.info(`SIGINT signal received.`);
   
   server.close(() => {
-    console.log('Http server closed.');
+    console.log('[WEB_SERVER] - closed through app termination SIGINT.');
   });
 };
 
@@ -38,7 +49,7 @@ const gracefulExitSIGTERM = () => {
   console.info(`SIGTERM signal received.`);
   
   server.close(() => {
-    console.log('Http server closed.');
+    console.log('[WEB_SERVER] - closed through app termination SIGTERM.');
   });
 };
 
