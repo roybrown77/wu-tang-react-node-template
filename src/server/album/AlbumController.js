@@ -4,53 +4,62 @@ const chromium = require('chrome-aws-lambda');
 
 let router = express.Router();
 
-const getImage = async (album) => {
-  let browser;
-  let page;
+const promiseGetImage = (album) => {
+  const getImage = async (resolve,reject) => {
+    let browser;
+    let page;
 
-  try {
-    const browserFetcher = puppeteer.createBrowserFetcher();
-    const revisionInfo = await browserFetcher.download('869685');
+    try {
+      console.log('getImage start: ' + album.searchTerm);
 
-    browser = await chromium.puppeteer.launch({
-      timeout: 15000,
-      pipe: true,
-      ignoreHTTPSErrors: true,
-      args: chromium.args,
-      defaultViewport: chromium.defaultViewport,
-      executablePath: revisionInfo.executablePath,
-      //headless: chromium.headless
-    });
+      const browserFetcher = puppeteer.createBrowserFetcher();
+      const revisionInfo = await browserFetcher.download('869685');
 
-    page = await browser.newPage();
+      browser = await chromium.puppeteer.launch({
+        timeout: 15000,
+        pipe: true,
+        ignoreHTTPSErrors: true,
+        args: chromium.args,
+        defaultViewport: chromium.defaultViewport,
+        executablePath: revisionInfo.executablePath,
+        //headless: chromium.headless
+      });
 
-    await page.goto('https://en.wikipedia.org/wiki/Main_Page', { waitUntil: 'networkidle2' });
+      page = await browser.newPage();
 
-    await page.type("#searchInput", album.searchTerm);
+      await page.goto('https://en.wikipedia.org/wiki/Main_Page', { waitUntil: 'networkidle2' });
 
-    await page.click('#searchButton');
+      await page.type("#searchInput", album.searchTerm);
 
-    await page.waitForNavigation();
+      await page.click('#searchButton');
 
-    await page.waitForSelector('#mw-content-text > div > table > tbody > tr:nth-child(2) > td > a > img');
+      await page.waitForNavigation();
 
-    const image = await page.evaluate((sel) => {
-      return document.querySelector(sel).getAttribute('srcset');
-    }, '#mw-content-text > div > table.infobox.vevent.haudio > tbody > tr:nth-child(2) > td > a > img');
+      await page.waitForSelector('#mw-content-text > div > table > tbody > tr:nth-child(2) > td > a > img');
 
-    await browser.close();
-    const coverArt = 'https:' + image.split(' ')[0];
-    console.log(coverArt);
-    //if (album.id === 1) throw 'test';
-    return Promise.resolve({...album, coverArt});
-  } catch (err) {
-    if (browser) {
+      const image = await page.evaluate((sel) => {
+        return document.querySelector(sel).getAttribute('srcset');
+      }, '#mw-content-text > div > table.infobox.vevent.haudio > tbody > tr:nth-child(2) > td > a > img');
+
       await browser.close();
+      const coverArt = 'https:' + image.split(' ')[0];
+      console.log('getImage end: ' + album.searchTerm);
+      //if (album.id === 1) throw 'test';
+      resolve({...album, coverArt});
+    } catch (err) {
+      if (browser) {
+        await browser.close();
+      }
+      const error = album.searchTerm + ' error: ' + JSON.stringify(err);
+      console.log(error);
+      //throw 'test';
+      reject(error);
     }
-    const error = album.searchTerm + ' error: ' + JSON.stringify(err);
-    console.log(error);
-    return Promise.reject(error);
-  }
+
+    return;
+  };
+
+  return new Promise(getImage);
 };
 
 const getRandomIntInclusive = (min, max) => {
@@ -73,11 +82,13 @@ router.get('/albumcovers', async function (req, res) {
         {id: 4, searchTerm: 'Only Built 4 Cuban Linx'}
       ];
 
-      const promises = albums.map((album,index)=>{
-        return getImage(albums[index]);
-      });
+      const albumsSettled = await Promise.allSettled([
+        promiseGetImage(albums[0]),
+        promiseGetImage(albums[1]),
+        promiseGetImage(albums[2]),
+        promiseGetImage(albums[3])
+      ]);
 
-      const albumsSettled = await Promise.allSettled(promises);
       console.log('albumsSettled: ' + JSON.stringify(albumsSettled));
       albumsFound = albumsSettled.filter(album=>album.status === 'fulfilled').map(album=>album.value);
       console.log('albumsFound: ' + JSON.stringify(albumsFound));
