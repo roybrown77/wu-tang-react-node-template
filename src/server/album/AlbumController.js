@@ -16,7 +16,7 @@ const promiseGetImage = (album) => {
       const revisionInfo = await browserFetcher.download('869685');
 
       browser = await chromium.puppeteer.launch({
-        timeout: 15000,
+        timeout: 5000,
         pipe: true,
         ignoreHTTPSErrors: true,
         args: chromium.args,
@@ -26,6 +26,8 @@ const promiseGetImage = (album) => {
       });
 
       page = await browser.newPage();
+
+      await page.setDefaultNavigationTimeout(5000);
 
       await page.goto('https://en.wikipedia.org/wiki/Main_Page', { waitUntil: 'networkidle2' });
 
