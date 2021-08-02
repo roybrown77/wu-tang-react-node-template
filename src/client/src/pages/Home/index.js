@@ -312,7 +312,7 @@ class Home extends React.Component {
                           dataLoading && 
                           <div style={{flexGrow: 1,padding:'1rem'}}>
                             <Typography align="center" color="textSecondary" paragraph>
-                              Takes a minute to get album covers from wikipedia so watch youtube or netflix.  :D
+                              Takes a few seconds to get album covers from wikipedia... :D
                             </Typography>
                             <LinearProgress />
                             <br />
