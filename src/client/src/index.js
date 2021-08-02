@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import { MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
+import { MuiThemeProvider, createTheme} from '@material-ui/core/styles';
 
 import rootReducer from './reducers';
 import api from './middleware/api';
@@ -15,7 +15,7 @@ import Home from './pages/Home';
 
 import './index.css';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     type: 'light', // Switching the dark mode on is a single property value change.
   },

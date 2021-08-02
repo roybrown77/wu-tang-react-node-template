@@ -11,9 +11,9 @@ import { withStyles, makeStyles } from '@material-ui/core/styles';
 import withWidth from '@material-ui/core/withWidth';
 
 import Grid from '@material-ui/core/Grid';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
+import ImageList from '@material-ui/core/ImageList';
+import ImageListItem from '@material-ui/core/ImageListItem';
+import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -42,7 +42,7 @@ const styles = makeStyles(theme => ({
         justifyContent: 'space-around',
         overflow: 'hidden'
     },
-    gridList: {
+    imageList: {
         flexWrap: 'nowrap',
         backgroundColor: '#fafafa',
         // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
@@ -65,16 +65,16 @@ const SingleLineGridList = (props) => {
 
     return (
         <div className={classes.root}>
-            <GridList className={classes.gridList} cols={props.width === 'lg' ? 4.5 : props.width === 'md' ? 2.5 : 1.5}>
+            <ImageList className={classes.imageList} cols={props.width === 'lg' ? 4.5 : props.width === 'md' ? 2.5 : 1.5}>
             {
-                props.tileData.map(tile => (
-                    <GridListTile key={tile.img} classes={{tile: classes.tile}}>
+                props.tileData.map((tile,index) => (
+                    <ImageListItem key={index} classes={{root: classes.tile}}>
                         <img style={{width:'50%'}} src={tile.img} alt={tile.title} />
-                        <GridListTileBar classes={{root: classes.titleBar,title: classes.title}}/>
-                    </GridListTile>
+                        <ImageListItemBar classes={{root: classes.titleBar,title: classes.title}}/>
+                    </ImageListItem>
                 ))
             }
-            </GridList>
+            </ImageList>
         </div>
     );
 };
@@ -268,7 +268,7 @@ class Home extends React.Component {
             <AppLayout title="Discover Wu-Tang Albums!">
                 <section data-component="album-list">
                     <div style={{padding:'1rem 0'}}>
-                        <Grid container justify={'center'}>
+                        <Grid container justifyContent={'center'}>
                             {
                                 false &&
                                 <div>
@@ -426,7 +426,7 @@ class Home extends React.Component {
                                 <AddIcon style={{margin: '25px', fontSize: '40px'}}/>
                             </div>
                         }
-                        <Grid container justify={'center'}>
+                        <Grid container justifyContent={'center'}>
                             <Grid item lg={12}>
                                 <div style={{fontSize:'16px', color:'#444'}}>
                                     <h2 style={{fontSize:'24px', fontWeight:'bold', margin: '0'}}>

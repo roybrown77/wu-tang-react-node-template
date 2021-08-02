@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import DocumentTitle from 'react-document-title';
 import {createBrowserHistory} from 'history';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -112,10 +111,10 @@ class AppLayout extends React.Component {
     };
 
     render() {
-        const {classes, children, title} = this.props;
+        const {classes, children} = this.props;
 
         return (
-            <DocumentTitle title={`${title} | Wu-Tang x React Node Template`}>
+            <div>
                 <React.Fragment>
                     <CssBaseline />
                     <AppBar position="static" className={classNames(classes.appBar)}>
@@ -134,7 +133,7 @@ class AppLayout extends React.Component {
                         Wu-Tang is for the kids.  Music doesn't auto play on ios so listen on pc.  Enjoy.  :D
                     </div>
                 </React.Fragment>
-            </DocumentTitle>
+            </div>
         );
     }
 };
