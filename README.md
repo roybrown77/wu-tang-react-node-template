@@ -11,7 +11,6 @@ https://wu-tang-react-node-template.herokuapp.com
 Backend:
 
 - NodeJs - lightweight and efficient javascript web server aka serve up the site like banana pudding in the A
-- ** coming soon ** MongoDB - document based data storage that allows for schemaless architecture aka build data models easy peasy
 - Puppeteer - api to control headless chrome in order to screen scrape aka look ma no api
 
 Client:
