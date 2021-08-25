@@ -9,7 +9,7 @@
     "axios": "0.21.1",
     "babel-plugin-transform-class-properties": "6.24.1",
     "classnames": "2.3.1",
-    "history": "5.0.0",
+    "history": "5.0.1",
     "lodash": "4.17.21",
     "normalizr": "3.6.1",
     "prop-types": "15.7.2",
@@ -19,14 +19,15 @@
     "react-player": "2.9.0",
     "react-redux": "7.2.4",
     "react-router-dom": "5.2.0",
-    "react-scripts": "4.0.3",
     "recompose": "0.30.0",
-    "redux": "4.1.0",
+    "redux": "4.1.1",
     "redux-devtools-extension": "2.13.9",
     "redux-thunk": "2.3.0",
     "url-search-params": "1.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "react-scripts": "4.0.3"
+  },
   "scripts": {
     "start": "npm run lint && react-scripts start",
     "build": "npm run lint && react-scripts test --watchAll=false && react-scripts build",
