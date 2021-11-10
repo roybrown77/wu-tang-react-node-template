@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { applyMiddleware, compose, createStore } from 'redux';
 import { Provider } from 'react-redux';
@@ -36,17 +36,16 @@ const store = createStore(rootReducer,enhancer);
 
 render(
   <Provider store={store}>
-    <BrowserRouter>
-      <MuiThemeProvider theme={theme}>
-        <div className="App">
-            <main>
-              <Switch>
-                  <Route path='/' component={Home}/>
-              </Switch>
-            </main>
-        </div>
-      </MuiThemeProvider>
-    </BrowserRouter>
-  </Provider>,
-  document.getElementById('root')
+    <MuiThemeProvider theme={theme}>
+      <div className="App">
+          <main>
+            <BrowserRouter>
+              <Routes>
+                  <Route path='/' element={<Home/>}/>
+              </Routes>
+            </BrowserRouter>
+          </main>
+      </div>
+    </MuiThemeProvider>
+  </Provider>, document.getElementById('root')
 );
