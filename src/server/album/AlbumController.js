@@ -16,7 +16,7 @@ const promiseGetBoxingRecord = (fighter) => {
       const revisionInfo = await browserFetcher.download('869685');
 
       browser = await chromium.puppeteer.launch({
-        //timeout: 5000,
+        timeout: 5000,
         pipe: true,
         ignoreHTTPSErrors: true,
         args: chromium.args,
@@ -32,7 +32,7 @@ const promiseGetBoxingRecord = (fighter) => {
         height: 1000,
       });
 
-      //await page.setDefaultNavigationTimeout(5000);
+      await page.setDefaultNavigationTimeout(5000);
 
       await page.goto('https://en.wikipedia.org/wiki/Main_Page', { waitUntil: 'networkidle2' });
 
@@ -42,13 +42,15 @@ const promiseGetBoxingRecord = (fighter) => {
 
       await page.waitForNavigation();
 
-      await page.waitForSelector('#mw-content-text > div.mw-parser-output > table:nth-child(1) > tbody');
+      await page.waitForSelector('#mw-content-text > div.mw-parser-output > table.wikitable');
 
-      console.log("waited")
+      console.log("waited");
 
       const rawData = await page.evaluate(() => {
         let data = [];
-        let table = document.querySelector('#mw-content-text > div.mw-parser-output > table:nth-child(1) > tbody');
+        let table = document.querySelectorForAll('#mw-content-text > div.mw-parser-output > table');
+
+        // console.log(table.rows.length);
 
         // for (var i = 1; i < table.rows.length; i++) {
         //   let objCells = table.rows.item(i).cells;
