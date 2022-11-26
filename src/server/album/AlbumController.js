@@ -4,70 +4,86 @@ const chromium = require('chrome-aws-lambda');
 
 let router = express.Router();
 
-const getBoxingRecord = async (album) => {
-  try {
-    console.log('getBoxingRecord start');
+const promiseGetBoxingRecord = (fighter) => {
+  const getBoxingRecord = async (resolve,reject) => {
+    let browser;
+    let page;
 
-    const browserFetcher = puppeteer.createBrowserFetcher();
-    const revisionInfo = await browserFetcher.download('869685');
+    try {
+      console.log('getBoxingRecord start: ' + fighter.searchTerm);
 
-    browser = await chromium.puppeteer.launch({
-      timeout: 5000,
-      pipe: true,
-      ignoreHTTPSErrors: true,
-      args: chromium.args,
-      defaultViewport: chromium.defaultViewport,
-      executablePath: revisionInfo.executablePath,
-      headless: chromium.headless
-    });
+      const browserFetcher = puppeteer.createBrowserFetcher();
+      const revisionInfo = await browserFetcher.download('869685');
 
-    page = await browser.newPage();
+      browser = await chromium.puppeteer.launch({
+        //timeout: 5000,
+        pipe: true,
+        ignoreHTTPSErrors: true,
+        args: chromium.args,
+        defaultViewport: chromium.defaultViewport,
+        executablePath: revisionInfo.executablePath,
+        headless: chromium.headless
+      });
 
-    // await page.setDefaultNavigationTimeout(5000);
+      page = await browser.newPage();
 
-    await page.goto('https://en.wikipedia.org/wiki/Main_Page');
+      await page.setViewport({
+        width: 1000,
+        height: 1000,
+      });
 
-    await page.waitForId('searchInput');
+      //await page.setDefaultNavigationTimeout(5000);
 
-    await page.type("#searchInput", 'Devin Haney');
+      await page.goto('https://en.wikipedia.org/wiki/Main_Page', { waitUntil: 'networkidle2' });
 
-    await page.click('#searchButton');
+      await page.type("#searchInput", fighter.searchTerm);
 
-    await page.waitForNavigation();
+      await page.click('#searchButton');
 
-    await page.waitForSelector('#mw-content-text > div.mw-parser-output > table.wikitable[1]');
+      await page.waitForNavigation();
 
-    const rawData = await page.evaluate(() => {
-      let data = [];
-      let table = document.getElementBySelector('#mw-content-text > div.mw-parser-output > table.wikitable[1]');
+      await page.waitForSelector('#mw-content-text > div.mw-parser-output > table:nth-child(1) > tbody');
 
-      for (var i = 1; i < table.rows.length; i++) {
-        let objCells = table.rows.item(i).cells;
+      console.log("waited")
 
-        let values = [];
-        for (var j = 0; j < objCells.length; j++) {
-          let text = objCells.item(j).innerHTML;
-          values.push(text);
-        }
-        let d = { i, values };
-        data.push(d);
-      }
+      const rawData = await page.evaluate(() => {
+        let data = [];
+        let table = document.querySelector('#mw-content-text > div.mw-parser-output > table:nth-child(1) > tbody');
 
-      return data;
-    });
+        // for (var i = 1; i < table.rows.length; i++) {
+        //   let objCells = table.rows.item(i).cells;
 
-    console.log(rawData);
+        //   let values = [];
+        //   for (var j = 0; j < objCells.length; j++) {
+        //     let text = objCells.item(j).innerHTML;
+        //     values.push(text);
+        //   }
+        //   let d = { i, values };
+        //   data.push(d);
+        // }
 
-    await browser.close();
-  } catch (err) {
-    console.log(JSON.stringify(err));
+        console.log(table);
 
-    if (browser) {
+        return data;
+      });
+
+      console.log(rawData);
+
       await browser.close();
+      resolve({...fighter, status:'fulfilled'});
+    } catch (err) {
+      if (browser) {
+        await browser.close();
+      }
+      const error = fighter.searchTerm + ' error: ' + JSON.stringify(err);
+      console.log(error);
+      reject(error);
     }
-  }
 
-  return;
+    return;
+  };
+
+  return new Promise(getBoxingRecord);
 };
 
 const promiseGetImage = (album) => {
@@ -136,39 +152,59 @@ const getRandomIntInclusive = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
 }
 
+// router.get('/albumcovers', async function (req, res) {
+//   let albumsFound = [];
+
+//   const binaryDiceRoll = getRandomIntInclusive(0,1);
+
+//   if (binaryDiceRoll === 1) {
+//     try {
+//       const albums = [
+//         {id: 1, searchTerm: 'Enter the Wu-Tang (36 Chambers)'},
+//         {id: 2, searchTerm: 'Ironman (Ghostface Killah album)'},
+//         {id: 3, searchTerm: 'Liquid Swords'},
+//         {id: 4, searchTerm: 'Only Built 4 Cuban Linx'},
+//         {id: 5, searchTerm: 'Devin Haney'}
+//       ];
+
+//       const albumsSettled = await Promise.allSettled([
+//         promiseGetImage(albums[0]),
+//         promiseGetImage(albums[1]),
+//         promiseGetImage(albums[2]),
+//         promiseGetImage(albums[3])
+//       ]);
+
+//       console.log('albumsSettled: ' + JSON.stringify(albumsSettled));
+//       albumsFound = albumsSettled.filter(album=>album.status === 'fulfilled').map(album=>album.value);
+//       console.log('albumsFound: ' + JSON.stringify(albumsFound));
+//     } catch (err) {
+//       const error = 'error: ' + JSON.stringify(err);
+//       console.log(error);
+//     }
+//   }
+
+//   res.status(200).send(albumsFound);
+// });
+
 router.get('/albumcovers', async function (req, res) {
-  let albumsFound = [];
+  try {
+    const fighters = [
+      {id: 5, searchTerm: 'Devin Haney'}
+    ];
 
-  const binaryDiceRoll = getRandomIntInclusive(0,1);
+    const settled = await Promise.allSettled([
+      promiseGetBoxingRecord(fighters[0]),
+    ]);
 
-  if (binaryDiceRoll === 1) {
-    try {
-      const albums = [
-        // {id: 1, searchTerm: 'Enter the Wu-Tang (36 Chambers)'},
-        // {id: 2, searchTerm: 'Ironman (Ghostface Killah album)'},
-        // {id: 3, searchTerm: 'Liquid Swords'},
-        // {id: 4, searchTerm: 'Only Built 4 Cuban Linx'},
-        {id: 5, searchTerm: 'Devin Haney'}
-      ];
-
-      const albumsSettled = await Promise.allSettled([
-        promiseGetImage(albums[0]),
-        promiseGetImage(albums[1]),
-        promiseGetImage(albums[2]),
-        promiseGetImage(albums[3])
-      ]);
-
-      console.log('albumsSettled: ' + JSON.stringify(albumsSettled));
-      albumsFound = albumsSettled.filter(album=>album.status === 'fulfilled').map(album=>album.value);
-      console.log('albumsFound: ' + JSON.stringify(albumsFound));
-    } catch (err) {
-      const error = 'error: ' + JSON.stringify(err);
-      console.log(error);
-    }
+    console.log('settled: ' + JSON.stringify(settled));
+    found = settled.filter(x=>x.status === 'fulfilled').map(x=>x.value);
+    console.log('found: ' + JSON.stringify(found));
+  } catch (err) {
+    const error = 'error: ' + JSON.stringify(err);
+    console.log(error);
   }
 
-  // await getBoxingRecord();
-  res.status(200).send(albumsFound);
+  res.status(200).send([]);
 });
 
 module.exports = router;
