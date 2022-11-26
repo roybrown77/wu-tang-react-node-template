@@ -4,6 +4,72 @@ const chromium = require('chrome-aws-lambda');
 
 let router = express.Router();
 
+const getBoxingRecord = async (album) => {
+  try {
+    console.log('getBoxingRecord start');
+
+    const browserFetcher = puppeteer.createBrowserFetcher();
+    const revisionInfo = await browserFetcher.download('869685');
+
+    browser = await chromium.puppeteer.launch({
+      timeout: 5000,
+      pipe: true,
+      ignoreHTTPSErrors: true,
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath: revisionInfo.executablePath,
+      headless: chromium.headless
+    });
+
+    page = await browser.newPage();
+
+    // await page.setDefaultNavigationTimeout(5000);
+
+    await page.goto('https://en.wikipedia.org/wiki/Main_Page');
+
+    await page.waitForId('searchInput');
+
+    await page.type("#searchInput", 'Devin Haney');
+
+    await page.click('#searchButton');
+
+    await page.waitForNavigation();
+
+    await page.waitForSelector('#mw-content-text > div.mw-parser-output > table.wikitable[1]');
+
+    const rawData = await page.evaluate(() => {
+      let data = [];
+      let table = document.getElementBySelector('#mw-content-text > div.mw-parser-output > table.wikitable[1]');
+
+      for (var i = 1; i < table.rows.length; i++) {
+        let objCells = table.rows.item(i).cells;
+
+        let values = [];
+        for (var j = 0; j < objCells.length; j++) {
+          let text = objCells.item(j).innerHTML;
+          values.push(text);
+        }
+        let d = { i, values };
+        data.push(d);
+      }
+
+      return data;
+    });
+
+    console.log(rawData);
+
+    await browser.close();
+  } catch (err) {
+    console.log(JSON.stringify(err));
+
+    if (browser) {
+      await browser.close();
+    }
+  }
+
+  return;
+};
+
 const promiseGetImage = (album) => {
   const getImage = async (resolve,reject) => {
     let browser;
@@ -22,7 +88,7 @@ const promiseGetImage = (album) => {
         args: chromium.args,
         defaultViewport: chromium.defaultViewport,
         executablePath: revisionInfo.executablePath,
-        //headless: chromium.headless
+        headless: chromium.headless
       });
 
       page = await browser.newPage();
@@ -78,10 +144,11 @@ router.get('/albumcovers', async function (req, res) {
   if (binaryDiceRoll === 1) {
     try {
       const albums = [
-        {id: 1, searchTerm: 'Enter the Wu-Tang (36 Chambers)'},
-        {id: 2, searchTerm: 'Ironman (Ghostface Killah album)'},
-        {id: 3, searchTerm: 'Liquid Swords'},
-        {id: 4, searchTerm: 'Only Built 4 Cuban Linx'}
+        // {id: 1, searchTerm: 'Enter the Wu-Tang (36 Chambers)'},
+        // {id: 2, searchTerm: 'Ironman (Ghostface Killah album)'},
+        // {id: 3, searchTerm: 'Liquid Swords'},
+        // {id: 4, searchTerm: 'Only Built 4 Cuban Linx'},
+        {id: 5, searchTerm: 'Devin Haney'}
       ];
 
       const albumsSettled = await Promise.allSettled([
@@ -100,6 +167,7 @@ router.get('/albumcovers', async function (req, res) {
     }
   }
 
+  // await getBoxingRecord();
   res.status(200).send(albumsFound);
 });
 
