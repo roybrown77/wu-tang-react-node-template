@@ -16,7 +16,6 @@ Backend:
 Frontend:
 
 - ReactJs - javascript framework to build composable user interfaces aka make sites like lego blocks
-- ReduxJs - fast data state management aka keep data in order
 - Google Material Design - framework to create beautiful, customizable ui components aka make it look as good as Google stuff
 - ** coming soon ** Progressive Web App capabilities to make a web site look, feel and respond as well as an installed app especially when there are network and memory limitations.  More info at https://developers.google.com/web/progressive-web-apps/
 

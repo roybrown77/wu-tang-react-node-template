@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import {createBrowserHistory} from 'history';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -138,12 +137,6 @@ class AppLayout extends React.Component {
     }
 };
 
-const mapStateToProps = (state, ownProps) => {
-    return{
-        ...ownProps
-    }
-};
-
 AppLayout.propTypes = {
     classes: PropTypes.object.isRequired,
     children: PropTypes.any,
@@ -154,4 +147,4 @@ AppLayout.defaultProps = {
     title: ''
 };
 
-export default connect(mapStateToProps, {})(withStyles(styles)(AppLayout));
+export default (withStyles(styles)(AppLayout));
