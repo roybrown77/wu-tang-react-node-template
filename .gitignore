@@ -12,4 +12,3 @@ npm-debug.log
 # Docker
 Dockerfile
 docker-compose.yml
-src/client/.eslintcache

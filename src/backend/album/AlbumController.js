@@ -1,6 +1,5 @@
 const express = require('express');
-const puppeteer = require('puppeteer-core');
-const chromium = require('chrome-aws-lambda');
+const puppeteer = require('puppeteer');
 
 let router = express.Router();
 
@@ -12,41 +11,36 @@ const promiseGetImage = (album) => {
     try {
       console.log('getImage start: ' + album.searchTerm);
 
-      const browserFetcher = puppeteer.createBrowserFetcher();
-      const revisionInfo = await browserFetcher.download('869685');
-
-      browser = await chromium.puppeteer.launch({
+      browser = await puppeteer.launch({
         timeout: 5000,
         pipe: true,
         ignoreHTTPSErrors: true,
-        args: chromium.args,
-        defaultViewport: chromium.defaultViewport,
-        executablePath: revisionInfo.executablePath,
-        //headless: chromium.headless
+        // headless: false
       });
 
       page = await browser.newPage();
 
+      await page.setViewport({width: 1080, height: 1024});
+
       await page.setDefaultNavigationTimeout(5000);
 
-      await page.goto('https://en.wikipedia.org/wiki/Main_Page', { waitUntil: 'networkidle2' });
+      await page.goto('https://www.wikipedia.org/', { waitUntil: 'networkidle2' });
 
       await page.type("#searchInput", album.searchTerm);
 
-      await page.click('#searchButton');
+      await page.click('.pure-button');
 
       await page.waitForNavigation();
 
-      await page.waitForSelector('#mw-content-text > div > table > tbody > tr:nth-child(2) > td > a > img');
+      await page.waitForSelector('#mw-content-text > div.mw-content-ltr.mw-parser-output > table.infobox.vevent.haudio > tbody > tr:nth-child(2) > td > span > a > img');
 
       const image = await page.evaluate((sel) => {
-        return document.querySelector(sel).getAttribute('srcset');
-      }, '#mw-content-text > div > table.infobox.vevent.haudio > tbody > tr:nth-child(2) > td > a > img');
+        return document.querySelector(sel).getAttribute('src');
+      }, '#mw-content-text > div.mw-content-ltr.mw-parser-output > table.infobox.vevent.haudio > tbody > tr:nth-child(2) > td > span > a > img');
 
       await browser.close();
       const coverArt = 'https:' + image.split(' ')[0];
       console.log('getImage end: ' + album.searchTerm);
-      //if (album.id === 1) throw 'test';
       resolve({...album, coverArt});
     } catch (err) {
       if (browser) {
@@ -54,7 +48,6 @@ const promiseGetImage = (album) => {
       }
       const error = album.searchTerm + ' error: ' + JSON.stringify(err);
       console.log(error);
-      //throw 'test';
       reject(error);
     }
 
@@ -71,6 +64,8 @@ const getRandomIntInclusive = (min, max) => {
 }
 
 router.get('/albumcovers', async function (req, res) {
+  console.log('albumcovers');
+  
   let albumsFound = [];
 
   const binaryDiceRoll = getRandomIntInclusive(0,1);
@@ -95,10 +90,14 @@ router.get('/albumcovers', async function (req, res) {
       albumsFound = albumsSettled.filter(album=>album.status === 'fulfilled').map(album=>album.value);
       console.log('albumsFound: ' + JSON.stringify(albumsFound));
     } catch (err) {
+      console.log('albumcovers err', err);
+  
       const error = 'error: ' + JSON.stringify(err);
       console.log(error);
     }
   }
+
+  console.log('albumcovers binaryDiceRoll', binaryDiceRoll, albumsFound);
 
   res.status(200).send(albumsFound);
 });

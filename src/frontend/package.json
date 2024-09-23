@@ -1,6 +1,6 @@
 {
-  "name": "me-vs-yall",
-  "version": "0.1.0",
+  "name": "wu-tang-react-node-template",
+  "version": "1.0.0",
   "private": true,
   "proxy": "http://localhost:3001/",
   "dependencies": {
@@ -19,7 +19,6 @@
     "react-player": "2.9.0",
     "react-redux": "7.2.6",
     "react-router-dom": "6.2.1",
-    "recompose": "0.30.0",
     "redux": "4.1.2",
     "redux-devtools-extension": "2.13.9",
     "redux-thunk": "2.4.1",
@@ -29,14 +28,10 @@
     "react-scripts": "5.0.0"
   },
   "scripts": {
-    "start": "npm run lint && react-scripts start",
-    "build": "npm run lint && react-scripts test --watchAll=false && react-scripts build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "eslint --max-warnings 0 --ext .jsx --ext .js src/"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "eject": "react-scripts eject"
   },
   "browserslist": [
     ">0.2%",

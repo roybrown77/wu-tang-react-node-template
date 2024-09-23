@@ -1,1 +1,1 @@
-web: npm run prod-server
+web: npm run prod-backend

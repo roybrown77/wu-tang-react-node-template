@@ -13,7 +13,7 @@ Backend:
 - NodeJs - lightweight and efficient javascript web server aka serve up the site like banana pudding in the A
 - Puppeteer - api to control headless chrome in order to screen scrape aka look ma no api
 
-Client:
+Frontend:
 
 - ReactJs - javascript framework to build composable user interfaces aka make sites like lego blocks
 - ReduxJs - fast data state management aka keep data in order
@@ -30,7 +30,7 @@ Hosting server:
 2. install latest npm
 3. open command line to root of this project and type rest
 4. npm i
-5. cd src/client
+5. cd src/frontend
 6. npm i
 7. cd ../../
 8. npm start

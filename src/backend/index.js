@@ -4,6 +4,8 @@
 
 const { nodeEnv, httpPort } = require('../../config');
 
+console.log('env', nodeEnv, httpPort);
+
 /*
   Setup web server
 */
@@ -16,7 +18,7 @@ app.set("port", httpPort || 3001);
 const path = require('path');
 
 if (nodeEnv === "production") {
-    app.use(express.static(path.resolve(__dirname, '../client/build')));
+    app.use(express.static(path.resolve(__dirname, '../frontend/build')));
 }
 
 /*
@@ -26,7 +28,7 @@ if (nodeEnv === "production") {
 app.use('/api/albummanagement', require('./album/AlbumController'));
 
 app.get('*', function(request, response) {
-  response.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+  response.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'));
 });
 
 const server = app.listen(app.get("port"), () => {

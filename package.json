@@ -1,17 +1,16 @@
 {
   "name": "wu-tang-react-node-template",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "babel-core": "6.26.3",
     "body-parser": "1.19.2",
-    "chrome-aws-lambda": "10.1.0",
     "dotenv": "16.0.0",
     "express": "4.17.3",
     "express-jwt": "6.1.0",
     "lodash": "4.17.21",
     "path": "0.12.7",
-    "puppeteer-core": "13.3.2"
+    "puppeteer": "^23.4.0"
   },
   "devDependencies": {
     "concurrently": "7.0.0",
@@ -19,20 +18,18 @@
   },
   "cacheDirectories": [
     "node_modules",
-    "src/client/node_modules"
+    "src/frontend/node_modules"
   ],
   "engines": {
-    "node": "14.x"
+    "node": "20.x"
   },
   "scripts": {
-    "test": "cd src/client/ && npm run test",
-    "start_local": "concurrently \"npm run local-server\" \"npm run client\"",
-    "local-server": "node --expose-gc --inspect --optimize_for_size --max_old_space_size=460 --gc_interval=100 -r dotenv/config src/server",
-    "start": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "nodemon src/server",
-    "prod-server": "node --expose-gc --inspect --optimize_for_size --max_old_space_size=460 --gc_interval=100 src/server",
-    "client": "nodemon start-client.js",
+    "test": "cd src/frontend/ && npm run test",
+    "start": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "backend": "nodemon src/backend",
+    "frontend": "nodemon start-frontend.js",
+    "prod-backend": "node --expose-gc --inspect --optimize_for_size --max_old_space_size=460 --gc_interval=100 src/backend",
     "dev": "echo \"This command has been deprecated. Use 'npm start'\" && exit 1",
-    "heroku-postbuild": "cd src/client/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+    "heroku-postbuild": "cd src/frontend/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   }
 }
