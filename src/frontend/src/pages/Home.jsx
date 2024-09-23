@@ -15,14 +15,14 @@ import Divider from '@material-ui/core/Divider';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Typography from '@material-ui/core/Typography';
 
-import AppLayout from '../../components/Layouts/App';
-import wuFranklin from '../../images/franklin-benzi.jpg';
-import linusWu from '../../images/linus-wu.png';
-import lucyKillerTape from '../../images/lucy-killer-tape.jpg';
-import linusShorty from '../../images/linus-shorty.jpg';
-import wutangJoint from '../../images/wu-tang-joint.png';
-import wutangAgain from '../../images/wu-tang-again.png';
-import wu from '../../images/wu.jpg';
+import AppLayout from '../components/AppLayout';
+import wuFranklin from '../images/franklin-benzi.jpg';
+import linusWu from '../images/linus-wu.png';
+import lucyKillerTape from '../images/lucy-killer-tape.jpg';
+import linusShorty from '../images/linus-shorty.jpg';
+import wutangJoint from '../images/wu-tang-joint.png';
+import wutangAgain from '../images/wu-tang-again.png';
+import wu from '../images/wu.jpg';
 
 const useStyles = makeStyles((theme) => ({
   root: {
