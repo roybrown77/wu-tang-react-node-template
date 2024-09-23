@@ -17,7 +17,6 @@ const theme = createTheme({
   }
 });
 
-
 render(
     <MuiThemeProvider theme={theme}>
       <div className="App">
