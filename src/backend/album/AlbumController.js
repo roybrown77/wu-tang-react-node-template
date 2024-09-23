@@ -57,47 +57,33 @@ const promiseGetImage = (album) => {
   return new Promise(getImage);
 };
 
-const getRandomIntInclusive = (min, max) => {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
-}
-
 router.get('/albumcovers', async function (req, res) {
-  console.log('albumcovers');
-  
   let albumsFound = [];
 
-  const binaryDiceRoll = getRandomIntInclusive(0,1);
+  try {
+    const albums = [
+      {id: 1, searchTerm: 'Enter the Wu-Tang (36 Chambers)'},
+      {id: 2, searchTerm: 'Ironman (Ghostface Killah album)'},
+      {id: 3, searchTerm: 'Liquid Swords'},
+      {id: 4, searchTerm: 'Only Built 4 Cuban Linx'}
+    ];
 
-  if (binaryDiceRoll === 1) {
-    try {
-      const albums = [
-        {id: 1, searchTerm: 'Enter the Wu-Tang (36 Chambers)'},
-        {id: 2, searchTerm: 'Ironman (Ghostface Killah album)'},
-        {id: 3, searchTerm: 'Liquid Swords'},
-        {id: 4, searchTerm: 'Only Built 4 Cuban Linx'}
-      ];
+    const albumsSettled = await Promise.allSettled([
+      promiseGetImage(albums[0]),
+      promiseGetImage(albums[1]),
+      promiseGetImage(albums[2]),
+      promiseGetImage(albums[3]),
+    ]);
 
-      const albumsSettled = await Promise.allSettled([
-        promiseGetImage(albums[0]),
-        promiseGetImage(albums[1]),
-        promiseGetImage(albums[2]),
-        promiseGetImage(albums[3])
-      ]);
+    console.log('albumsSettled: ' + JSON.stringify(albumsSettled));
+    albumsFound = albumsSettled.filter(album=>album.status === 'fulfilled').map(album=>album.value);
+    console.log('albumsFound: ' + JSON.stringify(albumsFound));
+  } catch (err) {
+    console.log('albumcovers err', err);
 
-      console.log('albumsSettled: ' + JSON.stringify(albumsSettled));
-      albumsFound = albumsSettled.filter(album=>album.status === 'fulfilled').map(album=>album.value);
-      console.log('albumsFound: ' + JSON.stringify(albumsFound));
-    } catch (err) {
-      console.log('albumcovers err', err);
-  
-      const error = 'error: ' + JSON.stringify(err);
-      console.log(error);
-    }
+    const error = 'error: ' + JSON.stringify(err);
+    console.log(error);
   }
-
-  console.log('albumcovers binaryDiceRoll', binaryDiceRoll, albumsFound);
 
   res.status(200).send(albumsFound);
 });

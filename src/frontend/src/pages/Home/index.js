@@ -244,29 +244,34 @@ const Home = ({ width }) => {
   const [dataLoading, setDataLoading] = useState(true);
   const [loadingComplete, setLoadingComplete] = useState(false);
 
-  useEffect(() => {
-    const fetchAlbumCovers = async () => {
-      try {
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/albummanagement/albumcovers`);
-        const mergedAlbumList = (response.data || []).map(album=>{
-          const albumDataFound = albumData.find(data=>data.id===album.id);
-          return {
-              ...albumDataFound,
-              ...album
-          }
-        });
-        setAlbums(mergedAlbumList); // Assuming the API returns the album covers in this format
-        setLoadingComplete(true);
-      } catch (error) {
-        console.error('Error fetching album covers:', error);
-        setLoadingComplete(true);
-      } finally {
-        setDataLoading(false);
-      }
-    };
+  const fetchAlbumCovers = async () => {
+    try {
+      setDataLoading(true);
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/albummanagement/albumcovers`);
+      const mergedAlbumList = (response.data || []).map(album=>{
+        const albumDataFound = albumData.find(data=>data.id===album.id);
+        return {
+            ...albumDataFound,
+            ...album
+        }
+      });
+      setAlbums(mergedAlbumList); // Assuming the API returns the album covers in this format
+      setLoadingComplete(true);
+    } catch (error) {
+      console.error('Error fetching album covers:', error);
+      setLoadingComplete(true);
+    } finally {
+      setDataLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchAlbumCovers();
   }, []);
+
+  const handleSearchWuBangers = () => {
+    fetchAlbumCovers();
+  };
 
   return (
     <AppLayout title="Discover Wu-Tang Albums!">
@@ -287,6 +292,7 @@ const Home = ({ width }) => {
                   padding: '16px 40px',
                   margin: '16px 0',
                 }}
+                onClick={handleSearchWuBangers}
               >
                 <span style={{ fontSize: '12px' }}>Search Wu Bangers</span>
               </Button>
