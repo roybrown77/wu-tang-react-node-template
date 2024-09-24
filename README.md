@@ -26,13 +26,12 @@ Hosting server:
 # To run app locally:
 
 1. install latest node
-2. install latest npm
-3. open command line to root of this project and type rest
-4. npm i
-5. cd src/frontend
-6. npm i
-7. cd ../../
-8. npm start
+2. open command line to root of this project and type:
+3. npm i
+4. cd src/frontend
+5. npm i
+6. cd ../../
+7. npm start
 
 Please listen to Wu-Tang Clan as it will enhance your coding experience. :D
 
