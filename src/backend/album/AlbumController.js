@@ -12,9 +12,10 @@ const promiseGetImage = (album) => {
       console.log('getImage start: ' + album.searchTerm);
 
       browser = await puppeteer.launch({
-        timeout: 5000,
-        pipe: true,
-        ignoreHTTPSErrors: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        // timeout: 5000,
+        // pipe: true,
+        // ignoreHTTPSErrors: true,
         // headless: false
       });
 

@@ -1,10 +1,33 @@
 {
+  "name": "wu-tang-react-node-template",
+  "description": "A Heroku app running Puppeteer with Chromium",
+  "scripts": {
+    "postdeploy": "npm install"
+  },
+  "env": {
+    "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD": {
+      "description": "Skip downloading Chromium since we're using the Google Chrome buildpack",
+      "value": "true"
+    },
+    "NODE_ENV": {
+      "description": "Set to production for optimized builds",
+      "value": "production"
+    }
+  },
   "buildpacks": [
     {
-      "url": "heroku buildpacks:add https://github.com/jontewks/puppeteer-heroku-buildpack"
+      "url": "heroku/nodejs"
     },
     {
-      "url": "heroku buildpacks:add heroku/nodejs"
+      "url": "heroku-buildpack-google-chrome"
     }
-  ]
+  ],
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    }
+  },
+  "addons": [],
+  "stack": "heroku-20"
 }
