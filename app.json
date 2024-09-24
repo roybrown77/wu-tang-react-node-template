@@ -19,7 +19,7 @@
       "url": "heroku/nodejs"
     },
     {
-      "url": "heroku-buildpack-google-chrome"
+      "url": "https://github.com/heroku/heroku-buildpack-chrome-for-testing"
     }
   ],
   "formation": {
