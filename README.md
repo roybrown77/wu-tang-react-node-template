@@ -25,7 +25,7 @@ Hosting server:
 
 # To run app locally:
 
-1. install latest node
+1. install node version indicated in .nvmrc file
 2. open command line to root of this project and type:
 3. npm i
 4. cd src/frontend
