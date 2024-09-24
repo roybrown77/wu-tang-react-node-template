@@ -80,7 +80,7 @@ const albumData = [
       label: 'Loud',
       producer: 'RZA (also exec.), Ol Dirty Bastard, Method Man',
       description: 'Epic first group album',
-      coverArt: '',
+      coverArt: null,
       sampleTrack: {
           title: 'Protect Ya Neck',
           src: 'https://upload.wikimedia.org/wikipedia/en/a/ae/Protectyaneck.ogg'
@@ -97,10 +97,6 @@ const albumData = [
           {
               img: lucyKillerTape,
               title: 'Lucy Killer Tape'
-          },
-          {
-              img: linusShorty,
-              title: 'Life As a Shorty'
           },
           {
               img: wutangJoint,
@@ -120,7 +116,7 @@ const albumData = [
       label: 'Epic, Razor Sharp',
       producer: 'RZA (also exec.), Mitchell Diggs (exec.), Oli Grant (exec.), D.Coles (exec.), True Master',
       description: 'Tony Starks',
-      coverArt: '',
+      coverArt: null,
       sampleTrack: {
           title: 'After the Smoke is Clear',
           src: 'https://upload.wikimedia.org/wikipedia/en/4/46/After_the_Smoke_Is_Clear_%28Ghostface_Killah_song_-_sample%29.ogg'
@@ -160,7 +156,7 @@ const albumData = [
       label: 'Geffen, MCA',
       producer: 'RZA',
       description: 'GZA Genius',
-      coverArt: '',
+      coverArt: null,
       sampleTrack: {
           title: 'I Gotcha Back',
           src: 'https://upload.wikimedia.org/wikipedia/en/f/f7/I_Gotcha_Back.ogg'
@@ -205,7 +201,7 @@ const albumData = [
           backgroundColor: 'purple',
           fontWeight: 'bold',
       },
-      coverArt: '',
+      coverArt: null,
       sampleTrack: {
           title: 'Criminology',
           src: 'https://upload.wikimedia.org/wikipedia/en/d/d6/Criminology.ogg'
@@ -248,11 +244,11 @@ const Home = ({ width }) => {
     try {
       setDataLoading(true);
       const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/albummanagement/albumcovers`);
-      const mergedAlbumList = (response.data || []).map(album=>{
-        const albumDataFound = albumData.find(data=>data.id===album.id);
+      const mergedAlbumList = albumData.map(albumData=>{
+        const albumCoverFound = (response.data || []).find(albumCover=>albumCover.id===albumData.id);
         return {
-            ...albumDataFound,
-            ...album
+            ...albumData,
+            ...albumCoverFound,
         }
       });
       setAlbums(mergedAlbumList); // Assuming the API returns the album covers in this format
@@ -306,14 +302,6 @@ const Home = ({ width }) => {
               <LinearProgress />
             </div>
           )}
-          {loadingComplete && albums.length === 0 && (
-            <div>
-              <h3 style={{ fontSize: '17px', fontWeight: 'bold', margin: '10px 0', color: '#444' }}>
-                No albums found. Please try again.
-              </h3>
-              <img style={{ width: '50%' }} src={linusShorty} alt="No albums found" />
-            </div>
-          )}
           {!dataLoading &&
             albums.map((album) => (
               <div key={album.id} style={{ margin: '1.1rem' }}>
@@ -322,8 +310,14 @@ const Home = ({ width }) => {
                   <Grid item xs={12} md={5} lg={3}>
                     <div style={{ display: 'flex', flex: '0 0 270px', color: '#444', margin: '1.1rem 0' }}>
                       <div>
-                        <img style={{ width: '175px', borderRadius: '8px' }} src={album.coverArt || wu} alt={album.name} />
-                        <div style={{ textAlign: 'center' }}>
+                        {album.coverArt && <img style={{ width: '175px', borderRadius: '8px' }} src={album.coverArt} alt={album.name} />}
+                        {!album.coverArt &&
+                          <>
+                            <img style={{ width: '175px', borderRadius: '8px' }} src={linusShorty} alt="Album cover not found" />
+                            <div>Album cover not found</div>
+                          </>
+                        }
+                        <div style={{ textAlign: 'center', marginTop: '1rem' }}>
                           <div>{album.description}</div>
                           <div style={{ fontWeight: 'bold' }}>{album.sampleTrack?.title}</div>
                           <ReactPlayer
