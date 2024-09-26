@@ -71,6 +71,37 @@ SingleLineGridList.propTypes = {
   width: PropTypes.string.isRequired,
 };
 
+const visuals = [
+  {
+      img: wuFranklin,
+      title: 'Wu Franklin'
+  },
+  {
+      img: linusWu,
+      title: 'Linus Wu'
+  },
+  {
+      img: lucyKillerTape,
+      title: 'Lucy Killer Tape'
+  },
+  {
+      img: wutangJoint,
+      title: 'Wu-Tang Joint'
+  },
+  {
+      img: wutangAgain,
+      title: 'Wu-Tang Again'
+  }
+];
+
+const getRandomSet = (arr, numItems) => {
+  // Step 1: Shuffle the array
+  const shuffledArray = arr.sort(() => Math.random() - 0.5);
+
+  // Step 2: Select the first 'numItems' from the shuffled array
+  return shuffledArray.slice(0, numItems);
+};
+
 const albumData = [
   {
       id: 1,
@@ -85,28 +116,7 @@ const albumData = [
           title: 'Protect Ya Neck',
           src: 'https://upload.wikimedia.org/wikipedia/en/a/ae/Protectyaneck.ogg'
       },
-      visuals: [
-          {
-              img: wuFranklin,
-              title: 'Wu Franklin'
-          },
-          {
-              img: linusWu,
-              title: 'Linus Wu'
-          },
-          {
-              img: lucyKillerTape,
-              title: 'Lucy Killer Tape'
-          },
-          {
-              img: wutangJoint,
-              title: 'Wu-Tang Joint'
-          },
-          {
-              img: wutangAgain,
-              title: 'Wu-Tang Again'
-          }
-      ]
+      visuals,
   },
   {
       id: 2,
@@ -121,32 +131,7 @@ const albumData = [
           title: 'After the Smoke is Clear',
           src: 'https://upload.wikimedia.org/wikipedia/en/4/46/After_the_Smoke_Is_Clear_%28Ghostface_Killah_song_-_sample%29.ogg'
       },
-      visuals: [
-          {
-              img: wuFranklin,
-              title: 'Wu Franklin'
-          },
-          {
-              img: linusWu,
-              title: 'Linus Wu'
-          },
-          {
-              img: lucyKillerTape,
-              title: 'Lucy Killer Tape'
-          },
-          {
-              img: linusShorty,
-              title: 'Life As a Shorty'
-          },
-          {
-              img: wutangJoint,
-              title: 'Wu-Tang Joint'
-          },
-          {
-              img: wutangAgain,
-              title: 'Wu-Tang Again'
-          }
-      ]
+      visuals: getRandomSet(visuals, 5),
   },
   {
       id: 3,
@@ -161,32 +146,7 @@ const albumData = [
           title: 'I Gotcha Back',
           src: 'https://upload.wikimedia.org/wikipedia/en/f/f7/I_Gotcha_Back.ogg'
       },
-      visuals: [
-          {
-              img: wuFranklin,
-              title: 'Wu Franklin'
-          },
-          {
-              img: linusWu,
-              title: 'Linus Wu'
-          },
-          {
-              img: lucyKillerTape,
-              title: 'Lucy Killer Tape'
-          },
-          {
-              img: linusShorty,
-              title: 'Life As a Shorty'
-          },
-          {
-              img: wutangJoint,
-              title: 'Wu-Tang Joint'
-          },
-          {
-              img: wutangAgain,
-              title: 'Wu-Tang Again'
-          }
-      ]
+      visuals: getRandomSet(visuals, 4),
   },
   {
       id: 4,
@@ -206,32 +166,7 @@ const albumData = [
           title: 'Criminology',
           src: 'https://upload.wikimedia.org/wikipedia/en/d/d6/Criminology.ogg'
       },
-      visuals: [
-          {
-              img: wuFranklin,
-              title: 'Wu Franklin'
-          },
-          {
-              img: linusWu,
-              title: 'Linus Wu'
-          },
-          {
-              img: lucyKillerTape,
-              title: 'Lucy Killer Tape'
-          },
-          {
-              img: linusShorty,
-              title: 'Life As a Shorty'
-          },
-          {
-              img: wutangJoint,
-              title: 'Wu-Tang Joint'
-          },
-          {
-              img: wutangAgain,
-              title: 'Wu-Tang Again'
-          }
-      ]
+      visuals: getRandomSet(visuals, 4),
   }
 ];
 
