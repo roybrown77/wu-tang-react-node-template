@@ -170,14 +170,31 @@ const albumData = [
   }
 ];
 
+const isMobileDevice = () => {
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+  // Check for iOS devices
+  if (/iPhone|iPad|iPod/i.test(userAgent)) {
+    return true;
+  }
+
+  // Check for Android devices
+  if (/Android/i.test(userAgent)) {
+    return true;
+  }
+
+  // You can extend this to cover more mobile device cases as needed
+  return false;
+};
+
 const Home = ({ width }) => {
   const [albums, setAlbums] = useState([]);
-  const [dataLoading, setDataLoading] = useState(true);
-  const [loadingComplete, setLoadingComplete] = useState(false);
+  const [dataLoading, setDataLoading] = useState(false);
 
   const fetchAlbumCovers = async () => {
     try {
       setDataLoading(true);
+      await new Promise(resolve => setTimeout(resolve, 2000)); // 2 second delay
       const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/albummanagement/albumcovers`);
       const mergedAlbumList = albumData.map(albumData=>{
         const albumCoverFound = (response.data || []).find(albumCover=>albumCover.id===albumData.id);
@@ -187,18 +204,14 @@ const Home = ({ width }) => {
         }
       });
       setAlbums(mergedAlbumList); // Assuming the API returns the album covers in this format
-      setLoadingComplete(true);
+      setDataLoading(false);
     } catch (error) {
       console.error('Error fetching album covers:', error);
-      setLoadingComplete(true);
+      setDataLoading(false);
     } finally {
       setDataLoading(false);
     }
   };
-
-  useEffect(() => {
-    fetchAlbumCovers();
-  }, []);
 
   const handleSearchWuBangers = () => {
     fetchAlbumCovers();
@@ -252,18 +265,22 @@ const Home = ({ width }) => {
                             <div>Album cover not found</div>
                           </>
                         }
-                        <div style={{ textAlign: 'center', marginTop: '1rem' }}>
-                          <div>{album.description}</div>
-                          <div style={{ fontWeight: 'bold' }}>{album.sampleTrack?.title}</div>
-                          <ReactPlayer
-                            url={album.sampleTrack?.src}
-                            playing={false}
-                            loop
-                            controls
-                            width="200px"
-                            height="35px"
-                          />
-                        </div>
+                        <div style={{ textAlign: 'center', marginTop: '.5rem' }}>
+                          <div style={{ fontWeight: 'bold' }}>{album.description}</div>
+                          {!isMobileDevice() &&
+                            <div style={{ marginTop: '.5rem' }}>
+                              <div style={{ fontWeight: 'bold' }}>{album.sampleTrack?.title}</div>
+                              <ReactPlayer
+                                url={album.sampleTrack?.src}
+                                playing={false}
+                                loop
+                                controls
+                                width="200px"
+                                height="35px"
+                              />
+                            </div>
+                          }
+                          </div>
                       </div>
                       <div style={{ margin: '0 .7rem', fontSize: '12px', textAlign: 'left' }}>
                         <h2 style={{ fontWeight: 'bold', margin: '0' }}>{album.name}</h2>
