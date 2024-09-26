@@ -127,7 +127,7 @@ class AppLayout extends React.Component {
                         {children}
                     </div>
                     <div className={classNames(classes.footer)}>
-                        This serverless web app will retrieve Wu-Tang album covers from Wikipedia and display them.  It's a demo to showcase how to 
+                        This web app will retrieve Wu-Tang album covers from Wikipedia and display them.  It's a demo to showcase how to 
                         build a web app using ReactJs and NodeJs javascript software.  Code can be found <a href="https://www.github.com/roybrown77/wu-tang-react-node-template">here</a> since 
                         Wu-Tang is for the kids.  Sample music track doesn't appear/play on an iPhone so listen elsewhere.  Enjoy.  :D
                     </div>
