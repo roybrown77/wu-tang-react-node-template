@@ -64,9 +64,10 @@ router.get('/albumcovers', async function (req, res) {
   try {
     const albums = [
       {id: 1, searchTerm: 'Enter the Wu-Tang (36 Chambers)'},
-      {id: 2, searchTerm: 'Ironman (Ghostface Killah album)'},
-      {id: 3, searchTerm: 'Liquid Swords'},
-      {id: 4, searchTerm: 'Only Built 4 Cuban Linx'}
+      {id: 2, searchTerm: 'Return to the 36 Chambers: The Dirty Version'},
+      {id: 3, searchTerm: 'Only Built 4 Cuban Linx'},
+      {id: 4, searchTerm: 'Liquid Swords'},
+      {id: 5, searchTerm: 'Ironman (Ghostface Killah album)'},
     ];
 
     const albumsSettled = await Promise.allSettled([
@@ -74,6 +75,7 @@ router.get('/albumcovers', async function (req, res) {
       promiseGetImage(albums[1]),
       promiseGetImage(albums[2]),
       promiseGetImage(albums[3]),
+      promiseGetImage(albums[4]),
     ]);
 
     console.log('albumsSettled: ' + JSON.stringify(albumsSettled));

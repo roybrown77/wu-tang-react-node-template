@@ -91,7 +91,7 @@ const AppLayout = ({ classes, children }) => {
       <div className={classNames(classes.main)}>{children}</div>
       <div className={classNames(classes.footer)}>
         This web app will retrieve Wu-Tang album covers from Wikipedia and display them. It's a demo to showcase how to
-        build a web app using ReactJs and NodeJs javascript software. Code can be found{' '}
+        build a web app using <a href="https://react.dev">ReactJs</a> and <a href="https://nodejs.org">NodeJs</a> javascript software. Code can be found{' '}
         <a href="https://www.github.com/roybrown77/wu-tang-react-node-template">here</a> since Wu-Tang is for the kids.
         Sample music track doesn't appear/play on a mobile device so listen on desktop. Enjoy. :D
       </div>

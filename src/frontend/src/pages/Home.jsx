@@ -116,58 +116,74 @@ const albumData = [
           title: 'Protect Ya Neck',
           src: 'https://upload.wikimedia.org/wikipedia/en/a/ae/Protectyaneck.ogg'
       },
-      visuals,
+      visuals: structuredClone(visuals),
   },
   {
       id: 2,
-      name: 'Ironman (Ghostface Killah album)',
-      released: 'October 29, 1996',
-      length: '64:48',
-      label: 'Epic, Razor Sharp',
-      producer: 'RZA (also exec.), Mitchell Diggs (exec.), Oli Grant (exec.), D.Coles (exec.), True Master',
-      description: 'Tony Starks',
-      coverArt: null,
-      sampleTrack: {
-          title: 'After the Smoke is Clear',
-          src: 'https://upload.wikimedia.org/wikipedia/en/4/46/After_the_Smoke_Is_Clear_%28Ghostface_Killah_song_-_sample%29.ogg'
-      },
-      visuals: getRandomSet(visuals, 5),
-  },
-  {
-      id: 3,
-      name: 'Liquid Swords',
-      released: 'November 7, 1995',
-      length: '50:49',
-      label: 'Geffen, MCA',
-      producer: 'RZA',
-      description: 'GZA Genius',
-      coverArt: null,
-      sampleTrack: {
-          title: 'I Gotcha Back',
-          src: 'https://upload.wikimedia.org/wikipedia/en/f/f7/I_Gotcha_Back.ogg'
-      },
-      visuals: getRandomSet(visuals, 4),
-  },
-  {
-      id: 4,
-      name: 'Only Built 4 Cuban Linx',
-      released: 'August 1, 1995',
-      length: '   69:30',
-      label: 'Loud RCA',
-      producer: 'RZA (also exec.), Mitchell Diggs (exec.), Oli Grant (exec.)',
-      description: 'The Purple Tape',
+      name: 'Return to the 36 Chambers: The Dirty Version',
+      released: 'March 28, 1995',
+      length: '59:04',
+      label: 'Elektra WMG',
+      producer: "RZA (also exec.), True Master, 4th Disciple, Ol' Dirty Bastard, Ethan Ryman, Big Dore",
+      description: 'Unexpected Gem',
       descriptionStyling: {
           color: 'white',
           backgroundColor: 'purple',
           fontWeight: 'bold',
       },
       coverArt: null,
-      sampleTrack: {
-          title: 'Criminology',
-          src: 'https://upload.wikimedia.org/wikipedia/en/d/d6/Criminology.ogg'
-      },
-      visuals: getRandomSet(visuals, 4),
-  }
+      visuals: getRandomSet(structuredClone(visuals), 4),
+  },
+  {
+    id: 3,
+    name: 'Only Built 4 Cuban Linx',
+    released: 'August 1, 1995',
+    length: '69:30',
+    label: 'Loud RCA',
+    producer: 'RZA (also exec.), Mitchell Diggs (exec.), Oli Grant (exec.)',
+    description: 'The Purple Tape',
+    descriptionStyling: {
+        color: 'white',
+        backgroundColor: 'purple',
+        fontWeight: 'bold',
+    },
+    coverArt: null,
+    sampleTrack: {
+        title: 'Criminology',
+        src: 'https://upload.wikimedia.org/wikipedia/en/d/d6/Criminology.ogg'
+    },
+    visuals: getRandomSet(structuredClone(visuals), 4),
+  },
+  {
+    id: 4,
+    name: 'Liquid Swords',
+    released: 'November 7, 1995',
+    length: '50:49',
+    label: 'Geffen, MCA',
+    producer: 'RZA',
+    description: 'GZA Genius',
+    coverArt: null,
+    sampleTrack: {
+        title: 'I Gotcha Back',
+        src: 'https://upload.wikimedia.org/wikipedia/en/f/f7/I_Gotcha_Back.ogg'
+    },
+    visuals: getRandomSet(structuredClone(visuals), 4),
+},
+  {
+    id: 5,
+    name: 'Ironman (Ghostface Killah album)',
+    released: 'October 29, 1996',
+    length: '64:48',
+    label: 'Epic, Razor Sharp',
+    producer: 'RZA (also exec.), Mitchell Diggs (exec.), Oli Grant (exec.), D.Coles (exec.), True Master',
+    description: 'Tony Starks',
+    coverArt: null,
+    sampleTrack: {
+        title: 'After the Smoke is Clear',
+        src: 'https://upload.wikimedia.org/wikipedia/en/4/46/After_the_Smoke_Is_Clear_%28Ghostface_Killah_song_-_sample%29.ogg'
+    },
+    visuals: getRandomSet(structuredClone(visuals), 5),
+},
 ];
 
 const isMobileDevice = () => {
@@ -267,7 +283,7 @@ const Home = ({ width }) => {
                         }
                         <div style={{ textAlign: 'center', marginTop: '.5rem' }}>
                           <div style={{ fontWeight: 'bold' }}>{album.description}</div>
-                          {!isMobileDevice() &&
+                          {!isMobileDevice() && album.sampleTrack &&
                             <div style={{ marginTop: '.5rem' }}>
                               <div style={{ fontWeight: 'bold' }}>{album.sampleTrack?.title}</div>
                               <ReactPlayer
