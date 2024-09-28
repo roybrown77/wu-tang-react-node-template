@@ -6,8 +6,6 @@ import { MuiThemeProvider, createTheme} from '@material-ui/core/styles';
 
 import Home from './pages/Home.jsx';
 
-import './index.css';
-
 const theme = createTheme({
   palette: {
     type: 'light', // Switching the dark mode on is a single property value change.

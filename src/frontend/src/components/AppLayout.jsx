@@ -49,7 +49,7 @@ const styles = (theme) => ({
   footer: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
-    fontFamily: 'Poppins',
+    fontFamily: 'monospace',
   },
   navigationUnselected: {
     fontWeight: '600',
@@ -81,7 +81,7 @@ const AppLayout = ({ classes, children }) => {
               fontWeight: 'bold',
               color: '#E2A42B',
               margin: '15px auto',
-              fontFamily: 'Poppins',
+              fontFamily: 'monospace',
             }}
           >
             {'Wu-Tang x React Node Template'}
