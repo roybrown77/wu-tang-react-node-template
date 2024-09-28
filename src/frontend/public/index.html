@@ -3,24 +3,46 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Add manifest -->
+    
+    <!-- Manifest for PWA -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    <!-- Tell the browser it's a PWA -->
+    
+    <!-- PWA settings -->
     <meta name="mobile-web-app-capable" content="yes">
-    <!-- Tell iOS it's a PWA -->
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <!-- Make sure theme-color is defined -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#536878">
+    
+    <!-- Apple PWA icons -->
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/icons/apple-icon-180.png">
+    <link rel="icon" sizes="192x192" href="%PUBLIC_URL%/icons/android-icon-192.png">
+    
+    <!-- Define splash screens for iOS -->
+    <link rel="apple-touch-startup-image" href="%PUBLIC_URL%/splash/launch-640x1136.png" media="(device-width: 320px)">
+    <link rel="apple-touch-startup-image" href="%PUBLIC_URL%/splash/launch-750x1334.png" media="(device-width: 375px)">
+    <link rel="apple-touch-startup-image" href="%PUBLIC_URL%/splash/launch-1125x2436.png" media="(device-width: 375px) and (device-height: 812px)">
+    <link rel="apple-touch-startup-image" href="%PUBLIC_URL%/splash/launch-1242x2208.png" media="(device-width: 414px)">
+    
+    <!-- Preload fonts for better performance -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- PWA name -->
+    <meta name="application-name" content="Wu-Tang x React Node Template">
+    <meta name="apple-mobile-web-app-title" content="Wu-Tang App">
+
+    <!-- SEO meta tags -->
+    <meta name="description" content="Wu-Tang x React Node Template – A PWA that displays Wu-Tang album covers and other features.">
+
+    <!-- Favicon -->
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
 
-    <link rel="stylesheet" href="https://fontlibrary.org/face/press-start-2p">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Add in some basic styles for our HTML -->
+    <!-- Basic styles for the app -->
     <style type="text/css">
       body {
         margin: 0;
         padding: 0;
-        font-family: sans-serif;
+        font-family: monospace, sans-serif;
+        background-color: #fafafa;
       }
 
       .App {
@@ -38,36 +60,37 @@
         font-size: large;
       }
     </style>
+    
     <title>Wu-Tang x React Node Template</title>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148024197-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-148024197-1');
-    </script>
   </head>
+  
   <body>
-    <!-- Filler HTML as our app starts up -->
-    <div id="root">  
-    </div>
+    <!-- Root div for React app -->
+    <div id="root"></div>
+
+    <!-- Register Service Worker for PWA -->
     <script>
       if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('service-worker.js').then(function(registration) {
-            // Registration was successful
-            console.log('ServiceWorker registration successful with scope: ', registration.scope);
-          }, function(err) {
-            // registration failed :(
-            console.log('ServiceWorker registration failed: ', err);
-          }).catch(function(err) {
-            console.log(err)
-          });
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then(registration => {
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }).catch(err => {
+              console.log('ServiceWorker registration failed: ', err);
+            });
         });
       } else {
-        console.log('service worker is not supported');
+        console.log('Service workers are not supported.');
+      }
+    </script>
+
+    <!-- App shell caching strategy -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.ready.then((registration) => {
+          console.log('Service worker ready:', registration);
+          return registration;
+        });
       }
     </script>
   </body>
