@@ -17,7 +17,9 @@ Frontend:
 
 - ReactJs - javascript framework to build composable user interfaces aka make sites like lego blocks
 - Google Material Design - framework to create beautiful, customizable ui components aka make it look as good as Google stuff
-- ** coming soon ** Progressive Web App capabilities to make a web site look, feel and respond as well as an installed app especially when there are network and memory limitations.  More info at https://developers.google.com/web/progressive-web-apps/
+- Progressive Web App capabilities to make a web site look, feel and respond as well as a mobile app.  More info at https://developers.google.com/web/progressive-web-apps/
+    - Run within the secure context of HTTPS
+    - Add to Home Screen for easier revisits and prevent showing browser's URL bar
 
 Hosting server:
 
