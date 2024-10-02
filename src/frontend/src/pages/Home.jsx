@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SingleLineGridList = ({ tileData, width }) => {
+const AlbumImageCarousel = ({ tileData, width }) => {
   const classes = useStyles();
 
   return (
@@ -66,7 +66,7 @@ const SingleLineGridList = ({ tileData, width }) => {
   );
 };
 
-SingleLineGridList.propTypes = {
+AlbumImageCarousel.propTypes = {
   tileData: PropTypes.array.isRequired,
   width: PropTypes.string.isRequired,
 };
@@ -207,11 +207,11 @@ const Home = ({ width }) => {
   const [albums, setAlbums] = useState([]);
   const [dataLoading, setDataLoading] = useState(false);
 
-  const handleError = (albumIndex) => {
-    const updatedArray = albums.map((item, i) => 
+  const handleAlbumCoverArtError = (albumIndex) => {
+    const updatedAlbums = albums.map((item, i) => 
       i === albumIndex ? { ...item, coverArt: null } : item
     );
-    setAlbums(updatedArray);
+    setAlbums(updatedAlbums);
   };
 
   const fetchAlbumCovers = async () => {
@@ -281,7 +281,7 @@ const Home = ({ width }) => {
                   <Grid item xs={12} md={5} lg={3}>
                     <div style={{ display: 'flex', flex: '0 0 270px', color: '#444', margin: '1.1rem 0' }}>
                       <div>
-                        {album.coverArt && <img style={{ width: '175px', borderRadius: '8px' }} src={album.coverArt} alt={album.name} onError={()=>handleError(albumIndex)} />}
+                        {album.coverArt && <img style={{ width: '175px', borderRadius: '8px' }} src={album.coverArt} alt={album.name} onError={()=>handleAlbumCoverArtError(albumIndex)} />}
                         {!album.coverArt &&
                           <>
                             <img style={{ width: '175px', borderRadius: '8px' }} src={linusShorty} alt="Album cover not found" />
@@ -327,7 +327,7 @@ const Home = ({ width }) => {
                     </div>
                   </Grid>
                   <Grid item xs={12} md={7} lg={9}>
-                    <SingleLineGridList tileData={album.visuals || []} width={width} />
+                    <AlbumImageCarousel tileData={album.visuals || []} width={width} />
                   </Grid>
                 </Grid>
               </div>
