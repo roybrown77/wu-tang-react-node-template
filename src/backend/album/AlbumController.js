@@ -13,9 +13,9 @@ const promiseGetImage = (album) => {
 
       browser = await puppeteer.launch({
         args: ['--no-sandbox', '--disable-setuid-sandbox'],
-        // timeout: 5000,
-        // pipe: true,
-        // ignoreHTTPSErrors: true,
+        timeout: 5000,
+        pipe: true,
+        ignoreHTTPSErrors: true,
         // headless: false
       });
 
@@ -25,7 +25,7 @@ const promiseGetImage = (album) => {
 
       await page.setDefaultNavigationTimeout(5000);
 
-      await page.goto('https://www.wikipedia.org/', { waitUntil: 'networkidle2' });
+      await page.goto('https://www.wikipedia1.org/', { waitUntil: 'networkidle2' });
 
       await page.type("#searchInput", album.searchTerm);
 
@@ -60,22 +60,21 @@ const promiseGetImage = (album) => {
 
 router.get('/albumcovers', async function (req, res) {
   let albumsFound = [];
+  const cachedAlbums = [
+    {id: 1, searchTerm: 'Enter the Wu-Tang (36 Chambers)', coverArt: 'https://upload.wikimedia.org/wikipedia/en/thumb/5/53/Wu-TangClanEntertheWu-Tangalbumcover.jpg/220px-Wu-TangClanEntertheWu-Tangalbumcover.jpg'},
+    {id: 2, searchTerm: 'Return to the 36 Chambers: The Dirty Version', coverArt: 'https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/Odb_welfare.jpg/220px-Odb_welfare.jpg'},
+    {id: 3, searchTerm: 'Only Built 4 Cuban Linx', coverArt: 'https://upload.wikimedia.org/wikipedia/en/thumb/1/17/Raekwon_only.jpg/220px-Raekwon_only.jpg'},
+    {id: 4, searchTerm: 'Liquid Swords', coverArt: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/90/Liquidswords1995.png/220px-Liquidswords1995.png'},
+    {id: 5, searchTerm: 'Ironman (Ghostface Killah album)', coverArt: 'https://upload.wikimedia.org/wikipedia/en/thumb/4/45/Ironman1996.png/220px-Ironman1996.png'},
+  ];
 
   try {
-    const albums = [
-      {id: 1, searchTerm: 'Enter the Wu-Tang (36 Chambers)'},
-      {id: 2, searchTerm: 'Return to the 36 Chambers: The Dirty Version'},
-      {id: 3, searchTerm: 'Only Built 4 Cuban Linx'},
-      {id: 4, searchTerm: 'Liquid Swords'},
-      {id: 5, searchTerm: 'Ironman (Ghostface Killah album)'},
-    ];
-
     const albumsSettled = await Promise.allSettled([
-      promiseGetImage(albums[0]),
-      promiseGetImage(albums[1]),
-      promiseGetImage(albums[2]),
-      promiseGetImage(albums[3]),
-      promiseGetImage(albums[4]),
+      promiseGetImage(cachedAlbums[0]),
+      promiseGetImage(cachedAlbums[1]),
+      promiseGetImage(cachedAlbums[2]),
+      promiseGetImage(cachedAlbums[3]),
+      promiseGetImage(cachedAlbums[4]),
     ]);
 
     console.log('albumsSettled: ' + JSON.stringify(albumsSettled));
@@ -88,7 +87,7 @@ router.get('/albumcovers', async function (req, res) {
     console.log(error);
   }
 
-  res.status(200).send(albumsFound);
+  res.status(200).send(albumsFound.length > 0 ? albumsFound : cachedAlbums);
 });
 
 module.exports = router;
