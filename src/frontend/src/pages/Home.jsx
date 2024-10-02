@@ -207,6 +207,13 @@ const Home = ({ width }) => {
   const [albums, setAlbums] = useState([]);
   const [dataLoading, setDataLoading] = useState(false);
 
+  const handleError = (albumIndex) => {
+    const updatedArray = albums.map((item, i) => 
+      i === albumIndex ? { ...item, coverArt: null } : item
+    );
+    setAlbums(updatedArray);
+  };
+
   const fetchAlbumCovers = async () => {
     try {
       setDataLoading(true);
@@ -267,14 +274,14 @@ const Home = ({ width }) => {
             </div>
           )}
           {!dataLoading &&
-            albums.map((album) => (
+            albums.map((album, albumIndex) => (
               <div key={album.id} style={{ margin: '1.1rem' }}>
                 <Divider light style={{ marginRight: '1.1rem' }} />
                 <Grid container>
                   <Grid item xs={12} md={5} lg={3}>
                     <div style={{ display: 'flex', flex: '0 0 270px', color: '#444', margin: '1.1rem 0' }}>
                       <div>
-                        {album.coverArt && <img style={{ width: '175px', borderRadius: '8px' }} src={album.coverArt} alt={album.name} />}
+                        {album.coverArt && <img style={{ width: '175px', borderRadius: '8px' }} src={album.coverArt} alt={album.name} onError={()=>handleError(albumIndex)} />}
                         {!album.coverArt &&
                           <>
                             <img style={{ width: '175px', borderRadius: '8px' }} src={linusShorty} alt="Album cover not found" />

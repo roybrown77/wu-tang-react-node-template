@@ -25,7 +25,7 @@ const promiseGetImage = (album) => {
 
       await page.setDefaultNavigationTimeout(5000);
 
-      await page.goto('https://www.wikipedia1.org/', { waitUntil: 'networkidle2' });
+      await page.goto('https://www.wikipedia.org/', { waitUntil: 'networkidle2' });
 
       await page.type("#searchInput", album.searchTerm);
 
