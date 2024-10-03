@@ -84,7 +84,7 @@ const AppLayout = ({ classes, children }) => {
               fontFamily: 'monospace',
             }}
           >
-            {'Wu-Tang x React Node Template'}
+            {'Wu-Tang x React x Node'}
           </h3>
         </Toolbar>
       </AppBar>
