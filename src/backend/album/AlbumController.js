@@ -60,12 +60,91 @@ const promiseGetImage = (album) => {
 
 router.get('/albumcovers', async function (req, res) {
   let albumsFound = [];
+
   const cachedAlbums = [
-    {id: 1, searchTerm: 'Enter the Wu-Tang (36 Chambers)', coverArt: 'https://upload.wikimedia.org/wikipedia/en/thumb/5/53/Wu-TangClanEntertheWu-Tangalbumcover.jpg/220px-Wu-TangClanEntertheWu-Tangalbumcover.jpg'},
-    {id: 2, searchTerm: 'Return to the 36 Chambers: The Dirty Version', coverArt: 'https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/Odb_welfare.jpg/220px-Odb_welfare.jpg'},
-    {id: 3, searchTerm: 'Only Built 4 Cuban Linx', coverArt: 'https://upload.wikimedia.org/wikipedia/en/thumb/1/17/Raekwon_only.jpg/220px-Raekwon_only.jpg'},
-    {id: 4, searchTerm: 'Liquid Swords', coverArt: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/90/Liquidswords1995.png/220px-Liquidswords1995.png'},
-    {id: 5, searchTerm: 'Ironman (Ghostface Killah album)', coverArt: 'https://upload.wikimedia.org/wikipedia/en/thumb/4/45/Ironman1996.png/220px-Ironman1996.png'},
+    {
+      id: 1,
+      searchTerm: 'Enter the Wu-Tang (36 Chambers)',
+      name: "Enter the Wu-Tang (36 Chambers)",
+      released: "November 9, 1993",
+      length: "61:31",
+      label: "Loud",
+      producer: "RZA (also exec.), Ol Dirty Bastard, Method Man",
+      description: "Epic first group album",
+      coverArt: 'https://upload.wikimedia.org/wikipedia/en/thumb/5/53/Wu-TangClanEntertheWu-Tangalbumcover.jpg/220px-Wu-TangClanEntertheWu-Tangalbumcover.jpg',
+      sampleTrack: {
+        title: "Protect Ya Neck",
+        src: "https://upload.wikimedia.org/wikipedia/en/a/ae/Protectyaneck.ogg",
+      },
+    },
+    {
+      id: 2,
+      searchTerm: 'Return to the 36 Chambers: The Dirty Version',
+      name: "Return to the 36 Chambers: The Dirty Version",
+      released: "March 28, 1995",
+      length: "59:04",
+      label: "Elektra WMG",
+      producer:
+        "RZA (also exec.), True Master, 4th Disciple, Ol' Dirty Bastard, Ethan Ryman, Big Dore",
+      description: "Unexpected Gem",
+      descriptionStyling: {
+        color: "white",
+        backgroundColor: "purple",
+        fontWeight: "bold",
+      },
+      coverArt: 'https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/Odb_welfare.jpg/220px-Odb_welfare.jpg',
+    },
+    {
+      id: 3,
+      searchTerm: 'Only Built 4 Cuban Linx',
+      name: "Only Built 4 Cuban Linx",
+      released: "August 1, 1995",
+      length: "69:30",
+      label: "Loud RCA",
+      producer: "RZA (also exec.), Mitchell Diggs (exec.), Oli Grant (exec.)",
+      description: "The Purple Tape",
+      descriptionStyling: {
+        color: "white",
+        backgroundColor: "purple",
+        fontWeight: "bold",
+      },
+      coverArt: 'https://upload.wikimedia.org/wikipedia/en/thumb/1/17/Raekwon_only.jpg/220px-Raekwon_only.jpg',
+      sampleTrack: {
+        title: "Criminology",
+        src: "https://upload.wikimedia.org/wikipedia/en/d/d6/Criminology.ogg",
+      },
+    },
+    {
+      id: 4,
+      searchTerm: 'Liquid Swords',
+      name: "Liquid Swords",
+      released: "November 7, 1995",
+      length: "50:49",
+      label: "Geffen, MCA",
+      producer: "RZA",
+      description: "GZA Genius",
+      coverArt: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/90/Liquidswords1995.png/220px-Liquidswords1995.png',
+      sampleTrack: {
+        title: "I Gotcha Back",
+        src: "https://upload.wikimedia.org/wikipedia/en/f/f7/I_Gotcha_Back.ogg",
+      },
+    },
+    {
+      id: 5,
+      searchTerm: 'Ironman (Ghostface Killah album)',
+      name: "Ironman (Ghostface Killah album)",
+      released: "October 29, 1996",
+      length: "64:48",
+      label: "Epic, Razor Sharp",
+      producer:
+        "RZA (also exec.), Mitchell Diggs (exec.), Oli Grant (exec.), D.Coles (exec.), True Master",
+      description: "Tony Starks",
+      coverArt: 'https://upload.wikimedia.org/wikipedia/en/thumb/4/45/Ironman1996.png/220px-Ironman1996.png',
+      sampleTrack: {
+        title: "After the Smoke is Clear",
+        src: "https://upload.wikimedia.org/wikipedia/en/4/46/After_the_Smoke_Is_Clear_%28Ghostface_Killah_song_-_sample%29.ogg",
+      },
+    },
   ];
 
   try {

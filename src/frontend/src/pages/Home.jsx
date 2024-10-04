@@ -126,85 +126,22 @@ const visuals = [
 const albumData = [
   {
     id: 1,
-    name: "Enter the Wu-Tang (36 Chambers)",
-    released: "November 9, 1993",
-    length: "61:31",
-    label: "Loud",
-    producer: "RZA (also exec.), Ol Dirty Bastard, Method Man",
-    description: "Epic first group album",
-    coverArt: null,
-    sampleTrack: {
-      title: "Protect Ya Neck",
-      src: "https://upload.wikimedia.org/wikipedia/en/a/ae/Protectyaneck.ogg",
-    },
     visuals: structuredClone(visuals),
   },
   {
     id: 2,
-    name: "Return to the 36 Chambers: The Dirty Version",
-    released: "March 28, 1995",
-    length: "59:04",
-    label: "Elektra WMG",
-    producer:
-      "RZA (also exec.), True Master, 4th Disciple, Ol' Dirty Bastard, Ethan Ryman, Big Dore",
-    description: "Unexpected Gem",
-    descriptionStyling: {
-      color: "white",
-      backgroundColor: "purple",
-      fontWeight: "bold",
-    },
-    coverArt: null,
     visuals: getRandomSet(structuredClone(visuals), 4),
   },
   {
     id: 3,
-    name: "Only Built 4 Cuban Linx",
-    released: "August 1, 1995",
-    length: "69:30",
-    label: "Loud RCA",
-    producer: "RZA (also exec.), Mitchell Diggs (exec.), Oli Grant (exec.)",
-    description: "The Purple Tape",
-    descriptionStyling: {
-      color: "white",
-      backgroundColor: "purple",
-      fontWeight: "bold",
-    },
-    coverArt: null,
-    sampleTrack: {
-      title: "Criminology",
-      src: "https://upload.wikimedia.org/wikipedia/en/d/d6/Criminology.ogg",
-    },
     visuals: getRandomSet(structuredClone(visuals), 4),
   },
   {
     id: 4,
-    name: "Liquid Swords",
-    released: "November 7, 1995",
-    length: "50:49",
-    label: "Geffen, MCA",
-    producer: "RZA",
-    description: "GZA Genius",
-    coverArt: null,
-    sampleTrack: {
-      title: "I Gotcha Back",
-      src: "https://upload.wikimedia.org/wikipedia/en/f/f7/I_Gotcha_Back.ogg",
-    },
     visuals: getRandomSet(structuredClone(visuals), 4),
   },
   {
     id: 5,
-    name: "Ironman (Ghostface Killah album)",
-    released: "October 29, 1996",
-    length: "64:48",
-    label: "Epic, Razor Sharp",
-    producer:
-      "RZA (also exec.), Mitchell Diggs (exec.), Oli Grant (exec.), D.Coles (exec.), True Master",
-    description: "Tony Starks",
-    coverArt: null,
-    sampleTrack: {
-      title: "After the Smoke is Clear",
-      src: "https://upload.wikimedia.org/wikipedia/en/4/46/After_the_Smoke_Is_Clear_%28Ghostface_Killah_song_-_sample%29.ogg",
-    },
     visuals: getRandomSet(structuredClone(visuals), 5),
   },
 ];
@@ -274,7 +211,7 @@ const Home = ({ width }) => {
           </Grid>
           {dataLoading && (
             <div style={{ flexGrow: 1, padding: '1rem' }}>
-              <Typography style={{ fontFamily: 'monospace' }} align="center" color="textSecondary" paragraph>
+              <Typography style={{ fontFamily: 'monospace', fontSize: '0.75rem' }} align="center" color="textSecondary" paragraph>
                 Takes a few seconds to get album covers from the server... :D
               </Typography>
               <LinearProgress />
