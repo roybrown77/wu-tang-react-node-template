@@ -110,6 +110,10 @@ const visuals = [
     title: "Lucy Killer Tape",
   },
   {
+    img: linusShorty,
+    title: "Linus Shorty",
+  },
+  {
     img: wutangJoint,
     title: "Wu-Tang Joint",
   },
@@ -257,9 +261,10 @@ const Home = ({ width }) => {
                 style={{
                   backgroundColor: '#E2A42B',
                   color: '#fff',
+                  fontFamily: 'monospace',
                   fontWeight: 'bold',
-                  padding: '16px 40px',
                   margin: '16px 0',
+                  padding: '16px 40px',
                 }}
                 onClick={handleSearchWuBangers}
               >
@@ -269,7 +274,7 @@ const Home = ({ width }) => {
           </Grid>
           {dataLoading && (
             <div style={{ flexGrow: 1, padding: '1rem' }}>
-              <Typography align="center" color="textSecondary" paragraph>
+              <Typography style={{ fontFamily: 'monospace' }} align="center" color="textSecondary" paragraph>
                 Takes a few seconds to get album covers from the server... :D
               </Typography>
               <LinearProgress />
