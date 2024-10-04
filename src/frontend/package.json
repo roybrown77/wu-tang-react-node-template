@@ -5,6 +5,7 @@
   "proxy": "http://localhost:3001/",
   "dependencies": {
     "@material-ui/core": "4.12.3",
+    "@vitejs/plugin-react": "^4.3.2",
     "axios": "0.26.0",
     "classnames": "2.3.1",
     "prop-types": "15.8.1",
@@ -13,17 +14,17 @@
     "react-player": "2.9.0",
     "react-router-dom": "6.2.1"
   },
-  "devDependencies": {
-    "react-scripts": "5.0.0"
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build"
+    "start": "vite",
+    "build": "vite build"
   },
   "browserslist": [
     ">0.2%",
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "vite": "^5.4.8"
+  }
 }

@@ -1,40 +1,12 @@
+@ -1,97 +0,0 @@
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <!-- Manifest for PWA -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    
-    <!-- PWA settings -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#536878">
-    
-    <!-- Apple PWA icons -->
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/icons/apple-icon-180.png">
-    <link rel="icon" sizes="192x192" href="%PUBLIC_URL%/icons/android-icon-192.png">
-    
-    <!-- Define splash screens for iOS -->
-    <link rel="apple-touch-startup-image" href="%PUBLIC_URL%/splash/launch-640x1136.png" media="(device-width: 320px)">
-    <link rel="apple-touch-startup-image" href="%PUBLIC_URL%/splash/launch-750x1334.png" media="(device-width: 375px)">
-    <link rel="apple-touch-startup-image" href="%PUBLIC_URL%/splash/launch-1125x2436.png" media="(device-width: 375px) and (device-height: 812px)">
-    <link rel="apple-touch-startup-image" href="%PUBLIC_URL%/splash/launch-1242x2208.png" media="(device-width: 414px)">
-    
-    <!-- Preload fonts for better performance -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-    <!-- PWA name -->
-    <meta name="application-name" content="Wu-Tang x React x Node">
-    <meta name="apple-mobile-web-app-title" content="Wu-Tang App">
-
     <!-- SEO meta tags -->
     <meta name="description" content="Wu-Tang x React x Node – A PWA that displays Wu-Tang album covers and other features.">
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
 
     <!-- Basic styles for the app -->
     <style type="text/css">
@@ -67,6 +39,7 @@
   <body>
     <!-- Root div for React app -->
     <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
 
     <!-- Register Service Worker for PWA -->
     <script>

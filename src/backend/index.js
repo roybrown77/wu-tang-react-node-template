@@ -3,19 +3,18 @@
 */
 
 const { nodeEnv, httpPort } = require('../../config');
-
-console.log('env', nodeEnv, httpPort);
+const express = require('express');
+const path = require('path');
+const cors = require('cors');
+const albumEndpoint = require('./album/AlbumController')
 
 /*
   Setup web server
 */
 
-const express = require('express');
 const app = express();
 
 app.set("port", httpPort || 3001);
-
-const path = require('path');
 
 if (nodeEnv === "production") {
     app.use(express.static(path.resolve(__dirname, '../frontend/build')));
@@ -25,7 +24,15 @@ if (nodeEnv === "production") {
   Setup api end points
 */
 
-app.use('/api/albummanagement', require('./album/AlbumController'));
+const corsOptions = {
+  origin: ['https://wu-tang-react-node-template.herokuapp.com', 'http://localhost:5173'],
+  methods: 'GET,HEAD,PUT,PATCH,POST',
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true, // Allows cookies and credentials to be sent
+};
+
+app.use(cors(corsOptions)); // Enable all CORS requests
+app.use('/api/albummanagement', albumEndpoint);
 
 app.get('*', function(request, response) {
   response.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'));

@@ -71,29 +71,6 @@ AlbumImageCarousel.propTypes = {
   width: PropTypes.string.isRequired,
 };
 
-const visuals = [
-  {
-      img: wuFranklin,
-      title: 'Wu Franklin'
-  },
-  {
-      img: linusWu,
-      title: 'Linus Wu'
-  },
-  {
-      img: lucyKillerTape,
-      title: 'Lucy Killer Tape'
-  },
-  {
-      img: wutangJoint,
-      title: 'Wu-Tang Joint'
-  },
-  {
-      img: wutangAgain,
-      title: 'Wu-Tang Again'
-  }
-];
-
 const getRandomSet = (arr, numItems) => {
   // Step 1: Shuffle the array
   const shuffledArray = arr.sort(() => Math.random() - 0.5);
@@ -101,90 +78,6 @@ const getRandomSet = (arr, numItems) => {
   // Step 2: Select the first 'numItems' from the shuffled array
   return shuffledArray.slice(0, numItems);
 };
-
-const albumData = [
-  {
-      id: 1,
-      name: 'Enter the Wu-Tang (36 Chambers)',
-      released: 'November 9, 1993',
-      length: '61:31',
-      label: 'Loud',
-      producer: 'RZA (also exec.), Ol Dirty Bastard, Method Man',
-      description: 'Epic first group album',
-      coverArt: null,
-      sampleTrack: {
-          title: 'Protect Ya Neck',
-          src: 'https://upload.wikimedia.org/wikipedia/en/a/ae/Protectyaneck.ogg'
-      },
-      visuals: structuredClone(visuals),
-  },
-  {
-      id: 2,
-      name: 'Return to the 36 Chambers: The Dirty Version',
-      released: 'March 28, 1995',
-      length: '59:04',
-      label: 'Elektra WMG',
-      producer: "RZA (also exec.), True Master, 4th Disciple, Ol' Dirty Bastard, Ethan Ryman, Big Dore",
-      description: 'Unexpected Gem',
-      descriptionStyling: {
-          color: 'white',
-          backgroundColor: 'purple',
-          fontWeight: 'bold',
-      },
-      coverArt: null,
-      visuals: getRandomSet(structuredClone(visuals), 4),
-  },
-  {
-    id: 3,
-    name: 'Only Built 4 Cuban Linx',
-    released: 'August 1, 1995',
-    length: '69:30',
-    label: 'Loud RCA',
-    producer: 'RZA (also exec.), Mitchell Diggs (exec.), Oli Grant (exec.)',
-    description: 'The Purple Tape',
-    descriptionStyling: {
-        color: 'white',
-        backgroundColor: 'purple',
-        fontWeight: 'bold',
-    },
-    coverArt: null,
-    sampleTrack: {
-        title: 'Criminology',
-        src: 'https://upload.wikimedia.org/wikipedia/en/d/d6/Criminology.ogg'
-    },
-    visuals: getRandomSet(structuredClone(visuals), 4),
-  },
-  {
-    id: 4,
-    name: 'Liquid Swords',
-    released: 'November 7, 1995',
-    length: '50:49',
-    label: 'Geffen, MCA',
-    producer: 'RZA',
-    description: 'GZA Genius',
-    coverArt: null,
-    sampleTrack: {
-        title: 'I Gotcha Back',
-        src: 'https://upload.wikimedia.org/wikipedia/en/f/f7/I_Gotcha_Back.ogg'
-    },
-    visuals: getRandomSet(structuredClone(visuals), 4),
-},
-  {
-    id: 5,
-    name: 'Ironman (Ghostface Killah album)',
-    released: 'October 29, 1996',
-    length: '64:48',
-    label: 'Epic, Razor Sharp',
-    producer: 'RZA (also exec.), Mitchell Diggs (exec.), Oli Grant (exec.), D.Coles (exec.), True Master',
-    description: 'Tony Starks',
-    coverArt: null,
-    sampleTrack: {
-        title: 'After the Smoke is Clear',
-        src: 'https://upload.wikimedia.org/wikipedia/en/4/46/After_the_Smoke_Is_Clear_%28Ghostface_Killah_song_-_sample%29.ogg'
-    },
-    visuals: getRandomSet(structuredClone(visuals), 5),
-},
-];
 
 const isMobileDevice = () => {
   const userAgent = navigator.userAgent || navigator.vendor || window.opera;
@@ -203,6 +96,115 @@ const isMobileDevice = () => {
   return false;
 };
 
+const visuals = [
+  {
+    img: wuFranklin,
+    title: "Wu Franklin",
+  },
+  {
+    img: linusWu,
+    title: "Linus Wu",
+  },
+  {
+    img: lucyKillerTape,
+    title: "Lucy Killer Tape",
+  },
+  {
+    img: wutangJoint,
+    title: "Wu-Tang Joint",
+  },
+  {
+    img: wutangAgain,
+    title: "Wu-Tang Again",
+  },
+];
+
+const albumData = [
+  {
+    id: 1,
+    name: "Enter the Wu-Tang (36 Chambers)",
+    released: "November 9, 1993",
+    length: "61:31",
+    label: "Loud",
+    producer: "RZA (also exec.), Ol Dirty Bastard, Method Man",
+    description: "Epic first group album",
+    coverArt: null,
+    sampleTrack: {
+      title: "Protect Ya Neck",
+      src: "https://upload.wikimedia.org/wikipedia/en/a/ae/Protectyaneck.ogg",
+    },
+    visuals: structuredClone(visuals),
+  },
+  {
+    id: 2,
+    name: "Return to the 36 Chambers: The Dirty Version",
+    released: "March 28, 1995",
+    length: "59:04",
+    label: "Elektra WMG",
+    producer:
+      "RZA (also exec.), True Master, 4th Disciple, Ol' Dirty Bastard, Ethan Ryman, Big Dore",
+    description: "Unexpected Gem",
+    descriptionStyling: {
+      color: "white",
+      backgroundColor: "purple",
+      fontWeight: "bold",
+    },
+    coverArt: null,
+    visuals: getRandomSet(structuredClone(visuals), 4),
+  },
+  {
+    id: 3,
+    name: "Only Built 4 Cuban Linx",
+    released: "August 1, 1995",
+    length: "69:30",
+    label: "Loud RCA",
+    producer: "RZA (also exec.), Mitchell Diggs (exec.), Oli Grant (exec.)",
+    description: "The Purple Tape",
+    descriptionStyling: {
+      color: "white",
+      backgroundColor: "purple",
+      fontWeight: "bold",
+    },
+    coverArt: null,
+    sampleTrack: {
+      title: "Criminology",
+      src: "https://upload.wikimedia.org/wikipedia/en/d/d6/Criminology.ogg",
+    },
+    visuals: getRandomSet(structuredClone(visuals), 4),
+  },
+  {
+    id: 4,
+    name: "Liquid Swords",
+    released: "November 7, 1995",
+    length: "50:49",
+    label: "Geffen, MCA",
+    producer: "RZA",
+    description: "GZA Genius",
+    coverArt: null,
+    sampleTrack: {
+      title: "I Gotcha Back",
+      src: "https://upload.wikimedia.org/wikipedia/en/f/f7/I_Gotcha_Back.ogg",
+    },
+    visuals: getRandomSet(structuredClone(visuals), 4),
+  },
+  {
+    id: 5,
+    name: "Ironman (Ghostface Killah album)",
+    released: "October 29, 1996",
+    length: "64:48",
+    label: "Epic, Razor Sharp",
+    producer:
+      "RZA (also exec.), Mitchell Diggs (exec.), Oli Grant (exec.), D.Coles (exec.), True Master",
+    description: "Tony Starks",
+    coverArt: null,
+    sampleTrack: {
+      title: "After the Smoke is Clear",
+      src: "https://upload.wikimedia.org/wikipedia/en/4/46/After_the_Smoke_Is_Clear_%28Ghostface_Killah_song_-_sample%29.ogg",
+    },
+    visuals: getRandomSet(structuredClone(visuals), 5),
+  },
+];
+
 const Home = ({ width }) => {
   const [albums, setAlbums] = useState([]);
   const [dataLoading, setDataLoading] = useState(false);
@@ -218,7 +220,7 @@ const Home = ({ width }) => {
     try {
       setDataLoading(true);
       await new Promise(resolve => setTimeout(resolve, 2000)); // 2 second delay
-      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/albummanagement/albumcovers`);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/albummanagement/albumcovers`);
       const mergedAlbumList = albumData.map(albumData=>{
         const albumCoverFound = (response.data || []).find(albumCover=>albumCover.id===albumData.id);
         return {
