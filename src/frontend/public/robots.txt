@@ -1,0 +1,14 @@
+# Allow all web crawlers to access all content
+User-agent: *
+Disallow:
+
+# Disallow web crawlers from accessing specific directories
+Disallow: /backend/
+Disallow: /private/
+
+# Allow Googlebot full access
+User-agent: Googlebot
+Disallow:
+
+# Sitemap location
+Sitemap: https://wu-tang-react-node-template.herokuapp.com/sitemap.xml
