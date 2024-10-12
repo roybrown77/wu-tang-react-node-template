@@ -6,63 +6,105 @@ const cors = require('cors');
 const compression = require('compression');
 const albumEndpoint = require('./album/AlbumController');
 
+// Validate environment variables
+validateEnvironmentVariables();
+
 // Initialize the Express application
-const app = express();
-app.set('port', httpPort || 3001);
+const app = initializeExpressApp();
 
-// Configure CORS options
-const corsOptions = {
-  origin: [
-    'https://wu-tang-react-node-template.herokuapp.com',
-    'http://localhost:5173',
-  ],
-  methods: 'GET,HEAD,PUT,PATCH,POST',
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true, // Allows cookies and credentials to be sent
-};
-
-// Middleware setup
-app.use(cors(corsOptions)); // Enable all CORS requests
-app.use('/api/albummanagement', albumEndpoint);
+// Register API routes
+registerApiRoutes(app);
 
 // Serve static assets in production
 if (nodeEnv === 'production') {
-  setupProductionAssets(app);
+  serveStaticAssets(app);
 }
 
-// Start the server
-const server = app.listen(app.get('port'), () => {
-  console.log(`[WEB_SERVER] - http://localhost:${app.get('port')}/`);
-});
+// Start the web server
+const server = startWebServer(app);
 
-// Graceful shutdown handlers
+// Handle graceful shutdown
 setupGracefulShutdownHandlers(server);
 
-// Error handling
+// Error and process event handling
 setupErrorHandlers();
 
 /**
- * Function to set up production assets serving
+ * Function to validate required environment variables
+ */
+function validateEnvironmentVariables() {
+  if (!httpPort) {
+    console.log('[ENV_VARIABLE] - Missing httpPort configuration');
+    process.exit(1);
+  }
+}
+
+/**
+ * Function to initialize the Express application
+ * @returns {object} app - The Express application instance
+ */
+function initializeExpressApp() {
+  const app = express();
+  app.use(express.urlencoded({ extended: true }));
+  app.use(express.json());
+  app.set('port', httpPort || 3001);
+
+  const corsOptions = {
+    origin: [
+      'https://wu-tang-react-node-template.herokuapp.com',
+      'http://localhost:5173',
+    ],
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+  };
+  
+  app.use(cors(corsOptions)); // Enable CORS requests
+  return app;
+}
+
+/**
+ * Function to register API routes with the Express application
  * @param {object} app - The Express application instance
  */
-function setupProductionAssets(app) {
+function registerApiRoutes(app) {
+  app.use('/api/albummanagement', albumEndpoint);
+}
+
+/**
+ * Function to serve static assets in production
+ * @param {object} app - The Express application instance
+ */
+function serveStaticAssets(app) {
   app.use(compression()); // Enable compression for faster asset delivery
   app.use(express.static(path.resolve(__dirname, '../frontend/build')));
-
-  app.get('*', (request, response) => {
-    response.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'));
+  
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'));
   });
 }
 
 /**
- * Function to set up graceful shutdown handlers for the server
- * @param {object} server - The server instance to gracefully shut down
+ * Function to start the web server
+ * @param {object} app - The Express application instance
+ * @returns {object} server - The server instance
+ */
+function startWebServer(app) {
+  const port = app.get('port');
+  return app.listen(port, () => {
+    console.log(`[WEB_SERVER] - http://localhost:${port}/`);
+  });
+}
+
+/**
+ * Function to setup graceful shutdown handlers for the server
+ * @param {object} server - The server instance
  */
 function setupGracefulShutdownHandlers(server) {
   const gracefulExit = (signal) => {
-    console.info(`${signal} signal received.`);
+    console.info(`${signal} signal received. Closing server...`);
     server.close(() => {
-      console.log(`[WEB_SERVER] - closed through app termination ${signal}.`);
+      console.log(`[WEB_SERVER] - Server closed due to ${signal}.`);
     });
   };
 
@@ -71,7 +113,7 @@ function setupGracefulShutdownHandlers(server) {
 }
 
 /**
- * Function to set up error and process event handlers
+ * Function to setup error and process event handlers
  */
 function setupErrorHandlers() {
   process.on('unhandledRejection', (reason, promise) => {
@@ -95,10 +137,10 @@ function setupErrorHandlers() {
   });
 
   process.on('disconnect', () => {
-    console.log(`Process disconnect.`);
+    console.log('Process disconnect.');
   });
 
   process.on('warning', (warning) => {
-    console.warn(`Process warning: ${JSON.stringify(warning)}`);
+    console.warn(`Process warning: ${warning}`);
   });
 }

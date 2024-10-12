@@ -161,7 +161,7 @@ const Home = ({ width }) => {
     try {
       setDataLoading(true);
       await new Promise(resolve => setTimeout(resolve, 2000)); // 2 second delay
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/albummanagement/albumcovers`);
+      const response = await axios.get(`${window.location.origin}/api/albummanagement/albumcovers`);
       const mergedAlbumList = albumData.map(albumData=>{
         const albumCoverFound = (response.data || []).find(albumCover=>albumCover.id===albumData.id);
         return {
