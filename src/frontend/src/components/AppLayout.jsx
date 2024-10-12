@@ -73,9 +73,9 @@ const AppLayout = ({ classes, children }) => {
   return (
     <div>
       <CssBaseline />
-      <AppBar position="static" className={classNames(classes.appBar)}>
+      <AppBar position="static" className={classNames(classes.appBar)} role="banner" aria-label="Wu-Tang Navbar">
         <Toolbar className={classNames(classes.toolBar)}>
-          <h3
+          <h1
             style={{
               fontSize: '18px',
               fontWeight: 'bold',
@@ -85,23 +85,27 @@ const AppLayout = ({ classes, children }) => {
             }}
           >
             {'Wu-Tang x React x Node'}
-          </h3>
+          </h1>
         </Toolbar>
       </AppBar>
-      <div className={classNames(classes.main)}>{children}</div>
-      <div className={classNames(classes.footer)}>
-        This web app will retrieve Wu-Tang album covers from Wikipedia and display them. It's a demo to showcase how to
-        build a web app using <a href="https://react.dev">ReactJs</a> and <a href="https://nodejs.org">NodeJs</a> javascript software. Code can be found{' '}
-        <a href="https://www.github.com/roybrown77/wu-tang-react-node-template">here</a> since Wu-Tang is for the kids.
-        Sample music track doesn't appear/play on a mobile device so listen on desktop. Enjoy. :D
-      </div>
+      <main className={classNames(classes.main)} role="main">
+        {children}
+      </main>
+      <footer className={classNames(classes.footer)} role="contentinfo">
+        <p>
+          This web app will retrieve Wu-Tang album covers from Wikipedia and display them. It's a demo to showcase how to
+          build a web app using <a href="https://react.dev" target="_blank" rel="noopener noreferrer">ReactJs</a> and <a href="https://nodejs.org" target="_blank" rel="noopener noreferrer">NodeJs</a> javascript software. Code can be found{' '}
+          <a href="https://www.github.com/roybrown77/wu-tang-react-node-template" target="_blank" rel="noopener noreferrer">here</a> since Wu-Tang is for the kids.
+          Sample music track doesn't appear/play on a mobile device, so listen on desktop. Enjoy. :D
+        </p>
+      </footer>
     </div>
   );
 };
 
 AppLayout.propTypes = {
   classes: PropTypes.object.isRequired,
-  children: PropTypes.any,
+  children: PropTypes.node,
   title: PropTypes.string,
 };
 
