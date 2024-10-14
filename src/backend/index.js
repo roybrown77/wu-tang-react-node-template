@@ -124,8 +124,13 @@ function setupErrorHandlers() {
     console.error(`Uncaught Exception: ${JSON.stringify(err)}`);
   });
 
-  process.on('multipleResolves', (type, promise, reason) => {
-    console.error(`Multiple Resolves: type: ${type}, promise: ${promise}, reason: ${reason}`);
+  process.on('multipleResolves', async (type, promise, reason) => {
+    try {
+      const result = await promise;
+      console.error(`Multiple resolves: ${type}, promise resolved with: ${result}`);
+    } catch (err) {
+      console.error(`Multiple resolves: ${type}, promise rejected with: ${err.message || err}`);
+    }
   });
 
   process.on('beforeExit', (code) => {
