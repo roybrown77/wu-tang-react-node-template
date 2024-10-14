@@ -4,28 +4,28 @@
 
 Tiger style. Tiger style. Yes, like the song this will help you build a web app the world can't $%#@ wit.
 
-This web app will retrieve Wu-Tang album covers from Wikipedia and display them.
+This web app will retrieve album covers from Wikipedia and display them for the legendary hip hop group Wu-Tang Clan.
 
 https://wu-tang-react-node-template.herokuapp.com
 
 Backend:
 
-- NodeJs - javascript runtime built on Chrome's V8 engine that allows developers to run JavaScript on the server side, enabling the creation of scalable and high-performance web applications aka run light
+- NodeJs - javascript runtime built on Chrome's V8 engine that allows developers to run JavaScript on the server side, enabling the creation of scalable and high-performance web applications
 - ExpressJs - lightweight, flexible web application framework for Node.js that simplifies building web and API servers by providing a robust set of features for routing, middleware, and HTTP handling aka serve up the site like banana pudding in the A
-- Puppeteer - api to control headless chrome in order to screen scrape aka look ma no api
+- Puppeteer - NodeJs library that provides a high-level API to control headless Chrome or Chromium browsers, enabling automated tasks like web scraping, testing, and interaction with web pages aka look ma no api
 
 Frontend:
 
 - ViteJs - fast, modern build tool and development server for web projects that offers lightning-fast hot module replacement (HMR) and optimized production builds aka run like daytona 500
-- ReactJs - javascript framework to build composable user interfaces aka make sites like lego blocks
-- Google Material Design - framework to create beautiful, customizable ui components aka make it look as good as Google stuff
-- Progressive Web App (PWA) capabilities aka make a web site look and feel like a mobile app.  More info at https://developers.google.com/web/progressive-web-apps/
+- ReactJs - javaScript library for building user interfaces, focusing on creating reusable UI components and efficiently updating and rendering them based on data changes aka make sites like lego blocks
+- Google Material Design - design system that provides a consistent framework of visual, motion, and interaction design principles, implemented through reusable UI components to create intuitive and adaptable user experiences across devices and platforms aka make it look as good as Google stuff
+- Progressive Web App (PWA) - web application that uses modern web technologies to deliver an app-like experience, including offline access, fast loading, and push notifications, while being accessible through a browser.  More info at https://developers.google.com/web/progressive-web-apps/
     - Run within the secure context of HTTPS
     - Add to Home Screen for easier revisits and prevent showing browser's URL bar
 
 Hosting server:
 
-- Heroku / Amazon Web Services (AWS)
+- Heroku / Amazon Web Services (AWS) - platform-as-a-service (PaaS) that simplifies app deployment and management by abstracting infrastructure complexities, while running on top of AWS to leverage its cloud infrastructure for scalability, storage, and security
 
 # To run app locally:
 
