@@ -50,3 +50,5 @@ Please listen to Wu-Tang Clan as it will enhance your coding experience. :D
 ![franklin-benzi-small](https://user-images.githubusercontent.com/1335262/65600161-9a9e3680-df6d-11e9-9d21-cea6cf4e9d55.jpg)
 
 ![wu jeopardy](https://user-images.githubusercontent.com/1335262/44239056-6874af80-a185-11e8-9c5b-b85d8633925f.png)
+
+Art created by [Mark Drew](https://www.artsy.net/artwork/mark-drew-wu-tang-again-wu-tang-clan)
