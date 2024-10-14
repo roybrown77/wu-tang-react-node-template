@@ -2,38 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <!-- Manifest for PWA -->
-    <link rel="manifest" href="/manifest.json">
-    
-    <!-- PWA settings -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#444444">
-    
-    <!-- Apple PWA icons -->
-    <link rel="apple-touch-icon" href="/icons/apple-icon-180.png">
-    <link rel="icon" sizes="192x192" href="/icons/android-icon-192.png">
-    
-    <!-- Define splash screens for iOS -->
-    <link rel="apple-touch-startup-image" href="/splash/launch-640x1136.png" media="(device-width: 320px)">
-    <link rel="apple-touch-startup-image" href="/splash/launch-750x1334.png" media="(device-width: 375px)">
-    <link rel="apple-touch-startup-image" href="/splash/launch-1125x2436.png" media="(device-width: 375px) and (device-height: 812px)">
-    <link rel="apple-touch-startup-image" href="/splash/launch-1242x2208.png" media="(device-width: 414px)">
-    
-    <!-- PWA name -->
-    <meta name="application-name" content="Wu-Tang x React x Node">
-    <meta name="apple-mobile-web-app-title" content="Wu-Tang x React x Node">
-
-    <!-- SEO meta tags -->
     <meta name="description" content="Wu-Tang x React x Node – A web app that displays Wu-Tang album covers and other info.">
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="/favicon.ico">
-
-    <!-- Basic styles for the app -->
     <style type="text/css">
       body {
         margin: 0;
@@ -62,34 +37,7 @@
   </head>
   
   <body>
-    <!-- Root div for React app -->
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-
-    <!-- Register Service Worker for PWA -->
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/service-worker.js')
-            .then(registration => {
-              console.log('ServiceWorker registration successful with scope: ', registration.scope);
-            }).catch(err => {
-              console.log('ServiceWorker registration failed: ', err);
-            });
-        });
-      } else {
-        console.log('Service workers are not supported.');
-      }
-    </script>
-
-    <!-- App shell caching strategy -->
-    <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.ready.then((registration) => {
-          console.log('Service worker ready:', registration);
-          return registration;
-        });
-      }
-    </script>
   </body>
 </html>
