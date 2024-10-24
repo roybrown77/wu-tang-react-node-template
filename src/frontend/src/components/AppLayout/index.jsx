@@ -6,7 +6,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import OpenInNewTabIcon from '../components/OpenInNewTabIcon';
+import OpenInNewTabIcon from '../OpenInNewTabIcon';
+import useSyncServiceWorker from './useSyncServiceWorker';
 
 const styles = (theme) => ({
   appBar: {
@@ -71,6 +72,8 @@ const styles = (theme) => ({
 });
 
 const AppLayout = ({ classes, children }) => {
+  useSyncServiceWorker();
+
   return (
     <div>
       <CssBaseline />
