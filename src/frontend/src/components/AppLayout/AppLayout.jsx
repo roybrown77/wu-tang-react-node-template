@@ -6,7 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import OpenInNewTabIcon from '../OpenInNewTabIcon';
+import OpenInNewTabIcon from '../OpenInNewTabIcon/OpenInNewTabIcon';
 import useSyncServiceWorker from './useSyncServiceWorker';
 
 const styles = (theme) => ({
@@ -88,7 +88,7 @@ const AppLayout = ({ classes, children }) => {
               fontFamily: 'monospace',
             }}
           >
-            {'Wu-Tang x React x Node'}
+            {'Wu-Tang x React x Node x HI'}
           </h1>
         </Toolbar>
       </AppBar>
@@ -99,8 +99,8 @@ const AppLayout = ({ classes, children }) => {
         <p>
           This web app will retrieve album covers from Wikipedia and display them for the <a href="https://www.thewutangclan.com" target="_blank" rel="noopener noreferrer">legendary hip hop group Wu-Tang Clan <OpenInNewTabIcon /></a>. It's a demo to showcase how to
           build a web app using <a href="https://react.dev" target="_blank" rel="noopener noreferrer">ReactJs <OpenInNewTabIcon /></a> and <a href="https://nodejs.org" target="_blank" rel="noopener noreferrer">NodeJs <OpenInNewTabIcon /></a> javascript software. Code can be found at{' '}
-          <a href="https://www.github.com/roybrown77/wu-tang-react-node-template" target="_blank" rel="noopener noreferrer">Wu-Tang x React x Node x Template GitHub Repository <OpenInNewTabIcon /></a> since Wu-Tang is for the kids.
-          Sample music track doesn't appear/play on a mobile device, so listen on desktop. Enjoy. :D
+          <a href="https://www.github.com/roybrown77/wu-tang-react-node-template" target="_blank" rel="noopener noreferrer">Wu-Tang x React x Node x HI x GitHub Repository <OpenInNewTabIcon /></a> since Wu-Tang is for the kids.
+          Sample music track doesn't appear/play on a mobile device, so listen on desktop. Learning how to code is easier when you build something fun that you care about even if it's simple.  Enjoy. :D
         </p>
       </footer>
     </div>

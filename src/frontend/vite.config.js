@@ -11,8 +11,8 @@ export default defineConfig({
       injectRegister: false,
       pwaAssets: { disabled: false, config: true},
       manifest: {
-        name: 'Wu-Tang x React x Node',
-        short_name: 'Wu x React x Node',
+        name: 'Wu-Tang x React x Node x HI',
+        short_name: 'Wu x React x Node x HI',
         description: 'A web app that displays Wu-Tang Clan album covers and info.',
         theme_color: '#444444',
         background_color: "#444444",
