@@ -1,4 +1,4 @@
-# Wu-Tang x React x Node
+# Wu-Tang x React x Node x HI
 
 ![wu-tang](https://user-images.githubusercontent.com/1335262/44062950-81424b5e-9f2c-11e8-88a1-88341217f6a1.jpg)
 
@@ -8,16 +8,18 @@ This web app will retrieve album covers from Wikipedia and display them for the 
 
 https://wu-tang-react-node-template.herokuapp.com
 
+Learning how to code is easier when you build something fun that you care about even if it's simple.
+
 Backend:
 
 - NodeJs - javascript runtime built on Chrome's V8 engine that allows developers to run JavaScript on the server side, enabling the creation of scalable and high-performance web applications
-- ExpressJs - lightweight, flexible web application framework for Node.js that simplifies building web and API servers by providing a robust set of features for routing, middleware, and HTTP handling aka serve up the site like banana pudding in the A
+- ExpressJs - lightweight, flexible web application framework for NodeJs that simplifies building web and API servers by providing a robust set of features for routing, middleware, and HTTP handling aka serve up the site like banana pudding in the A
 - Puppeteer - NodeJs library that provides a high-level API to control headless Chrome or Chromium browsers, enabling automated tasks like web scraping, testing, and interaction with web pages aka look ma no api
 
 Frontend:
 
 - ViteJs - fast, modern build tool and development server for web projects that offers lightning-fast hot module replacement (HMR) and optimized production builds aka run like daytona 500
-- ReactJs - javaScript library for building user interfaces, focusing on creating reusable UI components and efficiently updating and rendering them based on data changes aka make sites like lego blocks
+- ReactJs - javascript library for building user interfaces, focusing on creating reusable UI components and efficiently updating and rendering them based on data changes aka make sites like lego blocks
 - Google Material Design - design system that provides a consistent framework of visual, motion, and interaction design principles, implemented through reusable UI components to create intuitive and adaptable user experiences across devices and platforms aka make it look as good as Google stuff
 - Progressive Web App (PWA) - web application that uses modern web technologies to deliver an app-like experience, including offline access, fast loading, and push notifications, while being accessible through a browser.  More info at https://developers.google.com/web/progressive-web-apps/
     - Run within the secure context of HTTPS
@@ -25,11 +27,15 @@ Frontend:
 
 Hosting server:
 
-- Heroku / Amazon Web Services (AWS) - platform-as-a-service (PaaS) that simplifies app deployment and management by abstracting infrastructure complexities, while running on top of AWS to leverage its cloud infrastructure for scalability, storage, and security
+- Heroku - platform-as-a-service (PaaS) that simplifies app deployment and management by abstracting infrastructure complexities, while running on top of AWS to leverage its cloud infrastructure for scalability, storage, and security
+
+General:
+
+- Human Intelligence (HI) - human (from Earth) ability to learn, reason, solve problems, understand complex ideas, adapt to new situations, and use knowledge and experience to make decisions.
 
 # To run app locally:
 
-1. install node version indicated in .nvmrc file
+1. install NodeJs version indicated in .nvmrc file
 2. open command line to root of this project and type:
 3. npm i
 4. cd src/frontend
