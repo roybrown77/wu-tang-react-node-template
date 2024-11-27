@@ -31,7 +31,7 @@ Hosting server:
 
 General:
 
-- Human Intelligence (HI) - human (from Earth) ability to learn, reason, solve problems, understand complex ideas, adapt to new situations, and use knowledge and experience to make decisions.
+- Human Intelligence (HI) - the ability of individuals, originating from Earth, to learn, reason, solve problems, and adapt to new situations. It encompasses the capacity to understand complex ideas and make decisions by integrating knowledge, experience, consciousness, emotion, creativity, subjectivity, intuition, and biological processes.
 
 # To run app locally:
 
