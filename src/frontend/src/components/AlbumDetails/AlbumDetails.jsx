@@ -25,7 +25,14 @@ const AlbumDetails = ({ album, onCoverArtError }) => {
           </>
         )}
         <div style={{ textAlign: 'center', marginTop: '.5rem' }}>
-          <div style={{ fontWeight: 'bold' }}>{album.description}</div>
+          <div
+            style={{
+              fontWeight: 'bold',
+              width: '200px',
+              height: '35px'
+            }}>
+              {album.description}
+          </div>
           {!isMobileDevice() && album.sampleTrack && (
             <div style={{ marginTop: '.5rem' }}>
               <div style={{ fontWeight: 'bold' }}>{album.sampleTrack?.title}</div>

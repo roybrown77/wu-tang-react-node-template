@@ -59,6 +59,14 @@ const albumData = [
     },
     {
       id: 5,
+      visuals: getRandomSet(structuredClone(visuals), 4),
+    },
+    {
+      id: 6,
+      visuals: getRandomSet(structuredClone(visuals), 4),
+    },
+    {
+      id: 7,
       visuals: getRandomSet(structuredClone(visuals), 5),
     },
   ];

@@ -79,6 +79,17 @@ router.get('/albumcovers', async function (req, res) {
     },
     {
       id: 2,
+      searchTerm: 'Tical (album)',
+      name: "Tical (album)",
+      released: "November 15, 1994",
+      length: "43:49",
+      label: "Def Jam",
+      producer: "RZA",
+      description: "aka M.E.T.H.O.D Man",
+      coverArt: 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e6/Tical.jpg/220px-Tical.jpg',
+    },
+    {
+      id: 3,
       searchTerm: 'Return to the 36 Chambers: The Dirty Version',
       name: "Return to the 36 Chambers: The Dirty Version",
       released: "March 28, 1995",
@@ -87,15 +98,10 @@ router.get('/albumcovers', async function (req, res) {
       producer:
         "RZA (also exec.), True Master, 4th Disciple, Ol' Dirty Bastard, Ethan Ryman, Big Dore",
       description: "Unexpected Gem",
-      descriptionStyling: {
-        color: "white",
-        backgroundColor: "purple",
-        fontWeight: "bold",
-      },
       coverArt: 'https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/Odb_welfare.jpg/220px-Odb_welfare.jpg',
     },
     {
-      id: 3,
+      id: 4,
       searchTerm: 'Only Built 4 Cuban Linx',
       name: "Only Built 4 Cuban Linx",
       released: "August 1, 1995",
@@ -103,11 +109,6 @@ router.get('/albumcovers', async function (req, res) {
       label: "Loud RCA",
       producer: "RZA (also exec.), Mitchell Diggs (exec.), Oli Grant (exec.)",
       description: "The Purple Tape",
-      descriptionStyling: {
-        color: "white",
-        backgroundColor: "purple",
-        fontWeight: "bold",
-      },
       coverArt: 'https://upload.wikimedia.org/wikipedia/en/thumb/1/17/Raekwon_only.jpg/220px-Raekwon_only.jpg',
       sampleTrack: {
         title: "Criminology",
@@ -115,14 +116,14 @@ router.get('/albumcovers', async function (req, res) {
       },
     },
     {
-      id: 4,
+      id: 5,
       searchTerm: 'Liquid Swords',
       name: "Liquid Swords",
       released: "November 7, 1995",
       length: "50:49",
       label: "Geffen, MCA",
       producer: "RZA",
-      description: "GZA Genius",
+      description: "aka GZA Genius",
       coverArt: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/90/Liquidswords1995.png/220px-Liquidswords1995.png',
       sampleTrack: {
         title: "I Gotcha Back",
@@ -130,7 +131,7 @@ router.get('/albumcovers', async function (req, res) {
       },
     },
     {
-      id: 5,
+      id: 6,
       searchTerm: 'Ironman (Ghostface Killah album)',
       name: "Ironman (Ghostface Killah album)",
       released: "October 29, 1996",
@@ -138,12 +139,24 @@ router.get('/albumcovers', async function (req, res) {
       label: "Epic, Razor Sharp",
       producer:
         "RZA (also exec.), Mitchell Diggs (exec.), Oli Grant (exec.), D.Coles (exec.), True Master",
-      description: "Tony Starks",
+      description: "aka Tony Starks",
       coverArt: 'https://upload.wikimedia.org/wikipedia/en/thumb/4/45/Ironman1996.png/220px-Ironman1996.png',
       sampleTrack: {
         title: "After the Smoke is Clear",
         src: "https://upload.wikimedia.org/wikipedia/en/4/46/After_the_Smoke_Is_Clear_%28Ghostface_Killah_song_-_sample%29.ogg",
       },
+    },
+    {
+      id: 7,
+      searchTerm: 'Wu-Tang Forever',
+      name: "Wu-Tang Forever",
+      released: "June 3, 1997",
+      length: "44:58 (disc 1), 67:09 (disc 2\-US), 77:14 (disc 2\–international)",
+      label: "Loud, RCA",
+      producer:
+        "RZA, 4th Disciple, True Master, Inspectah Deck",
+      description: "1997 Wu Double Album",
+      coverArt: 'https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Wu-Tang_Forever.png/220px-Wu-Tang_Forever.png',
     },
   ];
 
