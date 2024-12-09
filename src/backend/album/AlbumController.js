@@ -12,24 +12,24 @@ const promiseGetImage = (album) => {
       console.log('getImage start: ' + album.searchTerm);
 
       browser = await puppeteer.launch({
-        args: ['--no-sandbox', '--disable-setuid-sandbox'],
-        timeout: 5000,
         pipe: true,
         ignoreHTTPSErrors: true,
         // headless: false
       });
 
       page = await browser.newPage();
-
-      await page.setViewport({width: 1080, height: 1024});
-
-      await page.setDefaultNavigationTimeout(5000);
-
+      await page.setViewport({ width: 2000, height: 500 });
       await page.goto('https://www.wikipedia.org/', { waitUntil: 'networkidle2' });
 
       await page.type("#searchInput", album.searchTerm);
 
-      await page.click('.pure-button');
+      const suggestionLink = '.suggestion-link';
+      const elementExists = await page.$(suggestionLink);
+      if (elementExists) {
+        await page.click(suggestionLink);
+      } else {
+        await page.click('.pure-button');
+      }
 
       await page.waitForNavigation();
 
@@ -39,17 +39,20 @@ const promiseGetImage = (album) => {
         return document.querySelector(sel).getAttribute('src');
       }, '#mw-content-text > div.mw-content-ltr.mw-parser-output > table.infobox.vevent.haudio > tbody > tr:nth-child(2) > td > span > a > img');
 
-      await browser.close();
       const coverArt = 'https:' + image.split(' ')[0];
       console.log('getImage end: ' + album.searchTerm);
       resolve({...album, coverArt});
     } catch (err) {
-      if (browser) {
-        await browser.close();
-      }
       const error = album.searchTerm + ' error: ' + JSON.stringify(err);
       console.log(error);
       reject(error);
+    } finally {
+      if (!!page) {
+        await page.close();
+      }
+      if (!!browser) {
+        await browser.close();
+      }
     }
 
     return;
@@ -167,6 +170,8 @@ router.get('/albumcovers', async function (req, res) {
       promiseGetImage(cachedAlbums[2]),
       promiseGetImage(cachedAlbums[3]),
       promiseGetImage(cachedAlbums[4]),
+      promiseGetImage(cachedAlbums[5]),
+      promiseGetImage(cachedAlbums[6]),
     ]);
 
     console.log('albumsSettled: ' + JSON.stringify(albumsSettled));
