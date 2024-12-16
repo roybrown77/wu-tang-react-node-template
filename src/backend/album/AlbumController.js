@@ -49,9 +49,11 @@ const promiseGetImage = (album) => {
     } finally {
       if (!!page) {
         await page.close();
+        page = null;
       }
       if (!!browser) {
         await browser.close();
+        browser = null;
       }
     }
 
