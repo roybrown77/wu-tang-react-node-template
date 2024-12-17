@@ -3,15 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "compression": "^1.7.4",
+    "compression": "^1.7.5",
     "cors": "^2.8.5",
-    "dotenv": "16.4.5",
-    "express": "4.21.0",
-    "puppeteer": "^23.4.1"
+    "dotenv": "16.4.7",
+    "express": "4.21.2",
+    "puppeteer": "^23.10.4"
   },
   "devDependencies": {
-    "concurrently": "9.0.1",
-    "nodemon": "3.1.7"
+    "concurrently": "9.1.0",
+    "nodemon": "3.1.9"
   },
   "cacheDirectories": [
     "node_modules",
