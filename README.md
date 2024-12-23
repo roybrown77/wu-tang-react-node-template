@@ -8,7 +8,7 @@ This web app will retrieve album covers from Wikipedia and display them for the 
 
 https://wu-tang-react-node-template.herokuapp.com
 
-Learning how to code is easier when you build something fun that you care about even if it's simple.
+Learning how to C.O.D.E. is easier when you build something fun that you care about even if it's all so simple.
 
 Backend:
 

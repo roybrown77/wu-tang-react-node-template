@@ -100,7 +100,7 @@ const AppLayout = ({ classes, children }) => {
           This web app will retrieve album covers from Wikipedia and display them for the <a href="https://www.thewutangclan.com" target="_blank" rel="noopener noreferrer">legendary hip hop group Wu-Tang Clan <OpenInNewTabIcon /></a>. It's a demo to showcase how to
           build a web app using <a href="https://react.dev" target="_blank" rel="noopener noreferrer">ReactJs <OpenInNewTabIcon /></a> and <a href="https://nodejs.org" target="_blank" rel="noopener noreferrer">NodeJs <OpenInNewTabIcon /></a> javascript software. Code can be found at{' '}
           <a href="https://www.github.com/roybrown77/wu-tang-react-node-template" target="_blank" rel="noopener noreferrer">Wu-Tang x React x Node x HI x GitHub Repository <OpenInNewTabIcon /></a> since Wu-Tang is for the kids.
-          Sample music track doesn't appear/play on a mobile device, so listen on desktop. Learning how to code is easier when you build something fun that you care about even if it's simple.  Enjoy. :D
+          Sample music track doesn't appear/play on a mobile device, so listen on desktop. Learning how to C.O.D.E. is easier when you build something fun that you care about even if it's all so simple.  Enjoy. :D
         </p>
       </footer>
     </div>
