@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import ReactPlayer from 'react-player';
 import linusShorty from '../../images/linus-shorty.jpg';
 
 const AlbumDetails = ({ album, onCoverArtError }) => {
+  const [error, setError] = useState(false);
   const isMobileDevice = () => {
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
     return /iPhone|iPad|iPod|Android/i.test(userAgent);
@@ -33,7 +35,7 @@ const AlbumDetails = ({ album, onCoverArtError }) => {
             }}>
               {album.description}
           </div>
-          {!isMobileDevice() && album.sampleTrack && (
+          {!isMobileDevice() && album.sampleTrack && !error && (
             <div style={{ marginTop: '.5rem' }}>
               <div style={{ fontWeight: 'bold' }}>{album.sampleTrack?.title}</div>
               <ReactPlayer
@@ -43,6 +45,9 @@ const AlbumDetails = ({ album, onCoverArtError }) => {
                 controls
                 width="200px"
                 height="35px"
+                onError={(e) => {
+                  setError(true);
+                }}
               />
             </div>
           )}
