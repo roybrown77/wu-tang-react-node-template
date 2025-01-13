@@ -35,13 +35,16 @@ General:
 
 # To run app locally:
 
-1. install NodeJs version indicated in .nvmrc file
-2. open command line to root of this project and type:
-3. npm i
-4. cd src/frontend
-5. npm i
-6. cd ../../
-7. npm start
+1. add .env file at root of project with following:
+- NODE_ENV=development
+- PORT=3001
+2. install NodeJs version indicated in .nvmrc file
+3. open command line to root of this project and type:
+4. npm i
+5. cd src/frontend
+6. npm i
+7. cd ../../
+8. npm start
 
 Please listen to Wu-Tang Clan as it will enhance your coding experience. :D
 
