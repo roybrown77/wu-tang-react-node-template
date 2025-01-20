@@ -18,7 +18,7 @@
     "src/frontend/node_modules"
   ],
   "engines": {
-    "node": "20.x"
+    "node": "22.13.0"
   },
   "scripts": {
     "start": "concurrently \"npm run backend\" \"npm run frontend\"",
