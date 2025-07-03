@@ -15,7 +15,6 @@ Backend:
 - NodeJs - javascript runtime built on Chrome's V8 engine that allows developers to run javascript on the server side, enabling the creation of scalable and high-performance web applications
 - ExpressJs - lightweight, flexible web application framework for NodeJs that simplifies building web and API servers by providing a robust set of features for routing, middleware, and HTTP handling aka serve up the site like banana pudding in the A
 - Puppeteer - NodeJs library that provides a high-level API to control headless Chrome or Chromium browsers, enabling automated tasks like web scraping, testing, and interaction with web pages aka look ma no api
-- MongoDb - database located in the clouds
 
 Frontend:
 
