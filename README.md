@@ -43,16 +43,14 @@ General:
 ```
 NODE_ENV=development
 PORT=3001
-DATABASE_CONNECTION_STRING=
 ```
-3. set DATABASE_CONNECTION_STRING
-4. install NodeJs version indicated in .nvmrc file
-5. open command line to root of this project and type:
-6. npm i
-7. cd src/frontend
-8. npm i
-9. cd ../../
-10. npm start
+3. install NodeJs version indicated in .nvmrc file
+4. open command line to root of this project and type:
+5. npm i
+6. cd src/frontend
+7. npm i
+8. cd ../../
+9. npm start
 
 Please listen to Wu-Tang Clan as it will enhance your coding experience. :D
 
