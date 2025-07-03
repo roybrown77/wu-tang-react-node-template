@@ -3,13 +3,13 @@ const puppeteer = require('puppeteer');
 
 let router = express.Router();
 
-const promiseGetImage = (album) => {
-  const getImage = async (resolve,reject) => {
+const promiseGetAlbumCoverArt = (album) => {
+  const getCoverArt = async (resolve,reject) => {
     let browser;
     let page;
 
     try {
-      console.log('getImage start: ' + album.searchTerm);
+      // console.log('getImage start: ', album.searchTerm);
 
       browser = await puppeteer.launch({
         pipe: true,
@@ -40,11 +40,11 @@ const promiseGetImage = (album) => {
       }, '#mw-content-text > div.mw-content-ltr.mw-parser-output > table.infobox.vevent.haudio > tbody > tr:nth-child(2) > td > span > a > img');
 
       const coverArt = 'https:' + image.split(' ')[0];
-      console.log('getImage end: ' + album.searchTerm);
+      // console.log('getImage end: ', album.searchTerm);
       resolve({...album, coverArt});
     } catch (err) {
       const error = album.searchTerm + ' error: ' + JSON.stringify(err);
-      console.log(error);
+      // console.log(error);
       reject(error);
     } finally {
       if (!!page) {
@@ -60,13 +60,11 @@ const promiseGetImage = (album) => {
     return;
   };
 
-  return new Promise(getImage);
+  return new Promise(getCoverArt);
 };
 
-router.get('/albumcovers', async function (req, res) {
-  let albumsFound = [];
-
-  const cachedAlbums = [
+const getHardCodedAlbumData = () => {
+  return [
     {
       id: 1,
       searchTerm: 'Enter the Wu-Tang (36 Chambers)',
@@ -164,29 +162,36 @@ router.get('/albumcovers', async function (req, res) {
       coverArt: 'https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Wu-Tang_Forever.png/220px-Wu-Tang_Forever.png',
     },
   ];
+};
+
+router.get('/albumcovers', async function (req, res) {
+  let albumDataWithCoverArtFromWebScrape = [];
+
+  const albumData = getHardCodedAlbumData();
+  // const albumData = getAlbumDataFromDatabase();
 
   try {
-    const albumsSettled = await Promise.allSettled([
-      promiseGetImage(cachedAlbums[0]),
-      promiseGetImage(cachedAlbums[1]),
-      promiseGetImage(cachedAlbums[2]),
-      promiseGetImage(cachedAlbums[3]),
-      promiseGetImage(cachedAlbums[4]),
-      promiseGetImage(cachedAlbums[5]),
-      promiseGetImage(cachedAlbums[6]),
+    const albumDataWithCoverArtFromWebScrapeUnfulfilled = await Promise.allSettled([
+      promiseGetAlbumCoverArt(albumData[0]),
+      promiseGetAlbumCoverArt(albumData[1]),
+      promiseGetAlbumCoverArt(albumData[2]),
+      promiseGetAlbumCoverArt(albumData[3]),
+      promiseGetAlbumCoverArt(albumData[4]),
+      promiseGetAlbumCoverArt(albumData[5]),
+      promiseGetAlbumCoverArt(albumData[6]),
     ]);
 
-    console.log('albumsSettled: ' + JSON.stringify(albumsSettled));
-    albumsFound = albumsSettled.filter(album=>album.status === 'fulfilled').map(album=>album.value);
-    console.log('albumsFound: ' + JSON.stringify(albumsFound));
+    // log('albumDataWithCoverArtFromWebScrapeUnfulfilled: ', JSON.stringify(albumDataWithCoverArtFromWebScrapeUnfulfilled));
+    albumDataWithCoverArtFromWebScrape = albumDataWithCoverArtFromWebScrapeUnfulfilled.filter(album=>album.status === 'fulfilled').map(album=>album.value);
+    // console.log('albumDataWithCoverArtFromWebScrape: ', JSON.stringify(albumDataWithCoverArtFromWebScrape));
   } catch (err) {
-    console.log('albumcovers err', err);
+    // console.log('albumcovers err: ', err);
 
     const error = 'error: ' + JSON.stringify(err);
-    console.log(error);
+    // console.log('error: ', JSON.stringify(err));
   }
 
-  res.status(200).send(albumsFound.length > 0 ? albumsFound : cachedAlbums);
+  res.status(200).send(albumDataWithCoverArtFromWebScrape.length > 0 ? albumDataWithCoverArtFromWebScrape : albumData);
 });
 
 module.exports = router;

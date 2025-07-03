@@ -15,6 +15,7 @@ Backend:
 - NodeJs - javascript runtime built on Chrome's V8 engine that allows developers to run javascript on the server side, enabling the creation of scalable and high-performance web applications
 - ExpressJs - lightweight, flexible web application framework for NodeJs that simplifies building web and API servers by providing a robust set of features for routing, middleware, and HTTP handling aka serve up the site like banana pudding in the A
 - Puppeteer - NodeJs library that provides a high-level API to control headless Chrome or Chromium browsers, enabling automated tasks like web scraping, testing, and interaction with web pages aka look ma no api
+- MongoDb - database located in the clouds
 
 Frontend:
 
@@ -35,29 +36,51 @@ General:
 
 # To run app locally:
 
-1. add .env file at root of project with following:
-- NODE_ENV=development
-- PORT=3001
-2. install NodeJs version indicated in .nvmrc file
-3. open command line to root of this project and type:
-4. npm i
-5. cd src/frontend
+1. setup database on https://www.mongodb.com/ (if you want to skip db setup comment `const albums = getAlbumsFromDatabse();` and uncomment `const albums = getHardCodedAlbums();` then go to step 2 and skip step 3)
+- create Organization, Project, Cluster and Database ie `wu-tang-react-node`
+- copy connection string and add `/wu-tang-react-node` after `?` in connection string to avoid saving to test table
+- set IP Whitelist in Network Access tab under Security to your current IP address or 0.0.0.0/0 (if testing globally)
+2. add .env file at root of project with following:
+```
+NODE_ENV=development
+PORT=3001
+DATABASE_CONNECTION_STRING=
+```
+3. set DATABASE_CONNECTION_STRING
+4. install NodeJs version indicated in .nvmrc file
+5. open command line to root of this project and type:
 6. npm i
-7. cd ../../
-8. npm start
+7. cd src/frontend
+8. npm i
+9. cd ../../
+10. npm start
 
 Please listen to Wu-Tang Clan as it will enhance your coding experience. :D
 
-![linus wu](https://user-images.githubusercontent.com/1335262/44238981-06b44580-a185-11e8-92e1-55d460c3b81e.png) 
-![lucy killer tape](https://user-images.githubusercontent.com/1335262/44238991-16cc2500-a185-11e8-9abe-145d2d9619ba.png)
-![linus-shorty-small](https://user-images.githubusercontent.com/1335262/65600046-498e4280-df6d-11e9-9b5d-fda1ef93022b.jpg)
-
-![patty wu joint](https://user-images.githubusercontent.com/1335262/44239019-34998a00-a185-11e8-8887-3e96ddbe1a10.png) 
-![charlie wu again](https://user-images.githubusercontent.com/1335262/44239031-44b16980-a185-11e8-8f2e-6df34589f1e5.png)
-
-![franklin](https://user-images.githubusercontent.com/1335262/44304912-5be48880-a338-11e8-935c-d28553a8788a.png)
-![franklin-benzi-small](https://user-images.githubusercontent.com/1335262/65600161-9a9e3680-df6d-11e9-9d21-cea6cf4e9d55.jpg)
-
-![wu jeopardy](https://user-images.githubusercontent.com/1335262/44239056-6874af80-a185-11e8-9c5b-b85d8633925f.png)
+![linus wu](https://user-images.githubusercontent.com/1335262/44238981-06b44580-a185-11e8-92e1-55d460c3b81e.png)
 
 Art created by [Mark Drew](https://www.artsy.net/artwork/mark-drew-wu-tang-again-wu-tang-clan)
+
+![lucy killer tape](https://user-images.githubusercontent.com/1335262/44238991-16cc2500-a185-11e8-9abe-145d2d9619ba.png)
+
+Art created by [Mark Drew](https://www.artsy.net/artwork/mark-drew-wu-tang-again-wu-tang-clan)
+
+![linus-shorty-small](https://user-images.githubusercontent.com/1335262/65600046-498e4280-df6d-11e9-9b5d-fda1ef93022b.jpg)
+
+Art created by [Mark Drew](https://www.artsy.net/artwork/mark-drew-wu-tang-again-wu-tang-clan)
+
+![patty wu joint](https://user-images.githubusercontent.com/1335262/44239019-34998a00-a185-11e8-8887-3e96ddbe1a10.png)
+
+Art created by [Mark Drew](https://www.artsy.net/artwork/mark-drew-wu-tang-again-wu-tang-clan)
+
+![charlie wu again](https://user-images.githubusercontent.com/1335262/44239031-44b16980-a185-11e8-8f2e-6df34589f1e5.png)
+
+Art created by [Mark Drew](https://www.artsy.net/artwork/mark-drew-wu-tang-again-wu-tang-clan)
+
+![franklin](https://user-images.githubusercontent.com/1335262/44304912-5be48880-a338-11e8-935c-d28553a8788a.png)
+
+![franklin-benzi-small](https://user-images.githubusercontent.com/1335262/65600161-9a9e3680-df6d-11e9-9d21-cea6cf4e9d55.jpg)
+
+Art created by [Mark Drew](https://www.artsy.net/artwork/mark-drew-wu-tang-again-wu-tang-clan)
+
+![wu jeopardy](https://user-images.githubusercontent.com/1335262/44239056-6874af80-a185-11e8-9c5b-b85d8633925f.png)
