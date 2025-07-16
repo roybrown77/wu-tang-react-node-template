@@ -12,45 +12,41 @@ Learning how to C.O.D.E. is easier when you build something fun that you care ab
 
 Backend:
 
-- NodeJs - javascript runtime built on Chrome's V8 engine that allows developers to run javascript on the server side, enabling the creation of scalable and high-performance web applications
-- ExpressJs - lightweight, flexible web application framework for NodeJs that simplifies building web and API servers by providing a robust set of features for routing, middleware, and HTTP handling aka serve up the site like banana pudding in the A
-- Puppeteer - NodeJs library that provides a high-level API to control headless Chrome or Chromium browsers, enabling automated tasks like web scraping, testing, and interaction with web pages aka look ma no api
+- **NodeJs** - javascript runtime built on Chrome's V8 engine that allows developers to run javascript on the server side, enabling the creation of scalable and high-performance web applications
+- **ExpressJs** - lightweight, flexible web application framework for NodeJs that simplifies building web and API servers by providing a robust set of features for routing, middleware, and HTTP handling aka serve up the site like banana pudding in the A
+- **Puppeteer** - NodeJs library that provides a high-level API to control headless Chrome or Chromium browsers, enabling automated tasks like web scraping, testing, and interaction with web pages aka look ma no api
 
 Frontend:
 
-- ViteJs - fast, modern build tool and development server for web projects that offers lightning-fast hot module replacement (HMR) and optimized production builds aka run like daytona 500
-- ReactJs - javascript library for building user interfaces, focusing on creating reusable UI components and efficiently updating and rendering them based on data changes aka make sites like lego blocks
-- Google Material Design - design system that provides a consistent framework of visual, motion, and interaction design principles, implemented through reusable UI components to create intuitive and adaptable user experiences across devices and platforms aka make it look as good as Google stuff
-- Progressive Web App (PWA) - web application that uses modern web technologies to deliver an app-like experience, including offline access, fast loading, and push notifications, while being accessible through a browser.  More info at https://developers.google.com/web/progressive-web-apps/
+- **ViteJs** - fast, modern build tool and development server for web projects that offers lightning-fast hot module replacement (HMR) and optimized production builds aka run like daytona 500
+- **ReactJs** - javascript library for building user interfaces, focusing on creating reusable UI components and efficiently updating and rendering them based on data changes aka make sites like lego blocks
+- **Google Material Design** - design system that provides a consistent framework of visual, motion, and interaction design principles, implemented through reusable UI components to create intuitive and adaptable user experiences across devices and platforms aka make it look as good as Google stuff
+- **Progressive Web App (PWA)** - web application that uses modern web technologies to deliver an app-like experience, including offline access, fast loading, and push notifications, while being accessible through a browser.  More info at https://developers.google.com/web/progressive-web-apps/
     - Run within the secure context of HTTPS
     - Add to Home Screen for easier revisits and prevent showing browser's URL bar
 
 Hosting server:
 
-- Heroku - platform-as-a-service (PaaS) that simplifies app deployment and management by abstracting infrastructure complexities, while running on top of AWS to leverage its cloud infrastructure for scalability, storage, and security
+- **Heroku** - platform-as-a-service (PaaS) that simplifies app deployment and management by abstracting infrastructure complexities, while running on top of AWS to leverage its cloud infrastructure for scalability, storage, and security
 
 General:
 
-- Human Intelligence (HI) - the ability of individuals, originating from Earth, to learn, reason, solve problems, and adapt to new situations. It encompasses the capacity to understand complex ideas and make decisions by integrating knowledge, experience, consciousness, emotion, creativity, subjectivity, intuition, and biological processes.
+- **Human Intelligence (HI)** - the ability of individuals, originating from Earth, to learn, reason, solve problems, and adapt to new situations. It encompasses the capacity to understand complex ideas and make decisions by integrating knowledge, experience, consciousness, emotion, creativity, subjectivity, intuition, and biological processes.
 
 # To run app locally:
 
-1. setup database on https://www.mongodb.com/ (if you want to skip db setup comment `const albums = getAlbumsFromDatabse();` and uncomment `const albums = getHardCodedAlbums();` then go to step 2 and skip step 3)
-- create Organization, Project, Cluster and Database ie `wu-tang-react-node`
-- copy connection string and add `/wu-tang-react-node` after `?` in connection string to avoid saving to test table
-- set IP Whitelist in Network Access tab under Security to your current IP address or 0.0.0.0/0 (if testing globally)
-2. add .env file at root of project with following:
+1. add .env file at root of project with following:
 ```
 NODE_ENV=development
 PORT=3001
 ```
-3. install NodeJs version indicated in .nvmrc file
-4. open command line to root of this project and type:
-5. npm i
-6. cd src/frontend
-7. npm i
-8. cd ../../
-9. npm start
+2. install NodeJs version indicated in .nvmrc file
+3. open command line to root of this project and type:
+4. npm i
+5. cd src/frontend
+6. npm i
+7. cd ../../
+8. npm start
 
 Please listen to Wu-Tang Clan as it will enhance your coding experience. :D
 
